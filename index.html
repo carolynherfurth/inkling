@@ -98,6 +98,23 @@
     max-width: 62rem;
   }
 
+  .prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--pink);
+    margin-top: 1rem;
+  }
+
+  .prompt::before {
+    content: '↓';
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
   main {
     position: relative;
     z-index: 1;
@@ -431,6 +448,7 @@
     </h1>
     <p class="subtitle">10 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
     <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you deflect, defer, or direct it.</p>
+    <p class="prompt">Click your answer for each question below to find out which way your inkling is pointing.</p>
   </header>
 
   <main>
