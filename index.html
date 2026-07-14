@@ -18,7 +18,7 @@
     --grey-txt: #5a5a5a;
     --grey-line: #d8d5cc;
     --white: #ffffff;
-    --page-max: 1280px;
+    --page-max: 640px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,11 +43,11 @@
 
   .ghost {
     position: absolute;
-    top: -3.2rem;
+    top: -2.2rem;
     left: 0;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: clamp(6rem, 16vw, 13rem);
+    font-size: clamp(4.5rem, 22vw, 7.5rem);
     color: #f0efea;
     letter-spacing: 0.02em;
     z-index: 0;
@@ -59,14 +59,14 @@
   header {
     position: relative;
     z-index: 1;
-    margin-bottom: 2.4rem;
+    margin-bottom: 2.2rem;
   }
 
   h1 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: clamp(2.1rem, 5vw, 3.4rem);
-    line-height: 1.05;
+    font-size: clamp(1.9rem, 9vw, 2.7rem);
+    line-height: 1.08;
     letter-spacing: 0.01em;
     margin-bottom: 0.6rem;
   }
@@ -104,10 +104,10 @@
   }
 
   .columns {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
-    margin: 2.4rem 0 2.6rem;
+    margin: 2.2rem 0 2.4rem;
   }
 
   .col {
@@ -276,10 +276,9 @@
   }
 
   .closer {
-    display: grid;
-    grid-template-columns: minmax(220px, 320px) 1fr;
-    gap: 2.5rem;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
   }
 
   .closer-heading {
@@ -411,10 +410,8 @@
 
   a:focus-visible, .qnum:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
 
-  @media (max-width: 900px) {
-    .columns { grid-template-columns: 1fr; }
-    .closer { grid-template-columns: 1fr; gap: 1rem; }
-    .ghost { font-size: 5.5rem; top: -2rem; }
+  @media (max-width: 420px) {
+    .ghost { font-size: 4rem; top: -1.6rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
