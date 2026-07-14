@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Inkling Scanner — Will You Bow Out, Fade Out, or Flame Out?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #242424;
+    --charcoal-txt: #3a3a3a;
+    --cream: #f4f1ea;
+    --yellow: #fbed00;
+    --pink: #f2295b;
+    --pink-lt: #ffd9e2;
+    --grey-txt: #5a5a5a;
+    --grey-line: #d8d5cc;
+    --white: #ffffff;
+    --page-max: 1280px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--charcoal-txt);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 3.5rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ghost {
+    position: absolute;
+    top: -3.2rem;
+    left: 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(6rem, 16vw, 13rem);
+    color: #f0efea;
+    letter-spacing: 0.02em;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2.4rem;
+  }
+
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.6rem;
+  }
+
+  h1 .yellow {
+    color: var(--yellow);
+    -webkit-text-stroke: 1.5px var(--charcoal);
+    paint-order: stroke fill;
+  }
+
+  h1 .charcoal { color: var(--charcoal); }
+  h1 .pink { color: var(--pink); }
+
+  .subtitle {
+    font-size: clamp(1.28rem, 2.4vw, 1.62rem);
+    color: var(--grey-txt);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+
+  .subtitle .inkling-hl {
+    color: var(--pink);
+    font-weight: 600;
+  }
+
+  .intro {
+    font-size: 1.02rem;
+    color: var(--charcoal-txt);
+    max-width: 62rem;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2.4rem 0 2.6rem;
+  }
+
+  .col {
+    border-radius: 14px;
+    padding: 1.6rem 1.5rem 1.8rem;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col.flame { background: var(--pink); }
+  .col.fade  { background: var(--charcoal); }
+  .col.bow   {
+    background: var(--yellow);
+    border: 3px solid #c9a800;
+  }
+
+  .pill {
+    display: inline-block;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    padding: 0.42rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 0.9rem;
+    width: fit-content;
+  }
+
+  .flame .pill { background: var(--white); color: var(--pink); }
+  .fade  .pill { background: var(--yellow); color: var(--charcoal); }
+  .bow   .pill { background: var(--charcoal); color: var(--yellow); }
+
+  .col h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.9rem;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.01em;
+  }
+
+  .flame h2 { color: var(--white); }
+  .fade  h2 { color: var(--yellow); }
+  .bow   h2 { color: var(--charcoal); }
+
+  .col p.desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 1.3rem;
+  }
+
+  .flame p.desc { color: var(--pink-lt); }
+  .fade  p.desc { color: var(--cream); }
+  .bow   p.desc { color: var(--charcoal-txt); }
+
+  .ask-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.08rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.9rem;
+  }
+
+  .flame .ask-label { color: var(--pink-lt); }
+  .fade  .ask-label { color: var(--cream); }
+  .bow   .ask-label { color: var(--charcoal-txt); }
+
+  .questions { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .questions li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+
+  .q-row { display: flex; align-items: flex-start; gap: 0.7rem; }
+
+  .qnum {
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin-top: 0.05rem;
+  }
+
+  .flame .qnum { background: var(--white); color: var(--pink); }
+  .fade  .qnum { background: var(--yellow); color: var(--charcoal); }
+  .bow   .qnum { background: var(--charcoal); color: var(--yellow); }
+
+  .flame .questions li { color: var(--white); }
+  .fade  .questions li { color: var(--cream); }
+  .bow   .questions li { color: var(--charcoal-txt); }
+
+  .q-answers { display: flex; gap: 0.5rem; padding-left: 2.3rem; }
+
+  .ans-btn {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+    padding: 0.32rem 0.95rem;
+    border-radius: 999px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.15s ease;
+  }
+
+  .flame .ans-btn { border: 1.5px solid rgba(255,255,255,0.55); color: var(--white); }
+  .fade  .ans-btn { border: 1.5px solid rgba(244,241,234,0.4); color: var(--cream); }
+  .bow   .ans-btn { border: 1.5px solid rgba(36,36,36,0.4); color: var(--charcoal-txt); }
+
+  .flame .ans-btn:hover { border-color: var(--white); }
+  .fade  .ans-btn:hover { border-color: var(--yellow); }
+  .bow   .ans-btn:hover { border-color: var(--charcoal); }
+
+  .flame .ans-btn.selected { background: var(--white); color: var(--pink); border-color: var(--white); }
+  .fade  .ans-btn.selected { background: var(--yellow); color: var(--charcoal); border-color: var(--yellow); }
+  .bow   .ans-btn.selected { background: var(--charcoal); color: var(--yellow); border-color: var(--charcoal); }
+
+  .reveal-zone {
+    text-align: center;
+    margin: 0.4rem 0 2.4rem;
+  }
+
+  .progress-text {
+    font-size: 0.88rem;
+    color: var(--grey-txt);
+    margin-bottom: 0.9rem;
+    font-weight: 500;
+  }
+
+  .reveal-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    background: var(--charcoal);
+    border: none;
+    padding: 0.85rem 2.4rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .reveal-btn:enabled:hover { background: var(--pink); transform: translateY(-1px); }
+
+  .reveal-btn:disabled {
+    background: #d8d5cc;
+    color: #8a8578;
+    cursor: not-allowed;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1.5px solid var(--grey-line);
+    margin-bottom: 1.8rem;
+  }
+
+  .closer {
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .closer-heading {
+    display: flex;
+    gap: 0.55rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.55rem;
+    line-height: 1.15;
+    color: var(--charcoal);
+  }
+
+  .closer-heading .num {
+    flex-shrink: 0;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    margin-top: 0.05rem;
+  }
+
+  .closer-body p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
+    color: var(--charcoal-txt);
+  }
+
+  .closer-body p:last-child { margin-bottom: 0; }
+
+  .closer-body a {
+    color: var(--pink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .closer-body a:hover { color: var(--charcoal); }
+
+  .closer.result .closer-heading .num { background: var(--result-color, var(--pink)); }
+  .closer.result .closer-heading .headline { color: var(--result-color, var(--charcoal)); }
+
+  .closer.bow-clean .closer-heading .headline {
+    color: var(--charcoal);
+    background: var(--yellow);
+    padding: 0.1em 0.32em;
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .closer.bow-clean .tell-cta {
+    background: var(--yellow);
+    border: 2.5px solid var(--charcoal);
+  }
+
+  .closer.bow-clean .closer-body a.tell-cta { color: var(--charcoal); }
+
+  .result-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+    color: var(--charcoal-txt);
+    padding: 0.9rem 1.1rem;
+    border-left: 3px solid var(--result-color, var(--pink));
+    background: #faf9f6;
+  }
+
+  .tell-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    background: var(--result-color, var(--yellow));
+    border: none;
+    padding: 0.9rem 2rem;
+    border-radius: 999px;
+    margin-top: 0.4rem;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.16);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .closer-body a.tell-cta {
+    color: var(--result-text, var(--charcoal));
+    text-decoration: none;
+  }
+
+  .tell-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.22); }
+
+  .retake {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--grey-txt);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'Barlow', sans-serif;
+    padding: 0;
+  }
+
+  .retake:hover { color: var(--pink); }
+
+  .hidden { display: none; }
+
+  footer {
+    margin-top: 2.6rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--grey-line);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--grey-txt);
+    position: relative;
+    z-index: 1;
+  }
+
+  a:focus-visible, .qnum:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
+
+  @media (max-width: 900px) {
+    .columns { grid-template-columns: 1fr; }
+    .closer { grid-template-columns: 1fr; gap: 1rem; }
+    .ghost { font-size: 5.5rem; top: -2rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ghost" aria-hidden="true">INKLING</div>
+
+  <header>
+    <h1>
+      WILL YOU <span class="yellow">BOW OUT</span>,
+      <span class="charcoal">FADE OUT</span>,
+      OR <span class="pink">FLAME OUT</span>?
+    </h1>
+    <p class="subtitle">10 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
+    <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you deflect, defer, or direct it.</p>
+  </header>
+
+  <main>
+    <div class="columns">
+
+      <section class="col flame">
+        <span class="pill">DEFLECT</span>
+        <h2>FLAME-OUT</h2>
+        <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore. That question feels bigger and more important. It's also impossible to act on — which is exactly why it's easier to sit with than a concrete answer about the business. You keep going, because going has always worked before. Then one day, you're done.</p>
+        <div class="ask-label">ASK YOURSELF</div>
+        <ol class="questions">
+          <li>
+            <div class="q-row"><span class="qnum">1</span><span>Do you consider yourself impulsive — especially once you've finally had enough?</span></div>
+            <div class="q-answers" data-col="flame" data-q="1">
+              <button class="ans-btn" data-val="yes">Yes</button>
+              <button class="ans-btn" data-val="no">No</button>
+            </div>
+          </li>
+          <li>
+            <div class="q-row"><span class="qnum">2</span><span>Do you yearn to do something different but can't picture what that next move would actually be?</span></div>
+            <div class="q-answers" data-col="flame" data-q="2">
+              <button class="ans-btn" data-val="yes">Yes</button>
+              <button class="ans-btn" data-val="no">No</button>
+            </div>
+          </li>
+          <li>
+            <div class="q-row"><span class="qnum">3</span><span>If you were earning the same (or more) income tomorrow without operating your business as-is, would you feel relieved — or disappointed?</span></div>
+            <div class="q-answers" data-col="flame" data-q="3">
+              <button class="ans-btn" data-val="yes">Relieved</button>
+              <button class="ans-btn" data-val="no">Disappointed</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="col fade">
+        <span class="pill">DEFER</span>
+        <h2>FADE-OUT</h2>
+        <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've decided to stay, but because you haven't found a next move worth choosing.</p>
+        <div class="ask-label">ASK YOURSELF</div>
+        <ol class="questions">
+          <li>
+            <div class="q-row"><span class="qnum">4</span><span>Have you been experiencing a prolonged sense of boredom in your business?</span></div>
+            <div class="q-answers" data-col="fade" data-q="4">
+              <button class="ans-btn" data-val="yes">Yes</button>
+              <button class="ans-btn" data-val="no">No</button>
+            </div>
+          </li>
+          <li>
+            <div class="q-row"><span class="qnum">5</span><span>Do you stay out of obligation — to clients, your team, or the identity you've built — more than actual desire?</span></div>
+            <div class="q-answers" data-col="fade" data-q="5">
+              <button class="ans-btn" data-val="yes">Yes</button>
+              <button class="ans-btn" data-val="no">No</button>
+            </div>
+          </li>
+          <li>
+            <div class="q-row"><span class="qnum">6</span><span>Is there a decision about your business you've been avoiding because you don't like the only options you can see from where you sit?</span></div>
+            <div class="q-answers" data-col="fade" data-q="6">
+              <button class="ans-btn" data-val="yes">Yes</button>
+              <button class="ans-btn" data-val="no">No</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="col bow">
+        <span class="pill">DIRECT</span>
+        <h2>BOW-OUT</h2>
+        <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
+        <div class="ask-label">ASK YOURSELF</div>
+        <ol class="questions">
+          <li>
+            <div class="q-row"><span class="qnum">7</span><span>Do you have a clear-eyed objectivity about when it's time to exit your business?</span></div>
+            <div class="q-answers" data-col="bow" data-q="7">
+              <button class="ans-btn" data-val="yes">Yes</button>
+              <button class="ans-btn" data-val="no">No</button>
+            </div>
+          </li>
+          <li>
+            <div class="q-row"><span class="qnum">8</span><span>Are you driving your next decision as opposed to waiting for the business to force it?</span></div>
+            <div class="q-answers" data-col="bow" data-q="8">
+              <button class="ans-btn" data-val="yes">Yes</button>
+              <button class="ans-btn" data-val="no">No</button>
+            </div>
+          </li>
+          <li>
+            <div class="q-row"><span class="qnum">9</span><span>If someone noticed your blind spot, would you actually hear it — or would you get defensive?</span></div>
+            <div class="q-answers" data-col="bow" data-q="9">
+              <button class="ans-btn" data-val="yes">Hear it</button>
+              <button class="ans-btn" data-val="no">Get defensive</button>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+    </div>
+
+    <div class="reveal-zone">
+      <div class="progress-text" id="progressText">Answer all 9 to see where your inkling is pointing (0/9)</div>
+      <button class="reveal-btn" id="revealBtn" disabled>See What It's Pointing To</button>
+    </div>
+
+    <hr class="divider">
+
+    <div class="closer" id="closerSection">
+      <div class="closer-heading"><span class="num" id="closerNum">10</span><span class="headline" id="closerHeadline">SO — WHICH WAY IS YOUR INKLING POINTING?</span></div>
+      <div class="closer-body">
+        <p class="hidden result-desc" id="resultDesc"></p>
+        <p>Your inkling is telling you something. So is your business — and it's not always the same thing.</p>
+        <p>That's what <a href="https://carolynherfurth.com/the-tell">THE TELL</a> is for. In 90 minutes, we read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding.</p>
+        <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year carrying something that's already finished.</p>
+        <a href="https://carolynherfurth.com/the-tell" class="tell-cta hidden" id="tellCta">Book THE TELL →</a>
+        <button class="retake hidden" id="retakeBtn">↺ Retake the scan</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>© 2026 CAROLYN HERFURTH &nbsp;|&nbsp; STRATICA, INC. &nbsp;|&nbsp; THE INKLING SCANNER</footer>
+</div>
+
+<script>
+(function () {
+  const answers = {}; // key: "col-q" -> "yes"|"no"
+  const totalQuestions = 9;
+
+  const progressText = document.getElementById('progressText');
+  const revealBtn = document.getElementById('revealBtn');
+  const closerSection = document.getElementById('closerSection');
+  const closerNum = document.getElementById('closerNum');
+  const closerHeadline = document.getElementById('closerHeadline');
+  const resultDesc = document.getElementById('resultDesc');
+  const retakeBtn = document.getElementById('retakeBtn');
+  const tellCta = document.getElementById('tellCta');
+
+  const RESULTS = {
+    flame: {
+      label: 'FLAME-OUT',
+      color: '#f2295b',
+      textColor: '#ffffff',
+      headline: 'YOUR INKLING IS POINTING TOWARD FLAME-OUT.',
+      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore. It's still the business. You keep going, because going has always worked before. This is exactly when an outside read matters most — before one day, you're just done."
+    },
+    fade: {
+      label: 'FADE-OUT',
+      color: '#242424',
+      textColor: '#fbed00',
+      headline: 'YOUR INKLING IS POINTING TOWARD FADE-OUT.',
+      desc: "You know something has changed, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, not because you've decided to, but because you haven't found a next move worth choosing yet. That's just the kind of stuck that keeps you cornered. Exploring possibilities for your next move would move you through much faster."
+    },
+    bow: {
+      label: 'BOW-OUT',
+      color: '#fbed00',
+      textColor: '#242424',
+      headline: 'YOUR INKLING IS POINTING TOWARD BOW-OUT.',
+      desc: "You look at your inklings while you still have choices — before anything's forced on you. That doesn't mean you already have the answer. It means you're ready to look closely at what's changed and what happens next, on your own terms. That's exactly what THE TELL is built for."
+    }
+  };
+
+  document.querySelectorAll('.q-answers').forEach(group => {
+    const col = group.dataset.col;
+    const q = group.dataset.q;
+    group.querySelectorAll('.ans-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.ans-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        answers[col + '-' + q] = btn.dataset.val;
+        updateProgress();
+      });
+    });
+  });
+
+  function updateProgress() {
+    const answered = Object.keys(answers).length;
+    progressText.textContent = answered >= totalQuestions
+      ? 'All set — see where it\'s pointing.'
+      : `Answer all 9 to see where your inkling is pointing (${answered}/9)`;
+    revealBtn.disabled = answered < totalQuestions;
+  }
+
+  function tally() {
+    const counts = { flame: 0, fade: 0, bow: 0 };
+    Object.keys(answers).forEach(key => {
+      if (answers[key] === 'yes') {
+        const col = key.split('-')[0];
+        counts[col]++;
+      }
+    });
+    return counts;
+  }
+
+  function buildTendencyMessage(counts) {
+    const flags = [];
+    if (counts.flame > 0) flags.push('FLAME-OUT');
+    if (counts.fade > 0) flags.push('FADE-OUT');
+    const named = flags.join(' and ');
+    return {
+      headline: `YOU'RE LEANING BOW-OUT — BUT NOT WITHOUT SOME ${named} IN THE MIX.`,
+      desc: `The lean is toward choosing on purpose, and that's real. But so is the ${flags.length > 1 ? 'pull toward ' + named.toLowerCase() : named.toLowerCase() + ' pull'} underneath it — and that doesn't cancel itself out just because the majority answer points elsewhere. That's exactly the kind of friction worth hashing out, before the more damaging signal becomes the one that ends up overtaking your direction.`
+    };
+  }
+
+  revealBtn.addEventListener('click', () => {
+    const counts = tally();
+    const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
+    const winners = Object.keys(counts).filter(col => counts[col] === maxCount);
+
+    closerSection.classList.add('result');
+    closerSection.classList.remove('bow-clean');
+
+    if (maxCount === 0) {
+      closerSection.style.setProperty('--result-color', '#5a5a5a');
+      closerSection.style.setProperty('--result-text', '#ffffff');
+      closerNum.textContent = '✓';
+      closerHeadline.textContent = "IT'S NOT FULLY POINTING ANYWHERE YET.";
+      resultDesc.textContent = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
+      resultDesc.classList.remove('hidden');
+    } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
+      const t = buildTendencyMessage(counts);
+      closerSection.style.setProperty('--result-color', '#c9a800');
+      closerSection.style.setProperty('--result-text', '#242424');
+      closerNum.textContent = '✓';
+      closerHeadline.textContent = t.headline;
+      resultDesc.textContent = t.desc;
+      resultDesc.classList.remove('hidden');
+    } else if (winners.length === 1) {
+      const r = RESULTS[winners[0]];
+      closerSection.style.setProperty('--result-color', r.color);
+      closerSection.style.setProperty('--result-text', r.textColor);
+      if (winners[0] === 'bow') closerSection.classList.add('bow-clean');
+      closerNum.textContent = '✓';
+      closerHeadline.textContent = r.headline;
+      resultDesc.textContent = r.desc;
+      resultDesc.classList.remove('hidden');
+    } else if (winners.length === 3) {
+      closerSection.style.setProperty('--result-color', '#5a5a5a');
+      closerSection.style.setProperty('--result-text', '#ffffff');
+      closerNum.textContent = '✓';
+      closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
+      resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective outside read.";
+      resultDesc.classList.remove('hidden');
+    } else {
+      const labels = winners.map(w => RESULTS[w].label);
+      closerSection.style.setProperty('--result-color', '#5a5a5a');
+      closerSection.style.setProperty('--result-text', '#ffffff');
+      closerNum.textContent = '✓';
+      closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
+      resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective outside read.`;
+      resultDesc.classList.remove('hidden');
+    }
+
+    retakeBtn.classList.remove('hidden');
+    tellCta.classList.remove('hidden');
+    revealBtn.disabled = true;
+    progressText.textContent = 'Result revealed below ↓';
+    closerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  retakeBtn.addEventListener('click', () => {
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.querySelectorAll('.ans-btn.selected').forEach(b => b.classList.remove('selected'));
+    closerSection.classList.remove('result');
+    closerSection.classList.remove('bow-clean');
+    closerNum.textContent = '10';
+    closerHeadline.textContent = 'SO — WHICH WAY IS YOUR INKLING POINTING?';
+    resultDesc.classList.add('hidden');
+    retakeBtn.classList.add('hidden');
+    tellCta.classList.add('hidden');
+    updateProgress();
+    document.querySelector('.columns').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+</body>
+</html>
