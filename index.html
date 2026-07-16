@@ -366,7 +366,7 @@
     color: var(--charcoal-txt);
     padding: 0.9rem 1.1rem;
     border-left: 3px solid var(--result-color, var(--pink));
-    background: #faf9f6;
+    background: var(--result-bg, #faf9f6);
   }
 
   .tell-cta {
@@ -454,8 +454,8 @@
       <span class="charcoal">FADE OUT</span>,
       OR <span class="pink">FLAME OUT</span>?
     </h1>
-    <p class="subtitle">10 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
-    <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you deflect, defer, or direct it.</p>
+    <p class="subtitle">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
+    <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you derail, defer, or direct it.</p>
     <p class="prompt">Click your answer for each question below to find out which way your inkling is pointing.</p>
   </header>
 
@@ -463,9 +463,9 @@
     <div class="columns">
 
       <section class="col flame">
-        <span class="pill">DEFLECT</span>
+        <span class="pill">DERAIL</span>
         <h2>FLAME-OUT</h2>
-        <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore. That question feels bigger and more important. It's also impossible to act on — which is exactly why it's easier to sit with than a concrete answer about the business. You keep going, because going has always worked before. Then one day, you're done.</p>
+        <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important. It's also impossible to act on — which is exactly why it's easier to sit with than a concrete answer about the business. You keep going, because going has always worked before. Then one day, you're done.</p>
         <div class="ask-label">ASK YOURSELF</div>
         <ol class="questions">
           <li>
@@ -562,7 +562,7 @@
     <hr class="divider">
 
     <div class="closer" id="closerSection">
-      <div class="closer-heading"><span class="num" id="closerNum">10</span><span class="headline" id="closerHeadline">SO — WHICH WAY IS YOUR INKLING POINTING?</span></div>
+      <div class="closer-heading"><span class="headline" id="closerHeadline">SO — WHICH WAY IS YOUR INKLING POINTING?</span></div>
       <div class="closer-body">
         <p class="hidden result-desc" id="resultDesc"></p>
         <p>Your inkling is telling you something. So is your business — and it's not always the same thing.</p>
@@ -588,7 +588,6 @@
   const progressText = document.getElementById('progressText');
   const revealBtn = document.getElementById('revealBtn');
   const closerSection = document.getElementById('closerSection');
-  const closerNum = document.getElementById('closerNum');
   const closerHeadline = document.getElementById('closerHeadline');
   const resultDesc = document.getElementById('resultDesc');
   const retakeBtn = document.getElementById('retakeBtn');
@@ -600,7 +599,7 @@
       color: '#f2295b',
       textColor: '#ffffff',
       headline: 'YOUR INKLING IS POINTING TOWARD FLAME-OUT.',
-      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore. It's still the business. You keep going, because going has always worked before. This is exactly when an outside read matters most — before one day, you're just done."
+      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? It's still the business. You keep going, because going has always worked before. This is exactly when an outside read matters most — before one day, you're just done."
     },
     fade: {
       label: 'FADE-OUT',
@@ -670,9 +669,9 @@
     closerSection.classList.remove('bow-clean');
 
     if (maxCount === 0) {
-      closerSection.style.setProperty('--result-color', '#5a5a5a');
+      closerSection.style.setProperty('--result-color', '#f2295b');
       closerSection.style.setProperty('--result-text', '#ffffff');
-      closerNum.textContent = '✓';
+      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = "IT'S NOT FULLY POINTING ANYWHERE YET.";
       resultDesc.textContent = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
       resultDesc.classList.remove('hidden');
@@ -680,7 +679,7 @@
       const t = buildTendencyMessage(counts);
       closerSection.style.setProperty('--result-color', '#c9a800');
       closerSection.style.setProperty('--result-text', '#242424');
-      closerNum.textContent = '✓';
+      closerSection.style.setProperty('--result-bg', '#faf9f6');
       closerHeadline.textContent = t.headline;
       resultDesc.textContent = t.desc;
       resultDesc.classList.remove('hidden');
@@ -688,23 +687,23 @@
       const r = RESULTS[winners[0]];
       closerSection.style.setProperty('--result-color', r.color);
       closerSection.style.setProperty('--result-text', r.textColor);
+      closerSection.style.setProperty('--result-bg', '#faf9f6');
       if (winners[0] === 'bow') closerSection.classList.add('bow-clean');
-      closerNum.textContent = '✓';
       closerHeadline.textContent = r.headline;
       resultDesc.textContent = r.desc;
       resultDesc.classList.remove('hidden');
     } else if (winners.length === 3) {
-      closerSection.style.setProperty('--result-color', '#5a5a5a');
+      closerSection.style.setProperty('--result-color', '#f2295b');
       closerSection.style.setProperty('--result-text', '#ffffff');
-      closerNum.textContent = '✓';
+      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective outside read.";
       resultDesc.classList.remove('hidden');
     } else {
       const labels = winners.map(w => RESULTS[w].label);
-      closerSection.style.setProperty('--result-color', '#5a5a5a');
+      closerSection.style.setProperty('--result-color', '#f2295b');
       closerSection.style.setProperty('--result-text', '#ffffff');
-      closerNum.textContent = '✓';
+      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective outside read.`;
       resultDesc.classList.remove('hidden');
@@ -722,7 +721,6 @@
     document.querySelectorAll('.ans-btn.selected').forEach(b => b.classList.remove('selected'));
     closerSection.classList.remove('result');
     closerSection.classList.remove('bow-clean');
-    closerNum.textContent = '10';
     closerHeadline.textContent = 'SO — WHICH WAY IS YOUR INKLING POINTING?';
     resultDesc.classList.add('hidden');
     retakeBtn.classList.add('hidden');
