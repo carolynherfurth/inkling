@@ -660,6 +660,16 @@
     };
   }
 
+  function buildLeaderMixMessage(winnerCol, counts) {
+    const winnerLabel = RESULTS[winnerCol].label;
+    const others = ['flame', 'fade', 'bow'].filter(c => c !== winnerCol);
+    const otherLabels = others.map(c => RESULTS[c].label);
+    return {
+      headline: 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.',
+      desc: `There's a real lean toward ${winnerLabel} here — but ${otherLabels[0]} and ${otherLabels[1]} both show up too, and that's not nothing. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`
+    };
+  }
+
   revealBtn.addEventListener('click', () => {
     const counts = tally();
     const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
@@ -667,6 +677,9 @@
 
     closerSection.classList.add('result');
     closerSection.classList.remove('bow-clean');
+
+    const isSpreadLeader = winners.length === 1 && winners[0] !== 'bow' &&
+      ['flame', 'fade', 'bow'].filter(c => c !== winners[0]).every(c => counts[c] > 0);
 
     if (maxCount === 0) {
       closerSection.style.setProperty('--result-color', '#f2295b');
@@ -683,6 +696,14 @@
       closerHeadline.textContent = t.headline;
       resultDesc.textContent = t.desc;
       resultDesc.classList.remove('hidden');
+    } else if (isSpreadLeader) {
+      const m = buildLeaderMixMessage(winners[0], counts);
+      closerSection.style.setProperty('--result-color', '#f2295b');
+      closerSection.style.setProperty('--result-text', '#ffffff');
+      closerSection.style.setProperty('--result-bg', '#fdeef2');
+      closerHeadline.textContent = m.headline;
+      resultDesc.textContent = m.desc;
+      resultDesc.classList.remove('hidden');
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       closerSection.style.setProperty('--result-color', r.color);
@@ -697,7 +718,7 @@
       closerSection.style.setProperty('--result-text', '#ffffff');
       closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
-      resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective outside read.";
+      resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
       resultDesc.classList.remove('hidden');
     } else {
       const labels = winners.map(w => RESULTS[w].label);
@@ -705,7 +726,7 @@
       closerSection.style.setProperty('--result-text', '#ffffff');
       closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
-      resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective outside read.`;
+      resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
       resultDesc.classList.remove('hidden');
     }
 
