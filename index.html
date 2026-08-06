@@ -120,6 +120,162 @@
     z-index: 1;
   }
 
+  /* ---- paginated quiz steps (neutral, no category hints) ---- */
+  .quiz-steps { margin: 2rem 0 2.4rem; }
+
+  .step-progress {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--grey-line);
+    transition: background 0.2s ease;
+  }
+
+  .dot.active { background: var(--pink); }
+  .dot.done { background: var(--charcoal); }
+
+  .step-label {
+    margin-left: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--grey-txt);
+  }
+
+  .reflect-prompt {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--grey-txt);
+    margin-bottom: 1.2rem;
+  }
+
+  .qcard {
+    background: #faf9f6;
+    border: 1px solid var(--grey-line);
+    border-radius: 10px;
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .qcard .q-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .qcard .qnum {
+    flex-shrink: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    background: var(--charcoal);
+    color: var(--white);
+  }
+
+  .qcard .q-row span:last-child {
+    font-size: 0.97rem;
+    color: var(--charcoal-txt);
+    line-height: 1.4;
+  }
+
+  .qcard .q-answers { display: flex; gap: 0.5rem; padding-left: 2.3rem; }
+
+  .qcard .ans-btn {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    padding: 0.42rem 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    background: transparent;
+    border: 1.5px solid rgba(36,36,36,0.25);
+    color: var(--charcoal-txt);
+    transition: all 0.15s ease;
+  }
+
+  .qcard .ans-btn:hover { border-color: var(--pink); }
+
+  .qcard .ans-btn.selected {
+    background: var(--pink);
+    color: var(--white);
+    border-color: var(--pink);
+  }
+
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.6rem;
+  }
+
+  .nav-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1.7rem;
+    border-radius: 999px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.15s ease;
+  }
+
+  .back-btn {
+    background: transparent;
+    color: var(--grey-txt);
+    padding-left: 0.2rem;
+  }
+
+  .back-btn:hover { color: var(--charcoal); }
+
+  .next-btn {
+    background: var(--charcoal);
+    color: var(--white);
+    margin-left: auto;
+  }
+
+  .next-btn:enabled:hover { background: var(--pink); transform: translateY(-1px); }
+
+  .next-btn:disabled {
+    background: #d8d5cc;
+    color: #8a8578;
+    cursor: not-allowed;
+  }
+
+  /* ---- post-reveal full framework section ---- */
+  .framework-reveal { margin-top: 2.8rem; }
+
+  .framework-lead {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--pink);
+    margin-bottom: 1.3rem;
+  }
+
+  .framework-lead::before {
+    content: '↓';
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
   .columns {
     display: flex;
     flex-direction: column;
@@ -467,112 +623,102 @@
     </h1>
     <p class="subtitle">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
     <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you drift, defer, or direct it.</p>
-    <p class="prompt">Click your answer for each question below to find out which way your inkling is pointing.</p>
+    <p class="prompt">Answer honestly as you go — we'll show you what it adds up to at the end.</p>
   </header>
 
   <main>
-    <div class="columns">
+    <div class="quiz-steps" id="quizSteps">
+      <div class="step-progress">
+        <span class="dot active" data-dot="1"></span>
+        <span class="dot" data-dot="2"></span>
+        <span class="dot" data-dot="3"></span>
+        <span class="step-label" id="stepLabel">Step 1 of 3</span>
+      </div>
 
-      <section class="col flame">
-        <span class="pill">DRIFT</span>
-        <h2>FLAME-OUT</h2>
-        <p class="desc">Something takes you on a detour — who am I, what's this all for — and the business becomes the bystander. It's still running. It's just no longer where your attention lives. This isn't neglect, exactly. It's absence. And it's the one that can run a business into the ground without anyone ever deciding to let it happen. Then one day, you're done.</p>
-        <div class="ask-label">ASK YOURSELF</div>
-        <ol class="questions">
-          <li>
-            <div class="q-row"><span class="qnum">1</span><span>Do you consider yourself impulsive — especially once you've finally had enough?</span></div>
-            <div class="q-answers" data-col="flame" data-q="1">
-              <button class="ans-btn" data-val="yes">Yes</button>
-              <button class="ans-btn" data-val="no">No</button>
-            </div>
-          </li>
-          <li>
-            <div class="q-row"><span class="qnum">2</span><span>Do you yearn to do something different but can't picture what that next move would actually be?</span></div>
-            <div class="q-answers" data-col="flame" data-q="2">
-              <button class="ans-btn" data-val="yes">Yes</button>
-              <button class="ans-btn" data-val="no">No</button>
-            </div>
-          </li>
-          <li>
-            <div class="q-row"><span class="qnum">3</span><span>If you were earning the same (or more) income tomorrow without operating your business as-is, would you feel relieved — or disappointed?</span></div>
-            <div class="q-answers" data-col="flame" data-q="3">
-              <button class="ans-btn" data-val="yes">Relieved</button>
-              <button class="ans-btn" data-val="no">Disappointed</button>
-            </div>
-          </li>
-        </ol>
-      </section>
+      <div class="step" data-step="1">
+        <p class="reflect-prompt">Go with your gut. You can always come back to this.</p>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">1</span><span>Do you consider yourself impulsive — especially once you've finally had enough?</span></div>
+          <div class="q-answers" data-col="flame" data-q="1">
+            <button class="ans-btn" data-val="yes">Yes</button>
+            <button class="ans-btn" data-val="no">No</button>
+          </div>
+        </div>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">2</span><span>Do you stay out of obligation — to clients, your team, or the identity you've built — more than actual desire?</span></div>
+          <div class="q-answers" data-col="fade" data-q="5">
+            <button class="ans-btn" data-val="yes">Yes</button>
+            <button class="ans-btn" data-val="no">No</button>
+          </div>
+        </div>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">3</span><span>If someone noticed your blind spot, would you actually hear it — or would you get defensive?</span></div>
+          <div class="q-answers" data-col="bow" data-q="9">
+            <button class="ans-btn" data-val="yes">Hear it</button>
+            <button class="ans-btn" data-val="no">Get defensive</button>
+          </div>
+        </div>
+      </div>
 
-      <section class="col fade">
-        <span class="pill">DEFER</span>
-        <h2>FADE-OUT</h2>
-        <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've decided to stay, but because you haven't found a next move worth choosing.</p>
-        <div class="ask-label">ASK YOURSELF</div>
-        <ol class="questions">
-          <li>
-            <div class="q-row"><span class="qnum">4</span><span>Have you been experiencing a prolonged sense of boredom in your business?</span></div>
-            <div class="q-answers" data-col="fade" data-q="4">
-              <button class="ans-btn" data-val="yes">Yes</button>
-              <button class="ans-btn" data-val="no">No</button>
-            </div>
-          </li>
-          <li>
-            <div class="q-row"><span class="qnum">5</span><span>Do you stay out of obligation — to clients, your team, or the identity you've built — more than actual desire?</span></div>
-            <div class="q-answers" data-col="fade" data-q="5">
-              <button class="ans-btn" data-val="yes">Yes</button>
-              <button class="ans-btn" data-val="no">No</button>
-            </div>
-          </li>
-          <li>
-            <div class="q-row"><span class="qnum">6</span><span>Is there a decision about your business you've been avoiding because you don't like the only options you can see from where you sit?</span></div>
-            <div class="q-answers" data-col="fade" data-q="6">
-              <button class="ans-btn" data-val="yes">Yes</button>
-              <button class="ans-btn" data-val="no">No</button>
-            </div>
-          </li>
-        </ol>
-      </section>
+      <div class="step hidden" data-step="2">
+        <p class="reflect-prompt">No wrong answers here — just honest ones.</p>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">4</span><span>Is there a decision about your business you've been avoiding because you don't like the only options you can see from where you sit?</span></div>
+          <div class="q-answers" data-col="fade" data-q="6">
+            <button class="ans-btn" data-val="yes">Yes</button>
+            <button class="ans-btn" data-val="no">No</button>
+          </div>
+        </div>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">5</span><span>Do you have a clear-eyed objectivity about when it's time to exit your business?</span></div>
+          <div class="q-answers" data-col="bow" data-q="7">
+            <button class="ans-btn" data-val="yes">Yes</button>
+            <button class="ans-btn" data-val="no">No</button>
+          </div>
+        </div>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">6</span><span>Do you yearn to do something different but can't picture what that next move would actually be?</span></div>
+          <div class="q-answers" data-col="flame" data-q="2">
+            <button class="ans-btn" data-val="yes">Yes</button>
+            <button class="ans-btn" data-val="no">No</button>
+          </div>
+        </div>
+      </div>
 
-      <section class="col bow">
-        <span class="pill">DIRECT</span>
-        <h2>BOW-OUT</h2>
-        <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
-        <div class="ask-label">ASK YOURSELF</div>
-        <ol class="questions">
-          <li>
-            <div class="q-row"><span class="qnum">7</span><span>Do you have a clear-eyed objectivity about when it's time to exit your business?</span></div>
-            <div class="q-answers" data-col="bow" data-q="7">
-              <button class="ans-btn" data-val="yes">Yes</button>
-              <button class="ans-btn" data-val="no">No</button>
-            </div>
-          </li>
-          <li>
-            <div class="q-row"><span class="qnum">8</span><span>Are you driving your next decision as opposed to waiting for the business to force it?</span></div>
-            <div class="q-answers" data-col="bow" data-q="8">
-              <button class="ans-btn" data-val="yes">Yes</button>
-              <button class="ans-btn" data-val="no">No</button>
-            </div>
-          </li>
-          <li>
-            <div class="q-row"><span class="qnum">9</span><span>If someone noticed your blind spot, would you actually hear it — or would you get defensive?</span></div>
-            <div class="q-answers" data-col="bow" data-q="9">
-              <button class="ans-btn" data-val="yes">Hear it</button>
-              <button class="ans-btn" data-val="no">Get defensive</button>
-            </div>
-          </li>
-        </ol>
-      </section>
+      <div class="step hidden" data-step="3">
+        <p class="reflect-prompt">Last set. Stay with what's true, not what sounds good.</p>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">7</span><span>Are you driving your next decision as opposed to waiting for the business to force it?</span></div>
+          <div class="q-answers" data-col="bow" data-q="8">
+            <button class="ans-btn" data-val="yes">Yes</button>
+            <button class="ans-btn" data-val="no">No</button>
+          </div>
+        </div>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">8</span><span>If you were earning the same (or more) income tomorrow without operating your business as-is, would you feel relieved — or disappointed?</span></div>
+          <div class="q-answers" data-col="flame" data-q="3">
+            <button class="ans-btn" data-val="yes">Relieved</button>
+            <button class="ans-btn" data-val="no">Disappointed</button>
+          </div>
+        </div>
+        <div class="qcard">
+          <div class="q-row"><span class="qnum">9</span><span>Have you been experiencing a prolonged sense of boredom in your business?</span></div>
+          <div class="q-answers" data-col="fade" data-q="4">
+            <button class="ans-btn" data-val="yes">Yes</button>
+            <button class="ans-btn" data-val="no">No</button>
+          </div>
+        </div>
+      </div>
 
+      <div class="step-nav">
+        <button class="nav-btn back-btn hidden" id="backBtn">← Back</button>
+        <button class="nav-btn next-btn" id="nextBtn" disabled>Next</button>
+      </div>
     </div>
 
-    <div class="reveal-zone">
-      <div class="progress-text" id="progressText">Answer all 9 to see where your inkling is pointing (0/9)</div>
-      <button class="reveal-btn" id="revealBtn" disabled>See What It's Pointing To</button>
-    </div>
+    <hr class="divider hidden" id="preResultDivider">
 
-    <hr class="divider">
-
-    <div class="closer" id="closerSection">
+    <div class="closer hidden" id="closerSection">
       <div class="closer-heading"><span class="headline" id="closerHeadline">SO — WHICH WAY IS YOUR INKLING POINTING?</span></div>
       <div class="closer-body">
         <p class="hidden result-desc" id="resultDesc"></p>
@@ -581,6 +727,31 @@
         <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year carrying something that's already finished.</p>
         <a href="https://carolynherfurth.com/the-tell" class="tell-cta hidden" id="tellCta">Book THE TELL →</a>
         <button class="retake hidden" id="retakeBtn">↺ Retake the scan</button>
+      </div>
+    </div>
+
+    <div class="framework-reveal hidden" id="frameworkReveal">
+      <p class="framework-lead">Here's the full picture — all three directions, side by side.</p>
+      <div class="columns">
+
+        <section class="col flame">
+          <span class="pill">DRIFT</span>
+          <h2>FLAME-OUT</h2>
+          <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. Then one day, you're done.</p>
+        </section>
+
+        <section class="col fade">
+          <span class="pill">DEFER</span>
+          <h2>FADE-OUT</h2>
+          <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've decided to stay, but because you haven't found a next move worth choosing.</p>
+        </section>
+
+        <section class="col bow">
+          <span class="pill">DIRECT</span>
+          <h2>BOW-OUT</h2>
+          <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
+        </section>
+
       </div>
     </div>
   </main>
@@ -595,14 +766,21 @@
 (function () {
   const answers = {}; // key: "col-q" -> "yes"|"no"
   const totalQuestions = 9;
+  let currentStep = 1;
+  const totalSteps = 3;
 
-  const progressText = document.getElementById('progressText');
-  const revealBtn = document.getElementById('revealBtn');
+  const quizSteps = document.getElementById('quizSteps');
+  const stepLabel = document.getElementById('stepLabel');
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dots = document.querySelectorAll('.dot');
+  const preResultDivider = document.getElementById('preResultDivider');
   const closerSection = document.getElementById('closerSection');
   const closerHeadline = document.getElementById('closerHeadline');
   const resultDesc = document.getElementById('resultDesc');
   const retakeBtn = document.getElementById('retakeBtn');
   const tellCta = document.getElementById('tellCta');
+  const frameworkReveal = document.getElementById('frameworkReveal');
 
   const RESULTS = {
     flame: {
@@ -610,7 +788,7 @@
       color: '#f2295b',
       textColor: '#ffffff',
       headline: 'YOUR INKLING IS POINTING TOWARD FLAME-OUT.',
-      desc: "Something takes you on a detour — who am I, what's this all for — and the business becomes the bystander. It's still running. It's just no longer where your attention lives. This isn't neglect, exactly. It's absence. This is exactly when an outside read matters most — before one day, you're just done."
+      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. This is exactly when an outside read matters most — before one day, you're just done."
     },
     fade: {
       label: 'FADE-OUT',
@@ -636,18 +814,48 @@
         group.querySelectorAll('.ans-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         answers[col + '-' + q] = btn.dataset.val;
-        updateProgress();
+        updateNextButton();
       });
     });
   });
 
-  function updateProgress() {
-    const answered = Object.keys(answers).length;
-    progressText.textContent = answered >= totalQuestions
-      ? 'All set — see where it\'s pointing.'
-      : `Answer all 9 to see where your inkling is pointing (${answered}/9)`;
-    revealBtn.disabled = answered < totalQuestions;
+  function currentStepGroups() {
+    const stepEl = document.querySelector(`.step[data-step="${currentStep}"]`);
+    return stepEl ? stepEl.querySelectorAll('.q-answers') : [];
   }
+
+  function isStepComplete(stepNum) {
+    const stepEl = document.querySelector(`.step[data-step="${stepNum}"]`);
+    const groups = stepEl.querySelectorAll('.q-answers');
+    return Array.from(groups).every(g => (g.dataset.col + '-' + g.dataset.q) in answers);
+  }
+
+  function updateNextButton() {
+    nextBtn.disabled = !isStepComplete(currentStep);
+  }
+
+  function renderStep() {
+    document.querySelectorAll('.step').forEach(s => {
+      s.classList.toggle('hidden', Number(s.dataset.step) !== currentStep);
+    });
+    dots.forEach(d => {
+      const n = Number(d.dataset.dot);
+      d.classList.toggle('active', n === currentStep);
+      d.classList.toggle('done', n < currentStep);
+    });
+    stepLabel.textContent = `Step ${currentStep} of ${totalSteps}`;
+    backBtn.classList.toggle('hidden', currentStep === 1);
+    nextBtn.textContent = currentStep === totalSteps ? 'See What It\'s Pointing To' : 'Next';
+    updateNextButton();
+  }
+
+  backBtn.addEventListener('click', () => {
+    if (currentStep > 1) {
+      currentStep--;
+      renderStep();
+      quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 
   function tally() {
     const counts = { flame: 0, fade: 0, bow: 0 };
@@ -681,16 +889,38 @@
     };
   }
 
-  revealBtn.addEventListener('click', () => {
+  function buildLeaningMessage(winnerCol, secondaryCol) {
+    const winnerLabel = RESULTS[winnerCol].label;
+    const secondaryLabel = RESULTS[secondaryCol].label;
+    if (secondaryCol === 'flame') {
+      return {
+        headline: `YOU'RE LEANING ${winnerLabel} — BUT AT RISK OF ${secondaryLabel}.`,
+        desc: `The stronger pull right now is toward ${winnerLabel.toLowerCase()}. But there's real ${secondaryLabel.toLowerCase()} signal underneath it too — and that's the one that can turn sudden if it goes unaddressed. An objective read now is what keeps this from becoming urgent later.`
+      };
+    }
+    return {
+      headline: `YOU'RE LEANING ${winnerLabel} — BUT COULD GO ${secondaryLabel}.`,
+      desc: `The stronger pull right now is toward ${winnerLabel.toLowerCase()}. But there's real ${secondaryLabel.toLowerCase()} signal too, and which one wins out isn't decided yet. An objective read now is what determines which direction this actually goes.`
+    };
+  }
+
+  function revealResult() {
     const counts = tally();
     const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
     const winners = Object.keys(counts).filter(col => counts[col] === maxCount);
 
+    closerSection.classList.remove('hidden');
     closerSection.classList.add('result');
     closerSection.classList.remove('bow-highlight');
 
     const isSpreadLeader = winners.length === 1 && winners[0] !== 'bow' &&
       ['flame', 'fade', 'bow'].filter(c => c !== winners[0]).every(c => counts[c] > 0);
+
+    const flameFadeSecondary = winners.length === 1 && (winners[0] === 'flame' || winners[0] === 'fade')
+      ? (winners[0] === 'flame' ? 'fade' : 'flame')
+      : null;
+    const isLeaningWithSecondary = flameFadeSecondary !== null &&
+      counts.bow === 0 && counts[flameFadeSecondary] > 0;
 
     if (maxCount === 0) {
       closerSection.style.setProperty('--result-color', '#f2295b');
@@ -707,6 +937,14 @@
       closerSection.classList.add('bow-highlight');
       closerHeadline.textContent = t.headline;
       resultDesc.textContent = t.desc;
+      resultDesc.classList.remove('hidden');
+    } else if (isLeaningWithSecondary) {
+      const m = buildLeaningMessage(winners[0], flameFadeSecondary);
+      closerSection.style.setProperty('--result-color', '#f2295b');
+      closerSection.style.setProperty('--result-text', '#ffffff');
+      closerSection.style.setProperty('--result-bg', '#fdeef2');
+      closerHeadline.textContent = m.headline;
+      resultDesc.textContent = m.desc;
       resultDesc.classList.remove('hidden');
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
@@ -742,25 +980,44 @@
       resultDesc.classList.remove('hidden');
     }
 
+    preResultDivider.classList.remove('hidden');
     retakeBtn.classList.remove('hidden');
     tellCta.classList.remove('hidden');
-    revealBtn.disabled = true;
-    progressText.textContent = 'Result revealed below ↓';
-    closerSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    frameworkReveal.classList.remove('hidden');
+    quizSteps.classList.add('hidden');
+    closerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (!isStepComplete(currentStep)) return;
+    if (currentStep < totalSteps) {
+      currentStep++;
+      renderStep();
+      quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      revealResult();
+    }
   });
 
   retakeBtn.addEventListener('click', () => {
     Object.keys(answers).forEach(k => delete answers[k]);
     document.querySelectorAll('.ans-btn.selected').forEach(b => b.classList.remove('selected'));
+    closerSection.classList.add('hidden');
     closerSection.classList.remove('result');
     closerSection.classList.remove('bow-highlight');
     closerHeadline.textContent = 'SO — WHICH WAY IS YOUR INKLING POINTING?';
     resultDesc.classList.add('hidden');
     retakeBtn.classList.add('hidden');
     tellCta.classList.add('hidden');
-    updateProgress();
-    document.querySelector('.columns').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    preResultDivider.classList.add('hidden');
+    frameworkReveal.classList.add('hidden');
+    quizSteps.classList.remove('hidden');
+    currentStep = 1;
+    renderStep();
+    quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+
+  renderStep();
 })();
 </script>
 </body>
