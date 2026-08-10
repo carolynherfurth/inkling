@@ -65,8 +65,8 @@
   h1 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: clamp(1.9rem, 9vw, 2.7rem);
-    line-height: 1.08;
+    font-size: clamp(2.3rem, 10vw, 3.4rem);
+    line-height: 1.05;
     letter-spacing: 0.01em;
     margin-bottom: 0.6rem;
   }
@@ -81,7 +81,7 @@
   h1 .pink { color: var(--pink); }
 
   .subtitle {
-    font-size: clamp(1.28rem, 2.4vw, 1.62rem);
+    font-size: clamp(1.55rem, 3vw, 2rem);
     color: var(--grey-txt);
     font-weight: 500;
     margin-bottom: 1.2rem;
@@ -93,7 +93,7 @@
   }
 
   .intro {
-    font-size: 1.02rem;
+    font-size: 1.18rem;
     color: var(--charcoal-txt);
     max-width: 62rem;
   }
@@ -103,8 +103,8 @@
     align-items: center;
     gap: 0.5rem;
     font-family: 'Barlow', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 700;
+    font-size: 1.15rem;
     color: var(--pink);
     margin-top: 1rem;
   }
@@ -112,7 +112,7 @@
   .prompt::before {
     content: '↓';
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
   }
 
   main {
@@ -143,14 +143,14 @@
 
   .step-label {
     margin-left: 0.4rem;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--grey-txt);
   }
 
   .reflect-prompt {
     font-style: italic;
-    font-size: 0.95rem;
+    font-size: 1.08rem;
     color: var(--grey-txt);
     margin-bottom: 1.2rem;
   }
@@ -159,46 +159,47 @@
     background: #faf9f6;
     border: 1px solid var(--grey-line);
     border-radius: 10px;
-    padding: 1.1rem 1.2rem;
-    margin-bottom: 1rem;
+    padding: 1.3rem 1.4rem;
+    margin-bottom: 1.1rem;
   }
 
   .qcard .q-row {
     display: flex;
     align-items: flex-start;
     gap: 0.7rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.9rem;
   }
 
   .qcard .qnum {
     flex-shrink: 0;
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.8rem;
+    height: 1.8rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Barlow', sans-serif;
     font-weight: 700;
-    font-size: 0.82rem;
+    font-size: 0.92rem;
     background: var(--charcoal);
     color: var(--white);
   }
 
   .qcard .q-row span:last-child {
-    font-size: 0.97rem;
+    font-size: 1.14rem;
     color: var(--charcoal-txt);
     line-height: 1.4;
+    font-weight: 500;
   }
 
-  .qcard .q-answers { display: flex; gap: 0.5rem; padding-left: 2.3rem; }
+  .qcard .q-answers { display: flex; gap: 0.6rem; padding-left: 2.5rem; }
 
   .qcard .ans-btn {
     font-family: 'Barlow', sans-serif;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.98rem;
     letter-spacing: 0.02em;
-    padding: 0.42rem 1.1rem;
+    padding: 0.5rem 1.3rem;
     border-radius: 999px;
     cursor: pointer;
     background: transparent;
@@ -225,9 +226,10 @@
   .nav-btn {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 1rem;
-    letter-spacing: 0.02em;
-    padding: 0.75rem 1.7rem;
+    font-size: 1.18rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.9rem;
     border-radius: 999px;
     cursor: pointer;
     border: none;
@@ -264,8 +266,8 @@
     align-items: center;
     gap: 0.5rem;
     font-family: 'Barlow', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 700;
+    font-size: 1.15rem;
     color: var(--pink);
     margin-bottom: 1.3rem;
   }
@@ -274,6 +276,81 @@
     content: '↓';
     font-weight: 700;
     font-size: 1.1rem;
+  }
+
+  /* ---- email gate ---- */
+  .email-gate {
+    background: var(--pink);
+    border-radius: 14px;
+    padding: 1.8rem 1.7rem 2rem;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+    margin: 2rem 0 2.4rem;
+  }
+
+  .gate-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 2.1rem;
+    color: var(--white);
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.01em;
+  }
+
+  .gate-copy {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--pink-lt);
+    margin-bottom: 1.3rem;
+  }
+
+  .gate-form { display: flex; flex-direction: column; gap: 0.85rem; }
+
+  .gate-input {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: 8px;
+    border: 1.5px solid transparent;
+    background: var(--white);
+    color: var(--charcoal);
+  }
+
+  .gate-input:focus {
+    outline: none;
+    border-color: var(--charcoal);
+  }
+
+  .gate-submit {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: var(--yellow);
+    border: none;
+    padding: 1rem 1.6rem;
+    border-radius: 999px;
+    cursor: pointer;
+    margin-top: 0.3rem;
+    transition: all 0.15s ease;
+  }
+
+  .gate-submit:hover { background: var(--white); transform: translateY(-1px); }
+
+  .gate-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .gate-error {
+    color: var(--white);
+    background: rgba(0,0,0,0.2);
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
   }
 
   .columns {
@@ -302,9 +379,9 @@
     display: inline-block;
     font-family: 'Barlow', sans-serif;
     font-weight: 700;
-    font-size: 0.78rem;
+    font-size: 0.88rem;
     letter-spacing: 0.14em;
-    padding: 0.42rem 1rem;
+    padding: 0.48rem 1.1rem;
     border-radius: 999px;
     margin-bottom: 0.9rem;
     width: fit-content;
@@ -317,7 +394,7 @@
   .col h2 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 1.9rem;
+    font-size: 2.2rem;
     margin-bottom: 0.7rem;
     letter-spacing: 0.01em;
   }
@@ -327,7 +404,7 @@
   .bow   h2 { color: var(--charcoal); }
 
   .col p.desc {
-    font-size: 0.95rem;
+    font-size: 1.08rem;
     line-height: 1.55;
     margin-bottom: 1.3rem;
   }
@@ -459,8 +536,8 @@
     gap: 0.55rem;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 1.55rem;
-    line-height: 1.15;
+    font-size: 2.2rem;
+    line-height: 1.1;
     color: var(--charcoal);
   }
 
@@ -479,7 +556,7 @@
   }
 
   .closer-body p {
-    font-size: 1rem;
+    font-size: 1.12rem;
     line-height: 1.6;
     margin-bottom: 0.9rem;
     color: var(--charcoal-txt);
@@ -490,7 +567,7 @@
   .closer-body p.outro-open {
     font-weight: 700;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.55rem;
+    font-size: 1.7rem;
     letter-spacing: 0.01em;
     color: var(--charcoal);
     margin-top: 1.3rem;
@@ -527,12 +604,12 @@
   .closer.bow-highlight .closer-body a.tell-cta { color: var(--charcoal); }
 
   .result-desc {
-    font-size: 1rem;
+    font-size: 1.15rem;
     line-height: 1.6;
     margin-bottom: 1.1rem;
     color: var(--charcoal-txt);
-    padding: 0.9rem 1.1rem;
-    border-left: 3px solid var(--result-color, var(--pink));
+    padding: 1.1rem 1.3rem;
+    border-left: 4px solid var(--result-color, var(--pink));
     background: var(--result-bg, #faf9f6);
   }
 
@@ -542,11 +619,12 @@
     gap: 0.5rem;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: 0.02em;
+    font-size: 1.35rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     background: var(--result-color, var(--yellow));
     border: none;
-    padding: 0.9rem 2rem;
+    padding: 1rem 2.2rem;
     border-radius: 999px;
     margin-top: 0.4rem;
     box-shadow: 0 6px 16px rgba(0,0,0,0.16);
@@ -622,7 +700,7 @@
       OR <span class="pink">FLAME OUT</span>?
     </h1>
     <p class="subtitle">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
-    <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you drift, defer, or direct it.</p>
+    <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you drift, defer, or direct it.</p>
     <p class="prompt">Answer honestly as you go — we'll show you what it adds up to at the end.</p>
   </header>
 
@@ -716,6 +794,23 @@
       </div>
     </div>
 
+    <div class="email-gate hidden" id="emailGate">
+      <h3 class="gate-heading">SO — WHERE'S IT POINTING?</h3>
+      <p class="gate-copy">Nine honest answers deserve an honest read. Drop your email and we'll show you where it's pointing.</p>
+      <form id="gateForm" class="gate-form" novalidate
+            action="https://assets.mailerlite.com/jsonp/1407728/forms/195431736387044353/subscribe"
+            method="post" target="mlHiddenFrame">
+        <input type="text" id="gateName" name="fields[name]" class="gate-input" placeholder="First name" autocomplete="given-name">
+        <input type="email" id="gateEmail" name="fields[email]" class="gate-input" placeholder="Email" autocomplete="email" required>
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+        <button type="submit" class="gate-submit" id="gateSubmit">See My Result >>></button>
+        <p class="gate-error hidden" id="gateError">Please enter a valid email.</p>
+      </form>
+    </div>
+
+    <iframe name="mlHiddenFrame" id="mlHiddenFrame" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
+
     <hr class="divider hidden" id="preResultDivider">
 
     <div class="closer hidden" id="closerSection">
@@ -725,7 +820,7 @@
         <p class="outro-open">Your inkling is telling you something. So is your business — and it's not always the same thing.</p>
         <p>That's what <a href="https://carolynherfurth.com/the-tell">THE TELL</a> is for. In 90 minutes, we read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding.</p>
         <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year carrying something that's already finished.</p>
-        <a href="https://carolynherfurth.com/the-tell" class="tell-cta hidden" id="tellCta">Book THE TELL →</a>
+        <a href="https://carolynherfurth.com/the-tell" class="tell-cta hidden" id="tellCta">Book THE TELL >>></a>
         <button class="retake hidden" id="retakeBtn">↺ Retake the scan</button>
       </div>
     </div>
@@ -770,6 +865,7 @@
   const totalSteps = 3;
 
   const quizSteps = document.getElementById('quizSteps');
+  const emailGate = document.getElementById('emailGate');
   const stepLabel = document.getElementById('stepLabel');
   const backBtn = document.getElementById('backBtn');
   const nextBtn = document.getElementById('nextBtn');
@@ -845,7 +941,7 @@
     });
     stepLabel.textContent = `Step ${currentStep} of ${totalSteps}`;
     backBtn.classList.toggle('hidden', currentStep === 1);
-    nextBtn.textContent = currentStep === totalSteps ? 'See What It\'s Pointing To' : 'Next';
+    nextBtn.textContent = currentStep === totalSteps ? "See What It's Pointing To >>>" : 'Next';
     updateNextButton();
   }
 
@@ -995,8 +1091,41 @@
       renderStep();
       quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      revealResult();
+      quizSteps.classList.add('hidden');
+      emailGate.classList.remove('hidden');
+      emailGate.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  });
+
+  const gateForm = document.getElementById('gateForm');
+  const gateName = document.getElementById('gateName');
+  const gateEmail = document.getElementById('gateEmail');
+  const gateSubmit = document.getElementById('gateSubmit');
+  const gateError = document.getElementById('gateError');
+
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  gateForm.addEventListener('submit', (e) => {
+    const emailVal = gateEmail.value.trim();
+    if (!isValidEmail(emailVal)) {
+      e.preventDefault();
+      gateError.classList.remove('hidden');
+      gateEmail.focus();
+      return;
+    }
+    gateError.classList.add('hidden');
+    gateSubmit.disabled = true;
+    gateSubmit.textContent = 'Submitting…';
+
+    // Do NOT preventDefault here — let the browser submit the form natively
+    // to the hidden iframe. This is a real page navigation (scoped to the
+    // iframe), not a fetch/XHR, so there's no Promise that can hang, get
+    // blocked, or silently fail to settle. We never read anything back from
+    // the iframe — we just fire the submission and move on immediately.
+    emailGate.classList.add('hidden');
+    revealResult();
   });
 
   retakeBtn.addEventListener('click', () => {
@@ -1011,6 +1140,11 @@
     tellCta.classList.add('hidden');
     preResultDivider.classList.add('hidden');
     frameworkReveal.classList.add('hidden');
+    emailGate.classList.add('hidden');
+    gateForm.reset();
+    gateError.classList.add('hidden');
+    gateSubmit.disabled = false;
+    gateSubmit.textContent = 'See My Result >>>';
     quizSteps.classList.remove('hidden');
     currentStep = 1;
     renderStep();
