@@ -104,7 +104,7 @@
     gap: 0.5rem;
     font-family: 'Barlow', sans-serif;
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1.42rem;
     color: var(--pink);
     margin-top: 1rem;
   }
@@ -112,7 +112,7 @@
   .prompt::before {
     content: '↓';
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   main {
@@ -259,23 +259,30 @@
   }
 
   /* ---- post-reveal full framework section ---- */
-  .framework-reveal { margin-top: 2.8rem; }
+  .framework-reveal { margin-top: 3.4rem; }
 
-  .framework-lead {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--pink);
-    margin-bottom: 1.3rem;
+  .framework-header {
+    border-top: 2px solid var(--grey-line);
+    padding-top: 1.8rem;
+    margin-bottom: 1.8rem;
   }
 
-  .framework-lead::before {
-    content: '↓';
-    font-weight: 700;
-    font-size: 1.1rem;
+  .framework-kicker {
+    display: block;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
+    color: var(--grey-txt);
+    margin-bottom: 0.5rem;
+  }
+
+  .framework-lead {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.65rem;
+    line-height: 1.15;
+    color: var(--charcoal);
   }
 
   /* ---- email gate ---- */
@@ -352,6 +359,22 @@
     font-size: 0.95rem;
     font-weight: 600;
   }
+
+  .gate-back {
+    display: block;
+    margin: 0.9rem auto 0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--pink-lt);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .gate-back:hover { color: var(--white); }
 
   .columns {
     display: flex;
@@ -680,8 +703,8 @@
       OR <span class="pink">FLAME OUT</span>?
     </h1>
     <p class="subtitle">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
-    <p class="intro">An inkling starts as restlessness. A loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you drift, defer, or direct it.</p>
-    <p class="prompt">Answer honestly as you go — we'll show you what it adds up to at the end.</p>
+    <p class="intro" id="introText">An inkling starts as restlessness. A loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you drift, defer, or direct it.</p>
+    <p class="prompt" id="promptText">Answer honestly as you go — we'll show you what it adds up to at the end.</p>
   </header>
 
   <main>
@@ -710,7 +733,7 @@
           </div>
         </div>
         <div class="qcard">
-          <div class="q-row"><span class="qnum">3</span><span>If someone noticed your blind spot, would you actually hear it — or would you get defensive?</span></div>
+          <div class="q-row"><span class="qnum">3</span><span>If someone noticed your blind spot, would you actually hear it — or would you tend to get defensive?</span></div>
           <div class="q-answers" data-col="bow" data-q="9">
             <button class="ans-btn" data-val="yes">Hear it</button>
             <button class="ans-btn" data-val="no">Get defensive</button>
@@ -787,6 +810,7 @@
         <button type="submit" class="gate-submit" id="gateSubmit">See My Result >>></button>
         <p class="gate-error hidden" id="gateError">Please enter a valid email.</p>
       </form>
+      <button type="button" class="gate-back" id="gateBackBtn">← Back to questions</button>
     </div>
 
     <iframe name="mlHiddenFrame" id="mlHiddenFrame" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
@@ -800,7 +824,10 @@
     </div>
 
     <div class="framework-reveal hidden" id="frameworkReveal">
-      <p class="framework-lead">Here's the full picture — every direction, laid out below.</p>
+      <div class="framework-header">
+        <span class="framework-kicker">THE FULL FRAMEWORK</span>
+        <p class="framework-lead">Every direction, laid out below.</p>
+      </div>
       <div class="columns">
 
         <section class="col flame">
@@ -851,6 +878,8 @@
 
   const quizSteps = document.getElementById('quizSteps');
   const emailGate = document.getElementById('emailGate');
+  const introText = document.getElementById('introText');
+  const promptText = document.getElementById('promptText');
   const stepLabel = document.getElementById('stepLabel');
   const backBtn = document.getElementById('backBtn');
   const nextBtn = document.getElementById('nextBtn');
@@ -1053,6 +1082,8 @@
       quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       quizSteps.classList.add('hidden');
+      introText.classList.add('hidden');
+      promptText.classList.add('hidden');
       emailGate.classList.remove('hidden');
       emailGate.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -1063,6 +1094,18 @@
   const gateEmail = document.getElementById('gateEmail');
   const gateSubmit = document.getElementById('gateSubmit');
   const gateError = document.getElementById('gateError');
+  const gateBackBtn = document.getElementById('gateBackBtn');
+
+  gateBackBtn.addEventListener('click', () => {
+    emailGate.classList.add('hidden');
+    gateError.classList.add('hidden');
+    introText.classList.remove('hidden');
+    promptText.classList.remove('hidden');
+    quizSteps.classList.remove('hidden');
+    currentStep = totalSteps;
+    renderStep();
+    quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
   function isValidEmail(val) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
@@ -1106,6 +1149,8 @@
     gateError.classList.add('hidden');
     gateSubmit.disabled = false;
     gateSubmit.textContent = 'See My Result >>>';
+    introText.classList.remove('hidden');
+    promptText.classList.remove('hidden');
     quizSteps.classList.remove('hidden');
     currentStep = 1;
     renderStep();
