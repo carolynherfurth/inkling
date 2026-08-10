@@ -525,93 +525,76 @@
     margin-bottom: 1.8rem;
   }
 
+  /* ---- RESULT: big, black, impossible to miss ---- */
   .closer {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
+    background: var(--charcoal);
+    border-radius: 16px;
+    padding: 2.2rem 1.9rem 2.4rem;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.28);
+    margin-bottom: 2.2rem;
+  }
+
+  .result-eyebrow {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.14em;
+    color: var(--pink);
+    margin-bottom: 0.6rem;
   }
 
   .closer-heading {
-    display: flex;
-    gap: 0.55rem;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 2.2rem;
-    line-height: 1.1;
+    font-size: 2.5rem;
+    line-height: 1.08;
+    color: var(--pink);
+    margin-bottom: 1.2rem;
+  }
+
+  .closer.bow-highlight .closer-heading .headline {
     color: var(--charcoal);
+    background: var(--yellow);
+    padding: 0.06em 0.28em;
+    border-radius: 4px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
   }
 
-  .closer-heading .num {
-    flex-shrink: 0;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 50%;
-    background: var(--pink);
+  .result-desc {
+    font-size: 1.28rem;
+    line-height: 1.6;
     color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.15rem;
-    margin-top: 0.05rem;
+    font-weight: 500;
   }
 
-  .closer-body p {
+  /* ---- final CTA: neutral, separate section at the very bottom ---- */
+  .final-cta { margin-bottom: 1rem; }
+
+  .final-cta p {
     font-size: 1.12rem;
     line-height: 1.6;
     margin-bottom: 0.9rem;
     color: var(--charcoal-txt);
   }
 
-  .closer-body p:last-child { margin-bottom: 0; }
-
-  .closer-body p.outro-open {
+  .final-cta p.outro-open {
     font-weight: 700;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.7rem;
     letter-spacing: 0.01em;
     color: var(--charcoal);
-    margin-top: 1.3rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--grey-line);
+    margin-bottom: 1rem;
   }
 
-  .closer-body a {
+  .final-cta a:not(.tell-cta) {
     color: var(--pink);
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
-  .closer-body a:hover { color: var(--charcoal); }
-
-  .closer.result .closer-heading .num { background: var(--result-color, var(--pink)); }
-  .closer.result .closer-heading .headline { color: var(--result-color, var(--charcoal)); }
-
-  .closer.bow-highlight .closer-heading .headline {
-    color: var(--charcoal);
-    background: var(--yellow);
-    padding: 0.1em 0.32em;
-    border-radius: 4px;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
-
-  .closer.bow-highlight .tell-cta {
-    background: var(--yellow);
-    border: 2.5px solid var(--charcoal);
-  }
-
-  .closer.bow-highlight .closer-body a.tell-cta { color: var(--charcoal); }
-
-  .result-desc {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    margin-bottom: 1.1rem;
-    color: var(--charcoal-txt);
-    padding: 1.1rem 1.3rem;
-    border-left: 4px solid var(--result-color, var(--pink));
-    background: var(--result-bg, #faf9f6);
-  }
+  .final-cta a:not(.tell-cta):hover { color: var(--charcoal); }
 
   .tell-cta {
     display: inline-flex;
@@ -622,21 +605,18 @@
     font-size: 1.35rem;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    background: var(--result-color, var(--yellow));
+    background: var(--pink);
+    color: var(--white);
     border: none;
     padding: 1rem 2.2rem;
     border-radius: 999px;
-    margin-top: 0.4rem;
+    margin-top: 0.6rem;
+    text-decoration: none;
     box-shadow: 0 6px 16px rgba(0,0,0,0.16);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
-  .closer-body a.tell-cta {
-    color: var(--result-text, var(--charcoal));
-    text-decoration: none;
-  }
-
-  .tell-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.22); }
+  .tell-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(0,0,0,0.22); background: var(--charcoal); }
 
   .retake {
     display: block;
@@ -814,19 +794,13 @@
     <hr class="divider hidden" id="preResultDivider">
 
     <div class="closer hidden" id="closerSection">
-      <div class="closer-heading"><span class="headline" id="closerHeadline">SO — WHICH WAY IS YOUR INKLING POINTING?</span></div>
-      <div class="closer-body">
-        <p class="hidden result-desc" id="resultDesc"></p>
-        <p class="outro-open">Your inkling is telling you something. So is your business — and it's not always the same thing.</p>
-        <p>That's what <a href="https://carolynherfurth.com/the-tell">THE TELL</a> is for. In 90 minutes, we read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding.</p>
-        <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year carrying something that's already finished.</p>
-        <a href="https://carolynherfurth.com/the-tell" class="tell-cta hidden" id="tellCta">Book THE TELL >>></a>
-        <button class="retake hidden" id="retakeBtn">↺ Retake the scan</button>
-      </div>
+      <div class="result-eyebrow">YOUR RESULT:</div>
+      <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
+      <p class="result-desc" id="resultDesc"></p>
     </div>
 
     <div class="framework-reveal hidden" id="frameworkReveal">
-      <p class="framework-lead">Here's the full picture — all three directions, side by side.</p>
+      <p class="framework-lead">Here's the full picture — every direction, laid out below.</p>
       <div class="columns">
 
         <section class="col flame">
@@ -849,7 +823,18 @@
 
       </div>
     </div>
+
+    <hr class="divider hidden" id="postFrameworkDivider">
+
+    <div class="final-cta hidden" id="finalCta">
+      <p class="outro-open">Your inkling is telling you something. So is your business — and it's not always the same thing.</p>
+      <p>That's what <a href="https://carolynherfurth.com/the-tell">THE TELL</a> is for. In 90 minutes, we read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding.</p>
+      <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year carrying something that's already finished.</p>
+      <a href="https://carolynherfurth.com/the-tell" class="tell-cta" id="tellCta">Book THE TELL >>></a>
+      <button class="retake" id="retakeBtn">↺ Retake the scan</button>
+    </div>
   </main>
+
 
   <footer>
     © 2026 CAROLYN HERFURTH &nbsp;|&nbsp; STRATICA, INC. &nbsp;|&nbsp; THE INKLING SCANNER
@@ -871,6 +856,8 @@
   const nextBtn = document.getElementById('nextBtn');
   const dots = document.querySelectorAll('.dot');
   const preResultDivider = document.getElementById('preResultDivider');
+  const postFrameworkDivider = document.getElementById('postFrameworkDivider');
+  const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
   const closerHeadline = document.getElementById('closerHeadline');
   const resultDesc = document.getElementById('resultDesc');
@@ -1019,67 +1006,41 @@
       counts.bow === 0 && counts[flameFadeSecondary] > 0;
 
     if (maxCount === 0) {
-      closerSection.style.setProperty('--result-color', '#f2295b');
-      closerSection.style.setProperty('--result-text', '#ffffff');
-      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = "IT'S NOT FULLY POINTING ANYWHERE YET.";
       resultDesc.textContent = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
-      resultDesc.classList.remove('hidden');
     } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
       const t = buildTendencyMessage(counts);
-      closerSection.style.setProperty('--result-color', '#fbed00');
-      closerSection.style.setProperty('--result-text', '#242424');
-      closerSection.style.setProperty('--result-bg', '#faf9f6');
       closerSection.classList.add('bow-highlight');
       closerHeadline.textContent = t.headline;
       resultDesc.textContent = t.desc;
-      resultDesc.classList.remove('hidden');
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
-      closerSection.style.setProperty('--result-color', '#f2295b');
-      closerSection.style.setProperty('--result-text', '#ffffff');
-      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
-      resultDesc.classList.remove('hidden');
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
-      closerSection.style.setProperty('--result-color', '#f2295b');
-      closerSection.style.setProperty('--result-text', '#ffffff');
-      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
-      resultDesc.classList.remove('hidden');
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
-      closerSection.style.setProperty('--result-color', r.color);
-      closerSection.style.setProperty('--result-text', r.textColor);
-      closerSection.style.setProperty('--result-bg', '#faf9f6');
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
       closerHeadline.textContent = r.headline;
       resultDesc.textContent = r.desc;
-      resultDesc.classList.remove('hidden');
     } else if (winners.length === 3) {
-      closerSection.style.setProperty('--result-color', '#f2295b');
-      closerSection.style.setProperty('--result-text', '#ffffff');
-      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
-      resultDesc.classList.remove('hidden');
     } else {
       const labels = winners.map(w => RESULTS[w].label);
-      closerSection.style.setProperty('--result-color', '#f2295b');
-      closerSection.style.setProperty('--result-text', '#ffffff');
-      closerSection.style.setProperty('--result-bg', '#fdeef2');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
-      resultDesc.classList.remove('hidden');
     }
 
     preResultDivider.classList.remove('hidden');
+    postFrameworkDivider.classList.remove('hidden');
     retakeBtn.classList.remove('hidden');
     tellCta.classList.remove('hidden');
     frameworkReveal.classList.remove('hidden');
+    finalCta.classList.remove('hidden');
     quizSteps.classList.add('hidden');
     closerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -1134,12 +1095,12 @@
     closerSection.classList.add('hidden');
     closerSection.classList.remove('result');
     closerSection.classList.remove('bow-highlight');
-    closerHeadline.textContent = 'SO — WHICH WAY IS YOUR INKLING POINTING?';
-    resultDesc.classList.add('hidden');
-    retakeBtn.classList.add('hidden');
-    tellCta.classList.add('hidden');
+    closerHeadline.textContent = '';
+    resultDesc.textContent = '';
     preResultDivider.classList.add('hidden');
+    postFrameworkDivider.classList.add('hidden');
     frameworkReveal.classList.add('hidden');
+    finalCta.classList.add('hidden');
     emailGate.classList.add('hidden');
     gateForm.reset();
     gateError.classList.add('hidden');
