@@ -6,7 +6,7 @@
 <title>The Inkling Scanner — Will You Bow Out, Fade Out, or Flame Out?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --charcoal: #242424;
@@ -26,7 +26,7 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
     color: var(--charcoal-txt);
     background: var(--white);
     line-height: 1.5;
@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 1.42rem;
     color: var(--pink);
@@ -112,7 +112,8 @@
   .prompt::before {
     content: '↓';
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 84px;
+    line-height: 1;
   }
 
   main {
@@ -178,7 +179,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 0.92rem;
     background: var(--charcoal);
@@ -195,7 +196,7 @@
   .qcard .q-answers { display: flex; gap: 0.6rem; padding-left: 2.5rem; }
 
   .qcard .ans-btn {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 0.98rem;
     letter-spacing: 0.02em;
@@ -269,7 +270,7 @@
 
   .framework-kicker {
     display: block;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 0.85rem;
     letter-spacing: 0.16em;
@@ -313,7 +314,7 @@
   .gate-form { display: flex; flex-direction: column; gap: 0.85rem; }
 
   .gate-input {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
     padding: 0.9rem 1.1rem;
     border-radius: 8px;
@@ -371,7 +372,7 @@
     cursor: pointer;
     text-decoration: underline;
     text-underline-offset: 2px;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .gate-back:hover { color: var(--white); }
@@ -400,7 +401,7 @@
 
   .pill {
     display: inline-block;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 0.88rem;
     letter-spacing: 0.14em;
@@ -468,7 +469,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 0.82rem;
     margin-top: 0.05rem;
@@ -485,7 +486,7 @@
   .q-answers { display: flex; gap: 0.5rem; padding-left: 2.3rem; }
 
   .ans-btn {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 0.82rem;
     letter-spacing: 0.03em;
@@ -558,7 +559,7 @@
   }
 
   .result-eyebrow {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 800;
     font-size: 1.05rem;
     letter-spacing: 0.14em;
@@ -652,7 +653,7 @@
     cursor: pointer;
     background: none;
     border: none;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     padding: 0;
   }
 
@@ -664,7 +665,7 @@
     margin-top: 2.6rem;
     padding-top: 1.1rem;
     border-top: 1px solid var(--grey-line);
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -702,7 +703,7 @@
       <span class="charcoal">FADE OUT</span>,
       OR <span class="pink">FLAME OUT</span>?
     </h1>
-    <p class="subtitle">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
+    <p class="subtitle" id="subtitleText">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
     <p class="intro" id="introText">An inkling starts as restlessness. A loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What comes next depends on whether you drift, defer, or direct it.</p>
     <p class="prompt" id="promptText">Answer honestly as you go — we'll show you what it adds up to at the end.</p>
   </header>
@@ -713,7 +714,7 @@
         <span class="dot active" data-dot="1"></span>
         <span class="dot" data-dot="2"></span>
         <span class="dot" data-dot="3"></span>
-        <span class="step-label" id="stepLabel">Step 1 of 3</span>
+        <span class="step-label" id="stepLabel">Set 1 of 3</span>
       </div>
 
       <div class="step" data-step="1">
@@ -879,6 +880,7 @@
   const quizSteps = document.getElementById('quizSteps');
   const emailGate = document.getElementById('emailGate');
   const introText = document.getElementById('introText');
+  const subtitleText = document.getElementById('subtitleText');
   const promptText = document.getElementById('promptText');
   const stepLabel = document.getElementById('stepLabel');
   const backBtn = document.getElementById('backBtn');
@@ -955,7 +957,7 @@
       d.classList.toggle('active', n === currentStep);
       d.classList.toggle('done', n < currentStep);
     });
-    stepLabel.textContent = `Step ${currentStep} of ${totalSteps}`;
+    stepLabel.textContent = `Set ${currentStep} of ${totalSteps}`;
     backBtn.classList.toggle('hidden', currentStep === 1);
     nextBtn.textContent = currentStep === totalSteps ? "See What It's Pointing To >>>" : 'Next';
     updateNextButton();
@@ -1082,6 +1084,7 @@
       quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       quizSteps.classList.add('hidden');
+      subtitleText.classList.add('hidden');
       introText.classList.add('hidden');
       promptText.classList.add('hidden');
       emailGate.classList.remove('hidden');
@@ -1099,6 +1102,7 @@
   gateBackBtn.addEventListener('click', () => {
     emailGate.classList.add('hidden');
     gateError.classList.add('hidden');
+    subtitleText.classList.remove('hidden');
     introText.classList.remove('hidden');
     promptText.classList.remove('hidden');
     quizSteps.classList.remove('hidden');
@@ -1149,6 +1153,7 @@
     gateError.classList.add('hidden');
     gateSubmit.disabled = false;
     gateSubmit.textContent = 'See My Result >>>';
+    subtitleText.classList.remove('hidden');
     introText.classList.remove('hidden');
     promptText.classList.remove('hidden');
     quizSteps.classList.remove('hidden');
