@@ -400,20 +400,17 @@
   }
 
   .pill {
-    display: inline-block;
+    display: block;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 0.88rem;
-    letter-spacing: 0.14em;
-    padding: 0.48rem 1.1rem;
-    border-radius: 999px;
-    margin-bottom: 0.9rem;
-    width: fit-content;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    margin-bottom: 0.3rem;
   }
 
-  .flame .pill { background: var(--white); color: var(--pink); }
-  .fade  .pill { background: var(--yellow); color: var(--charcoal); }
-  .bow   .pill { background: var(--charcoal); color: var(--yellow); }
+  .flame .pill { color: var(--pink-lt); }
+  .fade  .pill { color: var(--yellow); }
+  .bow   .pill { color: rgba(36,36,36,0.68); }
 
   .col h2 {
     font-family: 'Barlow Condensed', sans-serif;
@@ -421,6 +418,7 @@
     font-size: 2.2rem;
     margin-bottom: 0.7rem;
     letter-spacing: 0.01em;
+    margin-top: 0;
   }
 
   .flame h2 { color: var(--white); }
@@ -549,13 +547,24 @@
     margin-bottom: 1.8rem;
   }
 
-  /* ---- RESULT: big, black, impossible to miss ---- */
+  /* ---- RESULT: full-bleed, black, breaks the column on purpose ---- */
   .closer {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
     background: var(--charcoal);
-    border-radius: 16px;
-    padding: 2.2rem 1.9rem 2.4rem;
-    box-shadow: 0 14px 32px rgba(0,0,0,0.28);
-    margin-bottom: 2.2rem;
+    padding: 3rem 0 3.2rem;
+    margin-top: 0.4rem;
+    margin-bottom: 2.6rem;
+  }
+
+  .closer-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
   .result-eyebrow {
@@ -571,7 +580,7 @@
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
     font-size: 2.5rem;
-    line-height: 1.08;
+    line-height: 1.1;
     color: var(--pink);
     margin-bottom: 1.2rem;
   }
@@ -590,6 +599,16 @@
     line-height: 1.6;
     color: var(--white);
     font-weight: 500;
+    margin-bottom: 1.3rem;
+  }
+
+  .result-next {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--pink-lt);
+    font-weight: 500;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255,255,255,0.18);
   }
 
   /* ---- final CTA: neutral, separate section at the very bottom ---- */
@@ -819,14 +838,17 @@
     <hr class="divider hidden" id="preResultDivider">
 
     <div class="closer hidden" id="closerSection">
-      <div class="result-eyebrow">YOUR RESULT:</div>
-      <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
-      <p class="result-desc" id="resultDesc"></p>
+      <div class="closer-inner">
+        <div class="result-eyebrow">YOUR RESULT:</div>
+        <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
+        <p class="result-desc" id="resultDesc"></p>
+        <p class="result-next">This is just your read on nine questions — not the whole story. Keep scrolling to see all three paths, including exactly what's driving the one you landed on.</p>
+      </div>
     </div>
 
     <div class="framework-reveal hidden" id="frameworkReveal">
       <div class="framework-header">
-        <span class="framework-kicker">THE FULL FRAMEWORK</span>
+        <span class="framework-kicker">ALL THREE PATHS</span>
         <p class="framework-lead">Every direction, laid out below.</p>
       </div>
       <div class="columns">
@@ -1008,12 +1030,12 @@
     const secondaryLabel = RESULTS[secondaryCol].label;
     if (secondaryCol === 'flame') {
       return {
-        headline: `YOU'RE LEANING ${winnerLabel} — BUT AT RISK OF ${secondaryLabel}.`,
+        headline: `YOU'RE HEADING TOWARD ${winnerLabel} — BUT MAY ${secondaryLabel} INSTEAD.`,
         desc: `The stronger pull right now is toward ${winnerLabel.toLowerCase()}. But there's real ${secondaryLabel.toLowerCase()} signal underneath it too — and that's the one that can turn sudden if it goes unaddressed. An objective read now is what keeps this from becoming urgent later.`
       };
     }
     return {
-      headline: `YOU'RE LEANING ${winnerLabel} — BUT COULD GO ${secondaryLabel}.`,
+      headline: `YOU'RE HEADING TOWARD ${winnerLabel} — BUT MAY ${secondaryLabel} INSTEAD.`,
       desc: `The stronger pull right now is toward ${winnerLabel.toLowerCase()}. But there's real ${secondaryLabel.toLowerCase()} signal too, and which one wins out isn't decided yet. An objective read now is what determines which direction this actually goes.`
     };
   }
