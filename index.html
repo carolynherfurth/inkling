@@ -115,13 +115,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 60px;
-    height: 60px;
+    width: 76px;
+    height: 76px;
     border-radius: 50%;
     background: var(--pink);
     color: var(--white);
     font-weight: 700;
-    font-size: 30px;
+    font-size: 40px;
     line-height: 1;
   }
 
@@ -570,19 +570,9 @@
     margin-bottom: 1.8rem;
   }
 
-  /* ---- RESULT: the whole thing lives inside one circular shape ---- */
+  /* ---- RESULT: headline outside, two overlapping bubbles below ---- */
   .closer {
-    background: var(--charcoal);
-    border-radius: 50%;
-    width: 94%;
-    max-width: 580px;
-    margin: 0.4rem auto 2.8rem;
-    padding: 4.8rem 3.4rem;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.32);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin: 0.4rem 0 3rem;
   }
 
   .result-eyebrow {
@@ -590,25 +580,23 @@
     font-weight: 800;
     font-size: 1.05rem;
     letter-spacing: 0.14em;
-    color: var(--pink);
-    margin-bottom: 0.6rem;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
     text-align: center;
   }
-
-  .closer.bow-highlight .result-eyebrow { color: var(--yellow); }
 
   .closer-heading {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 2.1rem;
-    line-height: 1.12;
-    color: var(--pink);
-    margin-bottom: 1.2rem;
+    font-size: 2.3rem;
+    line-height: 1.15;
+    color: var(--charcoal);
+    margin-bottom: 2rem;
     text-align: center;
+    letter-spacing: 0.01em;
   }
 
   .closer.bow-highlight .closer-heading .headline {
-    color: var(--charcoal);
     background: var(--yellow);
     padding: 0.06em 0.28em;
     border-radius: 4px;
@@ -616,21 +604,80 @@
     -webkit-box-decoration-break: clone;
   }
 
+  .bubble-cluster {
+    position: relative;
+  }
+
+  .bubble-primary {
+    background: var(--pink);
+    border-radius: 50%;
+    width: 96%;
+    max-width: 490px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 0 0 0 0;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  .closer.bow-highlight .bubble-primary { background: var(--yellow); }
+
+  .bubble-secondary {
+    background: var(--white);
+    border: 5px solid var(--yellow);
+    border-radius: 50%;
+    width: 78%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.14);
+    position: relative;
+    margin: -4% auto 0;
+    z-index: 2;
+  }
+
+  .closer.bow-highlight .bubble-secondary { border-color: var(--pink); }
+
   .result-desc {
-    font-size: 1.15rem;
-    line-height: 1.55;
+    font-size: 0.95rem;
+    line-height: 1.42;
     color: var(--white);
     font-weight: 500;
-    margin-bottom: 1.1rem;
     text-align: center;
   }
 
+  .closer.bow-highlight .result-desc { color: var(--charcoal); }
+
   .result-next {
-    font-size: 1.15rem;
-    line-height: 1.55;
-    color: var(--white);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--charcoal);
     font-weight: 500;
     text-align: center;
+  }
+
+  @media (min-width: 560px) {
+    .bubble-cluster {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      min-height: 420px;
+    }
+    .bubble-primary {
+      width: 380px;
+      margin-right: -70px;
+    }
+    .bubble-secondary {
+      width: 290px;
+      margin: 0 0 -20px 0;
+    }
   }
 
   /* ---- final CTA: neutral, separate section at the very bottom ---- */
@@ -862,14 +909,16 @@
     <div class="closer hidden" id="closerSection">
       <div class="result-eyebrow">YOUR RESULT:</div>
       <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
-      <p class="result-desc" id="resultDesc"></p>
-      <p class="result-next">This is just your read on nine questions — not the whole story. Keep scrolling to see all three paths, including exactly what's driving the one you landed on.</p>
+      <div class="bubble-cluster">
+        <div class="bubble-primary"><p class="result-desc" id="resultDesc"></p></div>
+        <div class="bubble-secondary"><p class="result-next">This is the preliminary read on where your behavior is leading — it's not the whole story. Keep scrolling to see the three main directions those inklings are pointing, including a few specifics about what's driving the one(s) you're pointed toward.</p></div>
+      </div>
     </div>
 
     <div class="framework-reveal hidden" id="frameworkReveal">
       <div class="framework-header">
-        <span class="framework-kicker">ALL THREE PATHS</span>
-        <p class="framework-lead">Every direction, laid out below.</p>
+        <span class="framework-kicker">THREE DIRECTIONS</span>
+        <p class="framework-lead">Each one laid out below.</p>
       </div>
       <div class="columns">
 
