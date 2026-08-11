@@ -400,23 +400,37 @@
   }
 
   .pill {
-    display: block;
+    display: inline-block;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 0.95rem;
-    letter-spacing: 0.18em;
-    margin-bottom: 0.3rem;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.14em;
+    padding: 0.48rem 1.1rem;
+    border-radius: 999px;
+    margin-bottom: 0.9rem;
+    width: fit-content;
   }
 
-  .flame .pill { color: var(--pink-lt); }
-  .fade  .pill { color: var(--yellow); }
-  .bow   .pill { color: rgba(36,36,36,0.68); }
+  .flame .pill { background: var(--white); color: var(--pink); }
+  .fade  .pill { background: var(--yellow); color: var(--charcoal); }
+  .bow   .pill { background: var(--charcoal); color: var(--yellow); }
+
+  .col-connector {
+    font-style: italic;
+    font-weight: 600;
+    margin-bottom: 0.9rem;
+    font-size: 1.02rem;
+  }
+
+  .flame .col-connector { color: var(--pink-lt); }
+  .fade  .col-connector { color: var(--cream); }
+  .bow   .col-connector { color: var(--charcoal-txt); }
 
   .col h2 {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
     font-size: 2.2rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.5rem;
     letter-spacing: 0.01em;
     margin-top: 0;
   }
@@ -547,25 +561,41 @@
     margin-bottom: 1.8rem;
   }
 
-  /* ---- RESULT: full-bleed, black, breaks the column on purpose ---- */
+  /* ---- RESULT: black card with a circular badge — a genuine shape break ---- */
   .closer {
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    width: 100vw;
     background: var(--charcoal);
-    padding: 3rem 0 3.2rem;
+    border-radius: 20px;
+    padding: 2.8rem 2rem 2.6rem;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     margin-top: 0.4rem;
     margin-bottom: 2.6rem;
   }
 
-  .closer-inner {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  .result-circle {
+    width: 152px;
+    height: 152px;
+    border-radius: 50%;
+    border: 7px solid var(--pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.8rem;
+    background: rgba(255,255,255,0.03);
   }
+
+  .closer.bow-highlight .result-circle { border-color: var(--yellow); }
+
+  .result-circle-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.05;
+    text-align: center;
+    color: var(--pink);
+    padding: 0 8px;
+  }
+
+  .closer.bow-highlight .result-circle-text { color: var(--yellow); }
 
   .result-eyebrow {
     font-family: 'Montserrat', sans-serif;
@@ -574,15 +604,17 @@
     letter-spacing: 0.14em;
     color: var(--pink);
     margin-bottom: 0.6rem;
+    text-align: center;
   }
 
   .closer-heading {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     line-height: 1.1;
     color: var(--pink);
     margin-bottom: 1.2rem;
+    text-align: center;
   }
 
   .closer.bow-highlight .closer-heading .headline {
@@ -599,16 +631,14 @@
     line-height: 1.6;
     color: var(--white);
     font-weight: 500;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.1rem;
   }
 
   .result-next {
-    font-size: 1.05rem;
-    line-height: 1.55;
-    color: var(--pink-lt);
+    font-size: 1.28rem;
+    line-height: 1.6;
+    color: var(--white);
     font-weight: 500;
-    padding-top: 1.2rem;
-    border-top: 1px solid rgba(255,255,255,0.18);
   }
 
   /* ---- final CTA: neutral, separate section at the very bottom ---- */
@@ -838,12 +868,11 @@
     <hr class="divider hidden" id="preResultDivider">
 
     <div class="closer hidden" id="closerSection">
-      <div class="closer-inner">
-        <div class="result-eyebrow">YOUR RESULT:</div>
-        <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
-        <p class="result-desc" id="resultDesc"></p>
-        <p class="result-next">This is just your read on nine questions — not the whole story. Keep scrolling to see all three paths, including exactly what's driving the one you landed on.</p>
-      </div>
+      <div class="result-circle"><span class="result-circle-text" id="resultCircleText"></span></div>
+      <div class="result-eyebrow">YOUR RESULT:</div>
+      <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
+      <p class="result-desc" id="resultDesc"></p>
+      <p class="result-next">This is just your read on nine questions — not the whole story. Keep scrolling to see all three paths, including exactly what's driving the one you landed on.</p>
     </div>
 
     <div class="framework-reveal hidden" id="frameworkReveal">
@@ -856,19 +885,25 @@
         <section class="col flame">
           <span class="pill">DRIFT</span>
           <h2>FLAME-OUT</h2>
+          <p class="col-connector">Drift is the behavior — here's what it tends to look like:</p>
           <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. Then one day, you're done.</p>
+          <p class="desc">If you find yourself to be slightly impulsive — especially once you've determined "enough is enough" — you might look for a quick escape hatch. Even if you're unsure of your next move, anything else feels better than this. When you imagine earning the same (or more) income without operating your business as-is, a sense of relief washes over you.</p>
         </section>
 
         <section class="col fade">
           <span class="pill">DEFER</span>
           <h2>FADE-OUT</h2>
+          <p class="col-connector">Defer is the behavior — here's what it tends to look like:</p>
           <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've decided to stay, but because you haven't found a next move worth choosing.</p>
+          <p class="desc">A low hum of boredom has settled in — quiet, but persistent — and you've mostly stopped naming it out loud. You stay anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going. There's a decision sitting right in front of you that you keep sidestepping, not because you can't see it, but because none of the options in front of you feel like the right one.</p>
         </section>
 
         <section class="col bow">
           <span class="pill">DIRECT</span>
           <h2>BOW-OUT</h2>
+          <p class="col-connector">Direct is the behavior — here's what it tends to look like:</p>
           <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
+          <p class="desc">You can look at your own next move — even an exit — with real objectivity, without romanticizing it or dreading it more than it deserves. You're the one setting the pace on what happens next, not waiting for circumstances to make the decision for you. And if someone close to the business pointed out something you'd missed, you'd actually take it in, instead of getting defensive about it.</p>
         </section>
 
       </div>
@@ -913,6 +948,7 @@
   const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
   const closerHeadline = document.getElementById('closerHeadline');
+  const resultCircleText = document.getElementById('resultCircleText');
   const resultDesc = document.getElementById('resultDesc');
   const retakeBtn = document.getElementById('retakeBtn');
   const tellCta = document.getElementById('tellCta');
@@ -1059,31 +1095,38 @@
       counts.bow === 0 && counts[flameFadeSecondary] > 0;
 
     if (maxCount === 0) {
+      resultCircleText.textContent = '?';
       closerHeadline.textContent = "IT'S NOT FULLY POINTING ANYWHERE YET.";
       resultDesc.textContent = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
     } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
       const t = buildTendencyMessage(counts);
       closerSection.classList.add('bow-highlight');
+      resultCircleText.textContent = 'BOW-OUT*';
       closerHeadline.textContent = t.headline;
       resultDesc.textContent = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
+      resultCircleText.textContent = RESULTS[winners[0]].label;
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
+      resultCircleText.textContent = RESULTS[winners[0]].label;
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
+      resultCircleText.textContent = r.label;
       closerHeadline.textContent = r.headline;
       resultDesc.textContent = r.desc;
     } else if (winners.length === 3) {
+      resultCircleText.textContent = 'MIXED';
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
     } else {
       const labels = winners.map(w => RESULTS[w].label);
+      resultCircleText.textContent = 'MIXED';
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
     }
