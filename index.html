@@ -111,8 +111,17 @@
 
   .prompt::before {
     content: '↓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--white);
     font-weight: 700;
-    font-size: 84px;
+    font-size: 30px;
     line-height: 1;
   }
 
@@ -561,41 +570,20 @@
     margin-bottom: 1.8rem;
   }
 
-  /* ---- RESULT: black card with a circular badge — a genuine shape break ---- */
+  /* ---- RESULT: the whole thing lives inside one circular shape ---- */
   .closer {
     background: var(--charcoal);
-    border-radius: 20px;
-    padding: 2.8rem 2rem 2.6rem;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    margin-top: 0.4rem;
-    margin-bottom: 2.6rem;
-  }
-
-  .result-circle {
-    width: 152px;
-    height: 152px;
     border-radius: 50%;
-    border: 7px solid var(--pink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.8rem;
-    background: rgba(255,255,255,0.03);
-  }
-
-  .closer.bow-highlight .result-circle { border-color: var(--yellow); }
-
-  .result-circle-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    line-height: 1.05;
+    width: 94%;
+    max-width: 580px;
+    margin: 0.4rem auto 2.8rem;
+    padding: 4.8rem 3.4rem;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.32);
     text-align: center;
-    color: var(--pink);
-    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-
-  .closer.bow-highlight .result-circle-text { color: var(--yellow); }
 
   .result-eyebrow {
     font-family: 'Montserrat', sans-serif;
@@ -607,11 +595,13 @@
     text-align: center;
   }
 
+  .closer.bow-highlight .result-eyebrow { color: var(--yellow); }
+
   .closer-heading {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 2.3rem;
-    line-height: 1.1;
+    font-size: 2.1rem;
+    line-height: 1.12;
     color: var(--pink);
     margin-bottom: 1.2rem;
     text-align: center;
@@ -627,18 +617,20 @@
   }
 
   .result-desc {
-    font-size: 1.28rem;
-    line-height: 1.6;
+    font-size: 1.15rem;
+    line-height: 1.55;
     color: var(--white);
     font-weight: 500;
     margin-bottom: 1.1rem;
+    text-align: center;
   }
 
   .result-next {
-    font-size: 1.28rem;
-    line-height: 1.6;
+    font-size: 1.15rem;
+    line-height: 1.55;
     color: var(--white);
     font-weight: 500;
+    text-align: center;
   }
 
   /* ---- final CTA: neutral, separate section at the very bottom ---- */
@@ -868,7 +860,6 @@
     <hr class="divider hidden" id="preResultDivider">
 
     <div class="closer hidden" id="closerSection">
-      <div class="result-circle"><span class="result-circle-text" id="resultCircleText"></span></div>
       <div class="result-eyebrow">YOUR RESULT:</div>
       <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
       <p class="result-desc" id="resultDesc"></p>
@@ -948,7 +939,6 @@
   const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
   const closerHeadline = document.getElementById('closerHeadline');
-  const resultCircleText = document.getElementById('resultCircleText');
   const resultDesc = document.getElementById('resultDesc');
   const retakeBtn = document.getElementById('retakeBtn');
   const tellCta = document.getElementById('tellCta');
@@ -1095,38 +1085,31 @@
       counts.bow === 0 && counts[flameFadeSecondary] > 0;
 
     if (maxCount === 0) {
-      resultCircleText.textContent = '?';
       closerHeadline.textContent = "IT'S NOT FULLY POINTING ANYWHERE YET.";
       resultDesc.textContent = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
     } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
       const t = buildTendencyMessage(counts);
       closerSection.classList.add('bow-highlight');
-      resultCircleText.textContent = 'BOW-OUT*';
       closerHeadline.textContent = t.headline;
       resultDesc.textContent = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
-      resultCircleText.textContent = RESULTS[winners[0]].label;
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
-      resultCircleText.textContent = RESULTS[winners[0]].label;
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
-      resultCircleText.textContent = r.label;
       closerHeadline.textContent = r.headline;
       resultDesc.textContent = r.desc;
     } else if (winners.length === 3) {
-      resultCircleText.textContent = 'MIXED';
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
     } else {
       const labels = winners.map(w => RESULTS[w].label);
-      resultCircleText.textContent = 'MIXED';
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
     }
