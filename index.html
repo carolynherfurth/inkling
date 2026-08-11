@@ -408,22 +408,6 @@
     border: 3px solid #c9a800;
   }
 
-  .pill {
-    display: inline-block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 0.88rem;
-    letter-spacing: 0.14em;
-    padding: 0.48rem 1.1rem;
-    border-radius: 999px;
-    margin-bottom: 0.9rem;
-    width: fit-content;
-  }
-
-  .flame .pill { background: var(--white); color: var(--pink); }
-  .fade  .pill { background: var(--yellow); color: var(--charcoal); }
-  .bow   .pill { background: var(--charcoal); color: var(--yellow); }
-
   .col-connector {
     font-style: italic;
     font-weight: 600;
@@ -436,17 +420,19 @@
   .bow   .col-connector { color: var(--charcoal-txt); }
 
   .col h2 {
+    display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.01em;
-    margin-top: 0;
+    font-size: 1.9rem;
+    letter-spacing: 0.02em;
+    margin: 0 0 1.1rem;
+    padding: 0.4rem 1.3rem;
+    border-radius: 999px;
   }
 
-  .flame h2 { color: var(--white); }
-  .fade  h2 { color: var(--yellow); }
-  .bow   h2 { color: var(--charcoal); }
+  .flame h2 { background: var(--white); color: var(--pink); }
+  .fade  h2 { background: var(--yellow); color: var(--charcoal); }
+  .bow   h2 { background: var(--charcoal); color: var(--yellow); }
 
   .col p.desc {
     font-size: 1.08rem;
@@ -915,7 +901,7 @@
       <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
       <div class="bubble-cluster">
         <div class="bubble-primary"><p class="result-desc" id="resultDesc"></p></div>
-        <div class="bubble-secondary"><p class="result-next">This is the preliminary read on where your behavior is leading — it's not the whole story. Keep scrolling to see the three main directions those inklings are pointing, with a few specifics about what's driving the one(s) you're headed toward.</p></div>
+        <div class="bubble-secondary"><p class="result-next">This read on your behavior isn't the whole story. Keep scrolling to see the three directions those inklings can take — including specifics on the one(s) you're headed toward.</p></div>
       </div>
     </div>
 
@@ -927,23 +913,20 @@
       <div class="columns">
 
         <section class="col flame">
-          <span class="pill">DRIFT</span>
           <h2>FLAME-OUT</h2>
           <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. Then one day, you're done.</p>
-          <p class="col-connector">This may cause a founder to <strong>DRIFT</strong>. Things to notice:</p>
+          <p class="col-connector">This may cause a founder to <strong>DRIFT</strong>. Things to watch for:</p>
           <p class="desc">If you find yourself to be slightly impulsive — especially once you've determined "enough is enough" — you might look for a quick escape hatch. Even if you're unsure of your next move, doing anything else feels better than this. When you imagine earning the same (or more) income without operating your business as-is, a sense of relief washes over you.</p>
         </section>
 
         <section class="col fade">
-          <span class="pill">DEFER</span>
           <h2>FADE-OUT</h2>
           <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've decided to stay, but because you haven't found a next move worth choosing.</p>
-          <p class="col-connector">What you'll want to watch for is behavior that <strong>DEFERS</strong> decisions:</p>
+          <p class="col-connector">Pay attention to behaviors that <strong>DEFER</strong> decisions:</p>
           <p class="desc">Allowing a low hum of boredom to settle in — quiet, but persistent. Avoiding naming it out loud. Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going. Making a decision that's sitting right in front of you but you keep sidestepping, not because you can't see it, but because none of the options in front of you feel like the right one.</p>
         </section>
 
         <section class="col bow">
-          <span class="pill">DIRECT</span>
           <h2>BOW-OUT</h2>
           <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
           <p class="col-connector">You'll know you're <strong>DIRECTING</strong> your situation when:</p>
