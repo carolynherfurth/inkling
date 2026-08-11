@@ -611,8 +611,8 @@
   .bubble-primary {
     background: var(--pink);
     border-radius: 50%;
-    width: 96%;
-    max-width: 490px;
+    width: 98%;
+    max-width: 540px;
     aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
@@ -625,18 +625,19 @@
   }
 
   .closer.bow-highlight .bubble-primary { background: var(--yellow); }
+  .closer.fade-highlight .bubble-primary { background: var(--charcoal); }
 
   .bubble-secondary {
     background: var(--white);
     border: 5px solid var(--yellow);
     border-radius: 50%;
-    width: 78%;
-    max-width: 340px;
+    width: 62%;
+    max-width: 250px;
     aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 1.5rem;
     box-shadow: 0 10px 24px rgba(0,0,0,0.14);
     position: relative;
     margin: -4% auto 0;
@@ -644,20 +645,22 @@
   }
 
   .closer.bow-highlight .bubble-secondary { border-color: var(--pink); }
+  .closer.fade-highlight .bubble-secondary { border-color: var(--yellow); }
 
   .result-desc {
-    font-size: 0.95rem;
-    line-height: 1.42;
+    font-size: 0.85rem;
+    line-height: 1.38;
     color: var(--white);
     font-weight: 500;
     text-align: center;
   }
 
   .closer.bow-highlight .result-desc { color: var(--charcoal); }
+  .closer.fade-highlight .result-desc { color: var(--cream); }
 
   .result-next {
-    font-size: 0.95rem;
-    line-height: 1.45;
+    font-size: 0.82rem;
+    line-height: 1.35;
     color: var(--charcoal);
     font-weight: 500;
     text-align: center;
@@ -671,12 +674,12 @@
       min-height: 420px;
     }
     .bubble-primary {
-      width: 380px;
-      margin-right: -70px;
+      width: 420px;
+      margin-right: -80px;
     }
     .bubble-secondary {
-      width: 290px;
-      margin: 0 0 -20px 0;
+      width: 220px;
+      margin: 0 0 -10px 0;
     }
   }
 
@@ -911,7 +914,7 @@
       <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
       <div class="bubble-cluster">
         <div class="bubble-primary"><p class="result-desc" id="resultDesc"></p></div>
-        <div class="bubble-secondary"><p class="result-next">This is the preliminary read on where your behavior is leading — it's not the whole story. Keep scrolling to see the three main directions those inklings are pointing, including a few specifics about what's driving the one(s) you're pointed toward.</p></div>
+        <div class="bubble-secondary"><p class="result-next">This is the preliminary read on where your behavior is leading — it's not the whole story. Keep scrolling to see the three main directions those inklings are pointing, with a few specifics about what's driving the one(s) you're headed toward.</p></div>
       </div>
     </div>
 
@@ -1123,6 +1126,7 @@
     closerSection.classList.remove('hidden');
     closerSection.classList.add('result');
     closerSection.classList.remove('bow-highlight');
+    closerSection.classList.remove('fade-highlight');
 
     const isSpreadLeader = winners.length === 1 && winners[0] !== 'bow' &&
       ['flame', 'fade', 'bow'].filter(c => c !== winners[0]).every(c => counts[c] > 0);
@@ -1143,15 +1147,18 @@
       resultDesc.textContent = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
+      if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
+      if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       closerHeadline.textContent = m.headline;
       resultDesc.textContent = m.desc;
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
+      if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       closerHeadline.textContent = r.headline;
       resultDesc.textContent = r.desc;
     } else if (winners.length === 3) {
@@ -1239,6 +1246,7 @@
     closerSection.classList.add('hidden');
     closerSection.classList.remove('result');
     closerSection.classList.remove('bow-highlight');
+    closerSection.classList.remove('fade-highlight');
     closerHeadline.textContent = '';
     resultDesc.textContent = '';
     preResultDivider.classList.add('hidden');
