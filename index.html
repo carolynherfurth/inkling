@@ -411,7 +411,8 @@
   .col-connector {
     font-weight: 700;
     margin-bottom: 0.9rem;
-    font-size: 1.02rem;
+    font-size: 1.35rem;
+    line-height: 1.3;
   }
 
   .flame .col-connector { color: var(--pink-lt); }
@@ -929,7 +930,7 @@
 
         <section class="col flame">
           <h2>FLAME-OUT</h2>
-          <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. Then one day, you're done.</p>
+          <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: <em>who even am I anymore?</em> That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. Then one day, you're done.</p>
           <p class="col-connector">This may cause a founder to <strong>DRIFT</strong>. Things to watch for:</p>
           <ul class="behavior-list">
             <li>You might look for a quick escape hatch if you find yourself to be slightly impulsive — especially once you've determined "enough is enough."</li>
@@ -940,11 +941,10 @@
 
         <section class="col fade">
           <h2>FADE-OUT</h2>
-          <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've decided to stay, but because you haven't found a next move worth choosing.</p>
+          <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've <em>decided</em> to stay, but because you haven't found a next move worth choosing.</p>
           <p class="col-connector">Pay attention to behaviors that <strong>DEFER</strong> decisions:</p>
           <ul class="behavior-list">
             <li>Allowing a low hum of boredom to settle in — quiet, but persistent.</li>
-            <li>Avoiding naming it out loud.</li>
             <li>Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going.</li>
             <li>Sidestepping a decision that's sitting right in front of you, not because you can't see it, but because none of the options in front of you feel right.</li>
           </ul>
@@ -956,7 +956,7 @@
           <p class="col-connector">You'll know you're <strong>DIRECTING</strong> your situation when:</p>
           <ul class="behavior-list">
             <li>You can look at your own next move — maybe even an exit — with real objectivity, without romanticizing it or dreading it more than it deserves.</li>
-            <li>You're the one setting the pace on what happens next, not waiting for circumstances to make the decision for you.</li>
+            <li>You're the one setting the pace on what happens next, not waiting for circumstances to force the decision on you.</li>
             <li>If someone close to the business pointed out something you'd missed, you'd actually take it in, instead of getting defensive about it.</li>
           </ul>
         </section>
@@ -969,7 +969,7 @@
     <div class="final-cta hidden" id="finalCta">
       <p class="outro-open">Your inkling is telling you something. So is your business — and it's not always the same thing.</p>
       <p>That's what <a href="https://carolynherfurth.com/the-tell">THE TELL</a> is for. In 90 minutes, we read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding.</p>
-      <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year carrying something that's already finished.</p>
+      <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year making an offer that's already run its course.</p>
       <a href="https://carolynherfurth.com/the-tell" class="tell-cta" id="tellCta">Book THE TELL >>></a>
       <button class="retake" id="retakeBtn">↺ Retake the scan</button>
     </div>
@@ -1014,14 +1014,14 @@
       color: '#f2295b',
       textColor: '#ffffff',
       headline: 'YOUR INKLING IS POINTING TOWARD FLAME-OUT.',
-      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. This is exactly when an outside read matters most — before one day, you're just done."
+      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: <em>who even am I anymore?</em> That question can pull your attention away, until the business becomes the bystander. This is exactly when an outside read matters most — before one day, you're just done."
     },
     fade: {
       label: 'FADE-OUT',
       color: '#242424',
       textColor: '#fbed00',
       headline: 'YOUR INKLING IS POINTING TOWARD FADE-OUT.',
-      desc: "You know something has changed, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, not because you've decided to, but because you haven't found a next move worth choosing yet. That's just the kind of stuck that keeps you cornered. Exploring possibilities for your next move would move you through much faster."
+      desc: "You know something has changed, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, not because you've <em>decided</em> to, but because you haven't found a next move worth choosing yet. That's just the kind of stuck that keeps you cornered. Exploring possibilities for your next move would move you through much faster."
     },
     bow: {
       label: 'BOW-OUT',
@@ -1178,35 +1178,35 @@
 
     if (maxCount === 0) {
       closerHeadline.textContent = "IT'S NOT FULLY POINTING ANYWHERE YET.";
-      resultDesc.textContent = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
+      resultDesc.innerHTML = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
     } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
       const t = buildTendencyMessage(counts);
       closerSection.classList.add('bow-highlight');
       closerHeadline.textContent = t.headline;
-      resultDesc.textContent = t.desc;
+      resultDesc.innerHTML = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       closerHeadline.textContent = m.headline;
-      resultDesc.textContent = m.desc;
+      resultDesc.innerHTML = m.desc;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       closerHeadline.textContent = m.headline;
-      resultDesc.textContent = m.desc;
+      resultDesc.innerHTML = m.desc;
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       closerHeadline.textContent = r.headline;
-      resultDesc.textContent = r.desc;
+      resultDesc.innerHTML = r.desc;
     } else if (winners.length === 3) {
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
-      resultDesc.textContent = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
+      resultDesc.innerHTML = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
     } else {
       const labels = winners.map(w => RESULTS[w].label);
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
-      resultDesc.textContent = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
+      resultDesc.innerHTML = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
     }
 
     preResultDivider.classList.remove('hidden');
@@ -1287,7 +1287,7 @@
     closerSection.classList.remove('bow-highlight');
     closerSection.classList.remove('fade-highlight');
     closerHeadline.textContent = '';
-    resultDesc.textContent = '';
+    resultDesc.innerHTML = '';
     preResultDivider.classList.add('hidden');
     postFrameworkDivider.classList.add('hidden');
     frameworkReveal.classList.add('hidden');
