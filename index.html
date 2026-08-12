@@ -409,8 +409,7 @@
   }
 
   .col-connector {
-    font-style: italic;
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 0.9rem;
     font-size: 1.02rem;
   }
@@ -421,6 +420,7 @@
 
   .col h2 {
     display: inline-block;
+    align-self: flex-start;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
     font-size: 1.9rem;
@@ -443,6 +443,20 @@
   .flame p.desc { color: var(--pink-lt); }
   .fade  p.desc { color: var(--cream); }
   .bow   p.desc { color: var(--charcoal-txt); }
+
+  .col ul.behavior-list {
+    font-size: 1.08rem;
+    line-height: 1.5;
+    margin: 0 0 1.3rem 0;
+    padding-left: 1.3rem;
+  }
+
+  .col ul.behavior-list li { margin-bottom: 0.65rem; }
+  .col ul.behavior-list li:last-child { margin-bottom: 0; }
+
+  .flame ul.behavior-list { color: var(--pink-lt); }
+  .fade  ul.behavior-list { color: var(--cream); }
+  .bow   ul.behavior-list { color: var(--charcoal-txt); }
 
   .ask-label {
     font-family: 'Barlow Condensed', sans-serif;
@@ -582,8 +596,9 @@
     letter-spacing: 0.01em;
   }
 
-  .closer.bow-highlight .closer-heading .headline {
+  .closer-heading .headline {
     background: var(--yellow);
+    color: var(--charcoal);
     padding: 0.06em 0.28em;
     border-radius: 4px;
     box-decoration-break: clone;
@@ -614,7 +629,7 @@
   .closer.fade-highlight .bubble-primary { background: var(--charcoal); }
 
   .bubble-secondary {
-    background: var(--white);
+    background: #eeeeee;
     border: 5px solid var(--yellow);
     border-radius: 50%;
     width: 62%;
@@ -799,22 +814,22 @@
         <p class="reflect-prompt">Go with your gut. You can always come back to this.</p>
         <div class="qcard">
           <div class="q-row"><span class="qnum">1</span><span>Do you consider yourself impulsive — especially once you've finally had enough?</span></div>
-          <div class="q-answers" data-col="flame" data-q="1">
+          <div class="q-answers" data-role="modifier" data-q="1">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
           </div>
         </div>
         <div class="qcard">
           <div class="q-row"><span class="qnum">2</span><span>Do you stay out of obligation — to clients, your team, or the identity you've built — more than actual desire?</span></div>
-          <div class="q-answers" data-col="fade" data-q="5">
+          <div class="q-answers" data-role="fade" data-q="2">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
           </div>
         </div>
         <div class="qcard">
-          <div class="q-row"><span class="qnum">3</span><span>If someone noticed your blind spot, would you actually hear it — or would you tend to get defensive?</span></div>
-          <div class="q-answers" data-col="bow" data-q="9">
-            <button class="ans-btn" data-val="yes">Hear it</button>
+          <div class="q-row"><span class="qnum">3</span><span>If someone notices your blind spot, are you open to hear it — or tend to get defensive?</span></div>
+          <div class="q-answers" data-role="unscored" data-q="3">
+            <button class="ans-btn" data-val="yes">Open to hear it</button>
             <button class="ans-btn" data-val="no">Get defensive</button>
           </div>
         </div>
@@ -824,21 +839,21 @@
         <p class="reflect-prompt">No wrong answers here — just honest ones.</p>
         <div class="qcard">
           <div class="q-row"><span class="qnum">4</span><span>Is there a decision about your business you've been avoiding because you don't like the only options you can see from where you sit?</span></div>
-          <div class="q-answers" data-col="fade" data-q="6">
+          <div class="q-answers" data-role="fade" data-q="4">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
           </div>
         </div>
         <div class="qcard">
           <div class="q-row"><span class="qnum">5</span><span>Do you have a clear-eyed objectivity about when it's time to let something go from your business?</span></div>
-          <div class="q-answers" data-col="bow" data-q="7">
+          <div class="q-answers" data-role="bow-unconditional" data-q="5">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
           </div>
         </div>
         <div class="qcard">
           <div class="q-row"><span class="qnum">6</span><span>Do you yearn to do something different but can't picture what that next move would actually be?</span></div>
-          <div class="q-answers" data-col="flame" data-q="2">
+          <div class="q-answers" data-role="shared" data-q="6">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
           </div>
@@ -848,24 +863,24 @@
       <div class="step hidden" data-step="3">
         <p class="reflect-prompt">Last set. Stay with what's true, not what sounds good.</p>
         <div class="qcard">
-          <div class="q-row"><span class="qnum">7</span><span>Are you driving your next decision as opposed to waiting for the business to force it?</span></div>
-          <div class="q-answers" data-col="bow" data-q="8">
+          <div class="q-row"><span class="qnum">7</span><span>Have you been experiencing a prolonged sense of boredom in your business?</span></div>
+          <div class="q-answers" data-role="shared" data-q="7">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
           </div>
         </div>
         <div class="qcard">
           <div class="q-row"><span class="qnum">8</span><span>If you were earning the same (or more) income tomorrow without operating your business as-is, would you feel relieved — or disappointed?</span></div>
-          <div class="q-answers" data-col="flame" data-q="3">
+          <div class="q-answers" data-role="shared" data-q="8">
             <button class="ans-btn" data-val="yes">Relieved</button>
             <button class="ans-btn" data-val="no">Disappointed</button>
           </div>
         </div>
         <div class="qcard">
-          <div class="q-row"><span class="qnum">9</span><span>Have you been experiencing a prolonged sense of boredom in your business?</span></div>
-          <div class="q-answers" data-col="fade" data-q="4">
-            <button class="ans-btn" data-val="yes">Yes</button>
-            <button class="ans-btn" data-val="no">No</button>
+          <div class="q-row"><span class="qnum">9</span><span>Are you driving a decision, or waiting for things to take their course?</span></div>
+          <div class="q-answers" data-role="router" data-q="9">
+            <button class="ans-btn" data-val="drive">Driving</button>
+            <button class="ans-btn" data-val="wait">Waiting</button>
           </div>
         </div>
       </div>
@@ -916,21 +931,34 @@
           <h2>FLAME-OUT</h2>
           <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: who even am I anymore? That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. Then one day, you're done.</p>
           <p class="col-connector">This may cause a founder to <strong>DRIFT</strong>. Things to watch for:</p>
-          <p class="desc">If you find yourself to be slightly impulsive — especially once you've determined "enough is enough" — you might look for a quick escape hatch. Even if you're unsure of your next move, doing anything else feels better than this. When you imagine earning the same (or more) income without operating your business as-is, a sense of relief washes over you.</p>
+          <ul class="behavior-list">
+            <li>You might look for a quick escape hatch if you find yourself to be slightly impulsive — especially once you've determined "enough is enough."</li>
+            <li>Doing anything else feels better than this, even if you're unsure of your next move.</li>
+            <li>A sense of relief washes over you when you imagine earning the same (or more) income without operating your business as-is.</li>
+          </ul>
         </section>
 
         <section class="col fade">
           <h2>FADE-OUT</h2>
           <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've decided to stay, but because you haven't found a next move worth choosing.</p>
           <p class="col-connector">Pay attention to behaviors that <strong>DEFER</strong> decisions:</p>
-          <p class="desc">Allowing a low hum of boredom to settle in — quiet, but persistent. Avoiding naming it out loud. Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going. Making a decision that's sitting right in front of you but you keep sidestepping, not because you can't see it, but because none of the options in front of you feel like the right one.</p>
+          <ul class="behavior-list">
+            <li>Allowing a low hum of boredom to settle in — quiet, but persistent.</li>
+            <li>Avoiding naming it out loud.</li>
+            <li>Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going.</li>
+            <li>Sidestepping a decision that's sitting right in front of you, not because you can't see it, but because none of the options in front of you feel right.</li>
+          </ul>
         </section>
 
         <section class="col bow">
           <h2>BOW-OUT</h2>
           <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
           <p class="col-connector">You'll know you're <strong>DIRECTING</strong> your situation when:</p>
-          <p class="desc">You can look at your own next move — even an exit — with real objectivity, without romanticizing it or dreading it more than it deserves. You're the one setting the pace on what happens next, not waiting for circumstances to make the decision for you. And if someone close to the business pointed out something you'd missed, you'd actually take it in, instead of getting defensive about it.</p>
+          <ul class="behavior-list">
+            <li>You can look at your own next move — maybe even an exit — with real objectivity, without romanticizing it or dreading it more than it deserves.</li>
+            <li>You're the one setting the pace on what happens next, not waiting for circumstances to make the decision for you.</li>
+            <li>If someone close to the business pointed out something you'd missed, you'd actually take it in, instead of getting defensive about it.</li>
+          </ul>
         </section>
 
       </div>
@@ -1005,13 +1033,12 @@
   };
 
   document.querySelectorAll('.q-answers').forEach(group => {
-    const col = group.dataset.col;
     const q = group.dataset.q;
     group.querySelectorAll('.ans-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         group.querySelectorAll('.ans-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
-        answers[col + '-' + q] = btn.dataset.val;
+        answers['q' + q] = btn.dataset.val;
         updateNextButton();
       });
     });
@@ -1025,7 +1052,7 @@
   function isStepComplete(stepNum) {
     const stepEl = document.querySelector(`.step[data-step="${stepNum}"]`);
     const groups = stepEl.querySelectorAll('.q-answers');
-    return Array.from(groups).every(g => (g.dataset.col + '-' + g.dataset.q) in answers);
+    return Array.from(groups).every(g => ('q' + g.dataset.q) in answers);
   }
 
   function updateNextButton() {
@@ -1057,12 +1084,40 @@
 
   function tally() {
     const counts = { flame: 0, fade: 0, bow: 0 };
-    Object.keys(answers).forEach(key => {
-      if (answers[key] === 'yes') {
-        const col = key.split('-')[0];
-        counts[col]++;
+
+    // Q2, Q4 — always Fade
+    if (answers.q2 === 'yes') counts.fade++;
+    if (answers.q4 === 'yes') counts.fade++;
+
+    // Q5 — always Bow, unconditional
+    if (answers.q5 === 'yes') counts.bow++;
+
+    // Q9 — router. Q1 — modifier, only consulted if Q9 = drive.
+    const router = answers.q9;       // 'drive' | 'wait'
+    const impulsive = answers.q1 === 'yes';
+
+    let branch = null; // 'flame' | 'fade' | 'bow'
+    if (router === 'wait') {
+      branch = 'fade';
+      counts.fade++;
+    } else if (router === 'drive' && impulsive) {
+      branch = 'flame';
+      counts.flame++;
+    } else if (router === 'drive' && !impulsive) {
+      branch = 'bow';
+      counts.bow++;
+    }
+
+    // Q6, Q7, Q8 — shared "something's off" signals, routed by the same
+    // branch as Q9/Q1. In the drive+not-impulsive (bow) branch, these three
+    // don't score at all — they're Flame/Fade differentiators specifically,
+    // not general signal for someone already acting deliberately.
+    ['q6', 'q7', 'q8'].forEach(key => {
+      if (answers[key] === 'yes' && (branch === 'flame' || branch === 'fade')) {
+        counts[branch]++;
       }
     });
+
     return counts;
   }
 
