@@ -777,7 +777,14 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="ghost" id="ghostText" aria-hidden="true">INKLING</div>
+
   <header>
+    <h1 id="mainHeadline">
+      WILL YOU <span class="yellow">BOW OUT</span>,
+      <span class="charcoal">FADE OUT</span>,
+      OR <span class="pink">FLAME OUT</span>?
+    </h1>
     <p class="subtitle" id="subtitleText">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
     <p class="intro" id="introText">An inkling can start as restlessness. Or a loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you drift, defer, or direct it.</p>
     <p class="prompt" id="promptText">Answer honestly as you go — we'll show you what it adds up to at the end.</p>
@@ -988,6 +995,8 @@
   const emailGate = document.getElementById('emailGate');
   const introText = document.getElementById('introText');
   const subtitleText = document.getElementById('subtitleText');
+  const mainHeadline = document.getElementById('mainHeadline');
+  const ghostText = document.getElementById('ghostText');
   const promptText = document.getElementById('promptText');
   const stepLabel = document.getElementById('stepLabel');
   const backBtn = document.getElementById('backBtn');
@@ -1268,6 +1277,8 @@
       quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       quizSteps.classList.add('hidden');
+      mainHeadline.classList.add('hidden');
+      ghostText.classList.add('hidden');
       subtitleText.classList.add('hidden');
       introText.classList.add('hidden');
       promptText.classList.add('hidden');
@@ -1286,6 +1297,8 @@
   gateBackBtn.addEventListener('click', () => {
     emailGate.classList.add('hidden');
     gateError.classList.add('hidden');
+    mainHeadline.classList.remove('hidden');
+    ghostText.classList.remove('hidden');
     subtitleText.classList.remove('hidden');
     introText.classList.remove('hidden');
     promptText.classList.remove('hidden');
@@ -1339,6 +1352,8 @@
     gateError.classList.add('hidden');
     gateSubmit.disabled = false;
     gateSubmit.textContent = 'See My Result >>>';
+    mainHeadline.classList.remove('hidden');
+    ghostText.classList.remove('hidden');
     subtitleText.classList.remove('hidden');
     introText.classList.remove('hidden');
     promptText.classList.remove('hidden');
