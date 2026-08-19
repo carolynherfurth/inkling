@@ -606,84 +606,72 @@
     -webkit-box-decoration-break: clone;
   }
 
-  .bubble-cluster {
-    position: relative;
+  /* ---- DIAL: the needle points toward the result ---- */
+  .dial-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0.6rem 0 1.8rem;
   }
 
-  .bubble-primary {
+  .dial-svg { width: 240px; height: 240px; }
+
+  .dial-needle {
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: 110px 110px;
+  }
+
+  .dial-hub {
+    fill: var(--charcoal);
+    stroke: var(--white);
+    stroke-width: 3;
+  }
+
+  .dial-wedge-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    fill: var(--white);
+  }
+
+  /* ---- unified result detail box ---- */
+  .result-box {
     background: var(--pink);
-    border-radius: 50%;
-    width: 99%;
-    max-width: 560px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2.4rem;
-    margin: 0 0 0 0;
-    box-shadow: 0 14px 32px rgba(0,0,0,0.2);
-    position: relative;
-    z-index: 1;
+    border-radius: 18px;
+    padding: 1.8rem 1.7rem;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.18);
   }
 
-  .closer.bow-highlight .bubble-primary { background: var(--yellow); }
-  .closer.fade-highlight .bubble-primary { background: var(--charcoal); }
-
-  .bubble-secondary {
-    background: #eeeeee;
-    border: 5px solid var(--yellow);
-    border-radius: 50%;
-    width: 62%;
-    max-width: 250px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.3rem;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.14);
-    position: relative;
-    margin: -4% auto 0;
-    z-index: 2;
-  }
-
-  .closer.bow-highlight .bubble-secondary { border-color: var(--pink); }
-  .closer.fade-highlight .bubble-secondary { border-color: var(--yellow); }
+  .closer.bow-highlight .result-box { background: var(--yellow); }
+  .closer.fade-highlight .result-box { background: var(--charcoal); }
 
   .result-desc {
     font-size: 1.05rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--white);
     font-weight: 500;
-    text-align: center;
-    max-width: 87%;
+    margin-bottom: 1rem;
   }
 
   .closer.bow-highlight .result-desc { color: var(--charcoal); }
   .closer.fade-highlight .result-desc { color: var(--cream); }
 
   .result-next {
-    font-size: 0.78rem;
-    line-height: 1.3;
-    color: var(--charcoal);
+    font-size: 0.92rem;
+    line-height: 1.4;
+    color: var(--white);
     font-weight: 500;
-    text-align: center;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.35);
   }
 
-  @media (min-width: 560px) {
-    .bubble-cluster {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      min-height: 440px;
-    }
-    .bubble-primary {
-      width: 430px;
-      margin-right: -45px;
-    }
-    .bubble-secondary {
-      width: 205px;
-      margin: 0 0 -10px 0;
-    }
+  .closer.bow-highlight .result-next {
+    color: var(--charcoal);
+    border-top-color: rgba(36,36,36,0.25);
+  }
+
+  .closer.fade-highlight .result-next {
+    color: var(--cream);
+    border-top-color: rgba(255,255,255,0.2);
   }
 
   /* ---- final CTA: neutral, separate section at the very bottom ---- */
@@ -915,9 +903,23 @@
     <div class="closer hidden" id="closerSection">
       <div class="result-eyebrow">YOUR RESULT:</div>
       <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
-      <div class="bubble-cluster">
-        <div class="bubble-primary"><p class="result-desc" id="resultDesc"></p></div>
-        <div class="bubble-secondary"><p class="result-next">This read on your behavior isn't the whole story. Keep scrolling to see the three directions those inklings can take — including specifics on the one(s) you're headed toward.</p></div>
+
+      <div class="dial-wrap">
+        <svg class="dial-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <path d="M110,110 L23.4,60 A100,100 0 0,1 196.6,60 Z" fill="var(--yellow)"></path>
+          <path d="M110,110 L196.6,60 A100,100 0 0,1 110,210 Z" fill="var(--pink)"></path>
+          <path d="M110,110 L110,210 A100,100 0 0,1 23.4,60 Z" fill="var(--charcoal)"></path>
+          <text x="110" y="50" text-anchor="middle" class="dial-wedge-label" fill="var(--charcoal)">BOW</text>
+          <text x="166" y="147" text-anchor="middle" class="dial-wedge-label">FLAME</text>
+          <text x="54" y="147" text-anchor="middle" class="dial-wedge-label">FADE</text>
+          <polygon id="dialNeedle" class="dial-needle" points="110,30 116,110 104,110" fill="var(--white)" stroke="var(--charcoal)" stroke-width="2"></polygon>
+          <circle class="dial-hub" cx="110" cy="110" r="10"></circle>
+        </svg>
+      </div>
+
+      <div class="result-box">
+        <p class="result-desc" id="resultDesc"></p>
+        <p class="result-next">This read on your behavior isn't the whole story. Keep scrolling to see the three directions those inklings can take — including specifics on the one(s) you're headed toward.</p>
       </div>
     </div>
 
@@ -1003,6 +1005,7 @@
   const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
   const closerHeadline = document.getElementById('closerHeadline');
+  const dialNeedle = document.getElementById('dialNeedle');
   const resultDesc = document.getElementById('resultDesc');
   const retakeBtn = document.getElementById('retakeBtn');
   const tellCta = document.getElementById('tellCta');
@@ -1157,6 +1160,24 @@
     };
   }
 
+  const DIAL_POINTS = {
+    full: '110,30 116,110 104,110',
+    short: '110,55 115,110 105,110',
+    none: '110,110 110,110 110,110'
+  };
+
+  function setDial(angleDeg, lengthKey) {
+    dialNeedle.setAttribute('points', DIAL_POINTS[lengthKey] || DIAL_POINTS.full);
+    dialNeedle.style.transform = `rotate(${angleDeg}deg)`;
+  }
+
+  const WEDGE_CENTER = { bow: 0, flame: 120, fade: 240 };
+  const WEDGE_BOUNDARY = {
+    'flame,fade': 180,
+    'flame,bow': 60,
+    'fade,bow': 300
+  };
+
   function revealResult() {
     const counts = tally();
     const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
@@ -1177,34 +1198,51 @@
       counts.bow === 0 && counts[flameFadeSecondary] > 0;
 
     if (maxCount === 0) {
+      setDial(0, 'none');
       closerHeadline.textContent = "IT'S NOT FULLY POINTING ANYWHERE YET.";
       resultDesc.innerHTML = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
     } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
       const t = buildTendencyMessage(counts);
       closerSection.classList.add('bow-highlight');
+      let bowAngle = 0, bowLength = 'full';
+      if (counts.flame > 0 && counts.fade > 0) {
+        if (counts.flame > counts.fade) bowAngle = 35;
+        else if (counts.fade > counts.flame) bowAngle = 325;
+        else { bowAngle = 0; bowLength = 'short'; }
+      } else if (counts.flame > 0) {
+        bowAngle = 35;
+      } else if (counts.fade > 0) {
+        bowAngle = 325;
+      }
+      setDial(bowAngle, bowLength);
       closerHeadline.textContent = t.headline;
       resultDesc.innerHTML = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
+      setDial(winners[0] === 'flame' ? 150 : 210, 'full');
       closerHeadline.textContent = m.headline;
       resultDesc.innerHTML = m.desc;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
+      setDial(winners[0] === 'flame' ? 150 : 210, 'short');
       closerHeadline.textContent = m.headline;
       resultDesc.innerHTML = m.desc;
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
+      setDial(WEDGE_CENTER[winners[0]], 'full');
       closerHeadline.textContent = r.headline;
       resultDesc.innerHTML = r.desc;
     } else if (winners.length === 3) {
+      setDial(0, 'none');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.innerHTML = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
     } else {
       const labels = winners.map(w => RESULTS[w].label);
+      setDial(WEDGE_BOUNDARY[winners.join(',')], 'short');
       closerHeadline.textContent = 'YOUR INKLING IS PULLED IN MORE THAN ONE DIRECTION.';
       resultDesc.innerHTML = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
     }
@@ -1288,6 +1326,7 @@
     closerSection.classList.remove('fade-highlight');
     closerHeadline.textContent = '';
     resultDesc.innerHTML = '';
+    setDial(0, 'none');
     preResultDivider.classList.add('hidden');
     postFrameworkDivider.classList.add('hidden');
     frameworkReveal.classList.add('hidden');
