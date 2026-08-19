@@ -898,8 +898,6 @@
 
     <iframe name="mlHiddenFrame" id="mlHiddenFrame" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
 
-    <hr class="divider hidden" id="preResultDivider">
-
     <div class="closer hidden" id="closerSection">
       <div class="result-eyebrow">YOUR RESULT:</div>
       <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
@@ -909,9 +907,10 @@
           <path d="M110,110 L23.4,60 A100,100 0 0,1 196.6,60 Z" fill="var(--yellow)"></path>
           <path d="M110,110 L196.6,60 A100,100 0 0,1 110,210 Z" fill="var(--pink)"></path>
           <path d="M110,110 L110,210 A100,100 0 0,1 23.4,60 Z" fill="var(--charcoal)"></path>
-          <text x="110" y="24" text-anchor="middle" class="dial-wedge-label" fill="var(--charcoal)"><tspan x="110" dy="0">BOW</tspan><tspan x="110" dy="16">OUT</tspan></text>
-          <text x="181" y="145" text-anchor="middle" class="dial-wedge-label"><tspan x="181" dy="0">FLAME</tspan><tspan x="181" dy="16">OUT</tspan></text>
-          <text x="39" y="145" text-anchor="middle" class="dial-wedge-label"><tspan x="39" dy="0">FADE</tspan><tspan x="39" dy="16">OUT</tspan></text>
+          <circle cx="110" cy="110" r="100" fill="none" stroke="#b5b2a8" stroke-width="3"></circle>
+          <text x="110" y="45" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="110" dy="-8">BOW</tspan><tspan x="110" dy="16">OUT</tspan></text>
+          <text x="166" y="143" text-anchor="middle" class="dial-wedge-label" style="fill: var(--white);"><tspan x="166" dy="-8">FLAME</tspan><tspan x="166" dy="16">OUT</tspan></text>
+          <text x="54" y="143" text-anchor="middle" class="dial-wedge-label" style="fill: var(--yellow);"><tspan x="54" dy="-8">FADE</tspan><tspan x="54" dy="16">OUT</tspan></text>
           <polygon id="dialNeedle" class="dial-needle" points="110,50 116,110 104,110" fill="var(--white)" stroke="var(--charcoal)" stroke-width="2"></polygon>
           <circle class="dial-hub" cx="110" cy="110" r="10"></circle>
         </svg>
@@ -1002,7 +1001,6 @@
   const backBtn = document.getElementById('backBtn');
   const nextBtn = document.getElementById('nextBtn');
   const dots = document.querySelectorAll('.dot');
-  const preResultDivider = document.getElementById('preResultDivider');
   const postFrameworkDivider = document.getElementById('postFrameworkDivider');
   const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
@@ -1209,57 +1207,72 @@
     const isLeaningWithSecondary = flameFadeSecondary !== null &&
       counts.bow === 0 && counts[flameFadeSecondary] > 0;
 
+    let targetAngle = 0;
+    let targetLength = 'full';
+
     if (maxCount === 0) {
-      setDial(0, 'none');
+      targetAngle = 0; targetLength = 'none';
       closerHeadline.textContent = "YOUR RESPONSE ISN'T FULLY POINTING ANYWHERE YET.";
       resultDesc.innerHTML = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
     } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
       const t = buildTendencyMessage(counts);
       closerSection.classList.add('bow-highlight');
-      let bowAngle = 0, bowLength = 'full';
       if (counts.flame > 0 && counts.fade > 0) {
-        if (counts.flame > counts.fade) bowAngle = 35;
-        else if (counts.fade > counts.flame) bowAngle = 325;
-        else { bowAngle = 0; bowLength = 'short'; }
+        if (counts.flame > counts.fade) targetAngle = 35;
+        else if (counts.fade > counts.flame) targetAngle = 325;
+        else { targetAngle = 0; targetLength = 'short'; }
       } else if (counts.flame > 0) {
-        bowAngle = 35;
+        targetAngle = 35;
       } else if (counts.fade > 0) {
-        bowAngle = 325;
+        targetAngle = 325;
       }
-      setDial(bowAngle, bowLength);
       closerHeadline.textContent = t.headline;
       resultDesc.innerHTML = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
-      setDial(winners[0] === 'flame' ? 150 : 210, 'full');
+      targetAngle = winners[0] === 'flame' ? 150 : 210;
+      targetLength = 'full';
       closerHeadline.textContent = m.headline;
       resultDesc.innerHTML = m.desc;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
-      setDial(winners[0] === 'flame' ? 150 : 210, 'short');
+      targetAngle = winners[0] === 'flame' ? 150 : 210;
+      targetLength = 'short';
       closerHeadline.textContent = m.headline;
       resultDesc.innerHTML = m.desc;
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
-      setDial(WEDGE_CENTER[winners[0]], 'full');
+      targetAngle = WEDGE_CENTER[winners[0]];
+      targetLength = 'full';
       closerHeadline.textContent = r.headline;
       resultDesc.innerHTML = r.desc;
     } else if (winners.length === 3) {
-      setDial(0, 'none');
+      targetAngle = 0; targetLength = 'none';
       closerHeadline.textContent = 'YOUR RESPONSE IS PULLING YOU IN MORE THAN ONE DIRECTION.';
       resultDesc.innerHTML = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
     } else {
       const labels = winners.map(w => RESULTS[w].label);
-      setDial(WEDGE_BOUNDARY[winners.join(',')], 'short');
+      targetAngle = WEDGE_BOUNDARY[winners.join(',')];
+      targetLength = 'short';
       closerHeadline.textContent = 'YOUR RESPONSE IS PULLING YOU IN MORE THAN ONE DIRECTION.';
       resultDesc.innerHTML = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
     }
 
-    preResultDivider.classList.remove('hidden');
+    // Force the browser to paint the needle's current position before we
+    // change it — otherwise the element goes from hidden to its final
+    // rotation in the same tick, and there's no "before" state to visibly
+    // transition from.
+    dialNeedle.getBoundingClientRect();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setDial(targetAngle, targetLength);
+      });
+    });
+
     postFrameworkDivider.classList.remove('hidden');
     retakeBtn.classList.remove('hidden');
     tellCta.classList.remove('hidden');
@@ -1343,7 +1356,6 @@
     closerHeadline.textContent = '';
     resultDesc.innerHTML = '';
     setDial(0, 'none', false);
-    preResultDivider.classList.add('hidden');
     postFrameworkDivider.classList.add('hidden');
     frameworkReveal.classList.add('hidden');
     finalCta.classList.add('hidden');
