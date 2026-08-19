@@ -839,7 +839,7 @@
           </div>
         </div>
         <div class="qcard">
-          <div class="q-row"><span class="qnum">6</span><span>Do you yearn to do something different but can't picture what that next move would actually be?</span></div>
+          <div class="q-row"><span class="qnum">6</span><span>Do you yearn to do something different but can't fully picture what that next move would actually be?</span></div>
           <div class="q-answers" data-role="shared" data-q="6">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
@@ -850,7 +850,7 @@
       <div class="step hidden" data-step="3">
         <p class="reflect-prompt">Last set. Stay with what's true, not what sounds good.</p>
         <div class="qcard">
-          <div class="q-row"><span class="qnum">7</span><span>Have you been experiencing a prolonged sense of boredom in your business?</span></div>
+          <div class="q-row"><span class="qnum">7</span><span>Have you been experiencing a prolonged sense of boredom or unease in your business?</span></div>
           <div class="q-answers" data-role="shared" data-q="7">
             <button class="ans-btn" data-val="yes">Yes</button>
             <button class="ans-btn" data-val="no">No</button>
@@ -1158,8 +1158,8 @@
   }
 
   const DIAL_POINTS = {
-    full: '110,50 116,110 104,110',
-    short: '110,68 115,110 105,110',
+    full: '110,80 114,110 106,110',
+    short: '110,90 112,110 108,110',
     none: '110,110 110,110 110,110'
   };
 
@@ -1235,8 +1235,18 @@
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
-      targetAngle = winners[0] === 'flame' ? 150 : 210;
       targetLength = 'short';
+      if (winners[0] === 'flame') {
+        // secondaries: fade (boundary 180) and bow (boundary 60)
+        if (counts.bow > counts.fade) targetAngle = 95;
+        else if (counts.fade > counts.bow) targetAngle = 150;
+        else targetAngle = 120;
+      } else {
+        // winner is fade — secondaries: flame (boundary 180) and bow (boundary 300)
+        if (counts.bow > counts.flame) targetAngle = 270;
+        else if (counts.flame > counts.bow) targetAngle = 210;
+        else targetAngle = 240;
+      }
       closerHeadline.textContent = m.headline;
       resultDesc.innerHTML = m.desc;
     } else if (winners.length === 1) {
