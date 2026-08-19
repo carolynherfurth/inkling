@@ -99,31 +99,30 @@
   }
 
   .prompt {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 1.42rem;
+    line-height: 1.35;
     color: var(--pink);
     margin-top: 1rem;
+    overflow: auto;
   }
 
-  .prompt::before {
-    content: '↓';
+  .prompt-black { color: var(--charcoal); }
+
+  .prompt-arrow {
+    float: left;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     width: 76px;
     height: 76px;
+    margin-right: 1rem;
     border-radius: 50%;
     background: var(--pink);
-    color: var(--white);
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 1;
   }
+
+  .prompt-arrow svg { width: 60px; height: 60px; }
 
   main {
     position: relative;
@@ -616,7 +615,7 @@
   .dial-svg { width: 320px; height: 320px; }
 
   .dial-needle {
-    transition: transform 1.7s cubic-bezier(0.22, 0.68, 0, 1);
+    transition: transform 3.4s cubic-bezier(0.22, 0.68, 0, 1);
     transform-origin: 110px 110px;
   }
 
@@ -785,9 +784,8 @@
       <span class="charcoal">FADE OUT</span>,
       OR <span class="pink">FLAME OUT</span>?
     </h1>
-    <p class="subtitle" id="subtitleText">9 questions that reveal where <span class="inkling-hl">that inkling</span> is pointing for the business you built.</p>
     <p class="intro" id="introText">An inkling can start as restlessness. Or a loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you drift, defer, or direct it.</p>
-    <p class="prompt" id="promptText">Answer honestly as you go — we'll show you what it adds up to at the end.</p>
+    <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer honestly to the 9 questions below — and we'll show you where your response to <span class="prompt-black">that inkling</span> is pointing for the business you built.</p>
   </header>
 
   <main>
@@ -908,7 +906,7 @@
           <path d="M110,110 L196.6,60 A100,100 0 0,1 110,210 Z" fill="var(--pink)"></path>
           <path d="M110,110 L110,210 A100,100 0 0,1 23.4,60 Z" fill="var(--charcoal)"></path>
           <circle cx="110" cy="110" r="100" fill="none" stroke="#b5b2a8" stroke-width="3"></circle>
-          <text x="110" y="45" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="110" dy="-8">BOW</tspan><tspan x="110" dy="16">OUT</tspan></text>
+          <text x="110" y="58" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="110" dy="-8">BOW</tspan><tspan x="110" dy="16">OUT</tspan></text>
           <text x="166" y="143" text-anchor="middle" class="dial-wedge-label" style="fill: var(--white);"><tspan x="166" dy="-8">FLAME</tspan><tspan x="166" dy="16">OUT</tspan></text>
           <text x="54" y="143" text-anchor="middle" class="dial-wedge-label" style="fill: var(--yellow);"><tspan x="54" dy="-8">FADE</tspan><tspan x="54" dy="16">OUT</tspan></text>
           <polygon id="dialNeedle" class="dial-needle" points="110,50 116,110 104,110" fill="var(--white)" stroke="var(--charcoal)" stroke-width="2"></polygon>
@@ -993,7 +991,6 @@
   const quizSteps = document.getElementById('quizSteps');
   const emailGate = document.getElementById('emailGate');
   const introText = document.getElementById('introText');
-  const subtitleText = document.getElementById('subtitleText');
   const mainHeadline = document.getElementById('mainHeadline');
   const ghostText = document.getElementById('ghostText');
   const promptText = document.getElementById('promptText');
@@ -1174,7 +1171,7 @@
       const currentMod = ((dialRotation % 360) + 360) % 360;
       let delta = angleDeg - currentMod;
       if (delta < 0) delta += 360;
-      dialRotation += delta + 360 * 2; // two extra full spins for pizzazz
+      dialRotation += delta + 360 * 3; // three extra full spins for pizzazz
     } else {
       dialRotation = angleDeg;
     }
@@ -1292,7 +1289,6 @@
       quizSteps.classList.add('hidden');
       mainHeadline.classList.add('hidden');
       ghostText.classList.add('hidden');
-      subtitleText.classList.add('hidden');
       introText.classList.add('hidden');
       promptText.classList.add('hidden');
       emailGate.classList.remove('hidden');
@@ -1312,7 +1308,6 @@
     gateError.classList.add('hidden');
     mainHeadline.classList.remove('hidden');
     ghostText.classList.remove('hidden');
-    subtitleText.classList.remove('hidden');
     introText.classList.remove('hidden');
     promptText.classList.remove('hidden');
     quizSteps.classList.remove('hidden');
@@ -1366,7 +1361,6 @@
     gateSubmit.textContent = 'See My Result >>>';
     mainHeadline.classList.remove('hidden');
     ghostText.classList.remove('hidden');
-    subtitleText.classList.remove('hidden');
     introText.classList.remove('hidden');
     promptText.classList.remove('hidden');
     quizSteps.classList.remove('hidden');
