@@ -108,8 +108,6 @@
     overflow: auto;
   }
 
-  .prompt-black { color: var(--charcoal); }
-
   .prompt-arrow {
     float: left;
     display: flex;
@@ -616,7 +614,7 @@
 
   .dial-needle {
     transition: transform 3.4s cubic-bezier(0.22, 0.68, 0, 1);
-    transform-origin: 110px 110px;
+    transform-origin: 140px 140px;
   }
 
   .dial-hub {
@@ -628,7 +626,7 @@
   .dial-wedge-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 16px;
     fill: var(--white);
   }
 
@@ -785,7 +783,7 @@
       OR <span class="pink">FLAME OUT</span>?
     </h1>
     <p class="intro" id="introText">An inkling can start as restlessness. Or a loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you drift, defer, or direct it.</p>
-    <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer honestly to the 9 questions below — and we'll show you where your response to <span class="prompt-black">that inkling</span> is pointing for the business you built.</p>
+    <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer honestly to the 9 questions below — and we'll show you where your response to that inkling is pointing for the business you built.</p>
   </header>
 
   <main>
@@ -901,16 +899,16 @@
       <div class="closer-heading"><span class="headline" id="closerHeadline"></span></div>
 
       <div class="dial-wrap">
-        <svg class="dial-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-          <path d="M110,110 L23.4,60 A100,100 0 0,1 196.6,60 Z" fill="var(--yellow)"></path>
-          <path d="M110,110 L196.6,60 A100,100 0 0,1 110,210 Z" fill="var(--pink)"></path>
-          <path d="M110,110 L110,210 A100,100 0 0,1 23.4,60 Z" fill="var(--charcoal)"></path>
-          <circle cx="110" cy="110" r="100" fill="none" stroke="#b5b2a8" stroke-width="3"></circle>
-          <text x="110" y="58" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="110" dy="-8">BOW</tspan><tspan x="110" dy="16">OUT</tspan></text>
-          <text x="166" y="143" text-anchor="middle" class="dial-wedge-label" style="fill: var(--white);"><tspan x="166" dy="-8">FLAME</tspan><tspan x="166" dy="16">OUT</tspan></text>
-          <text x="54" y="143" text-anchor="middle" class="dial-wedge-label" style="fill: var(--yellow);"><tspan x="54" dy="-8">FADE</tspan><tspan x="54" dy="16">OUT</tspan></text>
-          <polygon id="dialNeedle" class="dial-needle" points="110,50 116,110 104,110" fill="var(--white)" stroke="var(--charcoal)" stroke-width="2"></polygon>
-          <circle class="dial-hub" cx="110" cy="110" r="10"></circle>
+        <svg class="dial-svg" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+          <path d="M140,140 L27.4,75 A130,130 0 0,1 252.6,75 Z" fill="var(--yellow)"></path>
+          <path d="M140,140 L252.6,75 A130,130 0 0,1 140,270 Z" fill="var(--charcoal)"></path>
+          <path d="M140,140 L140,270 A130,130 0 0,1 27.4,75 Z" fill="var(--pink)"></path>
+          <circle cx="140" cy="140" r="130" fill="none" stroke="#b5b2a8" stroke-width="4"></circle>
+          <text x="140" y="45" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="140" dy="-8">BOW</tspan><tspan x="140" dy="16">OUT</tspan></text>
+          <text x="222" y="187" text-anchor="middle" class="dial-wedge-label" style="fill: var(--yellow);"><tspan x="222" dy="-8">FADE</tspan><tspan x="222" dy="16">OUT</tspan></text>
+          <text x="58" y="187" text-anchor="middle" class="dial-wedge-label" style="fill: var(--white);"><tspan x="58" dy="-8">FLAME</tspan><tspan x="58" dy="16">OUT</tspan></text>
+          <polygon id="dialNeedle" class="dial-needle" points="140,65 147,140 133,140" fill="var(--white)" stroke="var(--charcoal)" stroke-width="2"></polygon>
+          <circle class="dial-hub" cx="140" cy="140" r="13"></circle>
         </svg>
       </div>
 
@@ -1158,9 +1156,9 @@
   }
 
   const DIAL_POINTS = {
-    full: '110,80 114,110 106,110',
-    short: '110,90 112,110 108,110',
-    none: '110,110 110,110 110,110'
+    full: '140,65 147,140 133,140',
+    short: '140,95 145,140 135,140',
+    none: '140,140 140,140 140,140'
   };
 
   let dialRotation = 0;
@@ -1178,11 +1176,11 @@
     dialNeedle.style.transform = `rotate(${dialRotation}deg)`;
   }
 
-  const WEDGE_CENTER = { bow: 0, flame: 120, fade: 240 };
+  const WEDGE_CENTER = { bow: 0, flame: 240, fade: 120 };
   const WEDGE_BOUNDARY = {
     'flame,fade': 180,
-    'flame,bow': 60,
-    'fade,bow': 300
+    'flame,bow': 300,
+    'fade,bow': 60
   };
 
   function revealResult() {
@@ -1215,20 +1213,20 @@
       const t = buildTendencyMessage(counts);
       closerSection.classList.add('bow-highlight');
       if (counts.flame > 0 && counts.fade > 0) {
-        if (counts.flame > counts.fade) targetAngle = 35;
-        else if (counts.fade > counts.flame) targetAngle = 325;
+        if (counts.flame > counts.fade) targetAngle = 325;
+        else if (counts.fade > counts.flame) targetAngle = 35;
         else { targetAngle = 0; targetLength = 'short'; }
       } else if (counts.flame > 0) {
-        targetAngle = 35;
-      } else if (counts.fade > 0) {
         targetAngle = 325;
+      } else if (counts.fade > 0) {
+        targetAngle = 35;
       }
       closerHeadline.textContent = t.headline;
       resultDesc.innerHTML = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
-      targetAngle = winners[0] === 'flame' ? 150 : 210;
+      targetAngle = winners[0] === 'flame' ? 210 : 150;
       targetLength = 'full';
       closerHeadline.textContent = m.headline;
       resultDesc.innerHTML = m.desc;
@@ -1237,15 +1235,15 @@
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       targetLength = 'short';
       if (winners[0] === 'flame') {
-        // secondaries: fade (boundary 180) and bow (boundary 60)
-        if (counts.bow > counts.fade) targetAngle = 95;
-        else if (counts.fade > counts.bow) targetAngle = 150;
-        else targetAngle = 120;
-      } else {
-        // winner is fade — secondaries: flame (boundary 180) and bow (boundary 300)
-        if (counts.bow > counts.flame) targetAngle = 270;
-        else if (counts.flame > counts.bow) targetAngle = 210;
+        // secondaries: fade (boundary 180) and bow (boundary 300)
+        if (counts.bow > counts.fade) targetAngle = 265;
+        else if (counts.fade > counts.bow) targetAngle = 210;
         else targetAngle = 240;
+      } else {
+        // winner is fade — secondaries: flame (boundary 180) and bow (boundary 60)
+        if (counts.bow > counts.flame) targetAngle = 90;
+        else if (counts.flame > counts.bow) targetAngle = 150;
+        else targetAngle = 120;
       }
       closerHeadline.textContent = m.headline;
       resultDesc.innerHTML = m.desc;
