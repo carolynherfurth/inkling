@@ -96,6 +96,49 @@
     font-size: 1.18rem;
     color: var(--charcoal-txt);
     max-width: 62rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro-prefix { font-weight: 800; }
+
+  .cycle-stage {
+    display: block;
+    position: relative;
+    min-height: 5.2rem;
+  }
+
+  .cycle-word {
+    font-size: 2.36rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--pink);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+
+  .cycle-word.active {
+    opacity: 1;
+    transform: translateY(0);
+    position: relative;
+  }
+
+  .cycle-word.leaving {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  .intro-close {
+    font-size: 1.18rem;
+    color: var(--charcoal-txt);
+    max-width: 62rem;
+    line-height: 1.5;
+    margin-top: 0.9rem;
   }
 
   .prompt {
@@ -618,7 +661,7 @@
   }
 
   .dial-hub {
-    fill: var(--charcoal);
+    fill: #15E4E6;
     stroke: var(--white);
     stroke-width: 3;
   }
@@ -626,7 +669,7 @@
   .dial-wedge-label {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 19px;
     fill: var(--white);
   }
 
@@ -782,8 +825,9 @@
       <span class="charcoal">FADE OUT</span>,
       OR <span class="pink">FLAME OUT</span>?
     </h1>
-    <p class="intro" id="introText">An inkling can start as restlessness. Or a loss of interest. An annoyance. A heart palpitation. A desire to do something different. The sense that something that still works no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you drift, defer, or direct it.</p>
-    <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer honestly to the 9 questions below — and we'll show you where your response to that inkling is pointing for the business you built.</p>
+    <p class="intro" id="introText"><span class="intro-prefix">An inkling can start as</span><span class="cycle-stage" id="cycleStage"></span></p>
+    <p class="intro-close" id="introClose">It's a general sense that something that still works, no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you drift, defer, or direct it.</p>
+    <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer honestly the 9 questions below — and we'll show you where your response to that inkling is pointing for the business you built.</p>
   </header>
 
   <main>
@@ -904,10 +948,10 @@
           <path d="M140,140 L252.6,75 A130,130 0 0,1 140,270 Z" fill="var(--charcoal)"></path>
           <path d="M140,140 L140,270 A130,130 0 0,1 27.4,75 Z" fill="var(--pink)"></path>
           <circle cx="140" cy="140" r="130" fill="none" stroke="#b5b2a8" stroke-width="4"></circle>
-          <text x="140" y="45" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="140" dy="-8">BOW</tspan><tspan x="140" dy="16">OUT</tspan></text>
-          <text x="222" y="187" text-anchor="middle" class="dial-wedge-label" style="fill: var(--yellow);"><tspan x="222" dy="-8">FADE</tspan><tspan x="222" dy="16">OUT</tspan></text>
-          <text x="58" y="187" text-anchor="middle" class="dial-wedge-label" style="fill: var(--white);"><tspan x="58" dy="-8">FLAME</tspan><tspan x="58" dy="16">OUT</tspan></text>
-          <polygon id="dialNeedle" class="dial-needle" points="140,65 147,140 133,140" fill="var(--white)" stroke="var(--charcoal)" stroke-width="2"></polygon>
+          <text x="140" y="46" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="140" dy="-8">BOW</tspan><tspan x="140" dy="16">OUT</tspan></text>
+          <text x="220" y="186" text-anchor="middle" class="dial-wedge-label" style="fill: var(--yellow);"><tspan x="220" dy="-8">FADE</tspan><tspan x="220" dy="16">OUT</tspan></text>
+          <text x="60" y="186" text-anchor="middle" class="dial-wedge-label" style="fill: var(--white);"><tspan x="60" dy="-8">FLAME</tspan><tspan x="60" dy="16">OUT</tspan></text>
+          <polygon id="dialNeedle" class="dial-needle" points="140,65 147,140 133,140" fill="#15E4E6" stroke="var(--white)" stroke-width="2"></polygon>
           <circle class="dial-hub" cx="140" cy="140" r="13"></circle>
         </svg>
       </div>
@@ -927,23 +971,35 @@
 
         <section class="col flame">
           <h2>FLAME-OUT</h2>
-          <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: <em>who even am I anymore?</em> That question feels bigger and more important — and it's exactly the kind of question that can pull your attention away, until the business becomes the bystander. Then one day, you're done.</p>
+          <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: who even am I anymore? What is this new sense of misalignment about? Those questions don't stay quiet for long once impulse gets involved — attention drifts, the business becomes the bystander, and it doesn't take much before you're done.</p>
           <p class="col-connector">This may cause a founder to <strong>DRIFT</strong>. Things to watch for:</p>
           <ul class="behavior-list">
             <li>You might look for a quick escape hatch if you find yourself to be slightly impulsive — especially once you've determined "enough is enough."</li>
             <li>Doing anything else feels better than this, even if you're unsure of your next move.</li>
             <li>A sense of relief washes over you when you imagine earning the same (or more) income without operating your business as-is.</li>
           </ul>
+          <p class="col-connector">Ways your trajectory will cost you:</p>
+          <ul class="behavior-list">
+            <li>You walk away from that valuable revenue stream that's carried your bank account and your identity for years.</li>
+            <li>You cut off a client relationship(s) you've had for a decade because staying one more minute feels unbearable. They still tell that story about you.</li>
+            <li>You hand things off to someone underqualified just to move on sooner — and watch what you built struggle for years under them.</li>
+          </ul>
         </section>
 
         <section class="col fade">
           <h2>FADE-OUT</h2>
-          <p class="desc">You know something has changed, but you don't know what to change. What once interested you no longer does. You tell yourself you should be happy with this — the business still works, and by every metric that matters, you should be. But no alternative feels compelling enough to act on. So you keep going — not because you've <em>decided</em> to stay, but because you haven't found a next move worth choosing.</p>
+          <p class="desc">You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, because you haven't found a next move worth choosing yet. Staying might be intentional. Or it might be a default you've settled into without quite deciding. Either way, the business can't tell the difference — and neither can anyone watching from the outside. That's worth getting clear on. Exploring possibilities for your next move would move you through much faster.</p>
           <p class="col-connector">Pay attention to behaviors that <strong>DEFER</strong> decisions:</p>
           <ul class="behavior-list">
             <li>Allowing a low hum of boredom to settle in — quiet, but persistent.</li>
             <li>Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going.</li>
             <li>Sidestepping a decision that's sitting right in front of you, not because you can't see it, but because none of the options in front of you feel right.</li>
+          </ul>
+          <p class="col-connector">Ways your trajectory will cost you:</p>
+          <ul class="behavior-list">
+            <li>You join another mastermind — anything that feels like progress without requiring you to actually decide.</li>
+            <li>Your best employee gives notice, and your first feeling is relief — because you still can't explain why the energy feels like it's being sucked out of the business.</li>
+            <li>You fork over $100,000 to a guru coach to help you snap out of it, hoping they'll help you figure out what's next.</li>
           </ul>
         </section>
 
@@ -955,6 +1011,12 @@
             <li>You can look at your own next move — maybe even an exit — with real objectivity, without romanticizing it or dreading it more than it deserves.</li>
             <li>You're the one setting the pace on what happens next, not waiting for circumstances to force the decision on you.</li>
             <li>If someone close to the business pointed out something you'd missed, you'd actually take it in, instead of getting defensive about it.</li>
+          </ul>
+          <p class="col-connector">Ways your trajectory will cost you:</p>
+          <ul class="behavior-list">
+            <li>The person you'd bring in, hand off to, or delegate this to takes a different opportunity while you're still finalizing the plan.</li>
+            <li>You keep saying "just one more quarter" to a decision you've already made — and eighteen months later, you're still saying it.</li>
+            <li>You finally make the move you knew was right months ago, and the first thing you hear is "this would've been worth more if you'd done it then."</li>
           </ul>
         </section>
 
@@ -992,10 +1054,54 @@
   const mainHeadline = document.getElementById('mainHeadline');
   const ghostText = document.getElementById('ghostText');
   const promptText = document.getElementById('promptText');
+  const cycleStage = document.getElementById('cycleStage');
+  const introClose = document.getElementById('introClose');
   const stepLabel = document.getElementById('stepLabel');
   const backBtn = document.getElementById('backBtn');
   const nextBtn = document.getElementById('nextBtn');
   const dots = document.querySelectorAll('.dot');
+
+  // ---- cycling intro animation ----
+  const CYCLE_PHRASES = [
+    'restlessness.',
+    'a loss of interest.',
+    'agitation.',
+    'heart palpitations.',
+    'disappointment.',
+    'FOMO.',
+    'more frequent DGAF days.',
+    'a desire to do something different.'
+  ];
+
+  function cycleDuration(text) {
+    return Math.min(2600, Math.max(1500, 900 + text.length * 32));
+  }
+
+  function playCyclePhrase(index) {
+    const phrase = CYCLE_PHRASES[index];
+    const el = document.createElement('span');
+    el.className = 'cycle-word';
+    el.textContent = phrase;
+    cycleStage.innerHTML = '';
+    cycleStage.appendChild(el);
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.classList.add('active');
+    }));
+
+    const dur = cycleDuration(phrase);
+
+    setTimeout(() => {
+      el.classList.remove('active');
+      el.classList.add('leaving');
+
+      setTimeout(() => {
+        playCyclePhrase((index + 1) % CYCLE_PHRASES.length);
+      }, 450);
+    }, dur);
+  }
+
+  playCyclePhrase(0);
   const postFrameworkDivider = document.getElementById('postFrameworkDivider');
   const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
@@ -1012,14 +1118,14 @@
       color: '#f2295b',
       textColor: '#ffffff',
       headline: 'YOUR RESPONSE IS POINTING YOU TOWARD FLAME-OUT.',
-      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to, so instead of asking what needs to change, you ask something unanswerable: <em>who even am I anymore?</em> That question can pull your attention away, until the business becomes the bystander. This is exactly when an outside read matters most — before one day, you're just done."
+      desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: <em>who even am I anymore?</em> Those questions don't stay quiet for long once impulse gets involved — attention drifts, the business becomes the bystander. This is exactly when an outside read matters most — before one day, you're just done."
     },
     fade: {
       label: 'FADE-OUT',
       color: '#242424',
       textColor: '#fbed00',
       headline: 'YOUR RESPONSE IS POINTING YOU TOWARD FADE-OUT.',
-      desc: "You know something has changed, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, not because you've <em>decided</em> to, but because you haven't found a next move worth choosing yet. That's just the kind of stuck that keeps you cornered. Exploring possibilities for your next move would move you through much faster."
+      desc: "You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on. Staying might be intentional, or it might be default — <em>either way</em>, it's worth getting clear on which. Exploring possibilities for your next move would move you through much faster."
     },
     bow: {
       label: 'BOW-OUT',
@@ -1298,6 +1404,7 @@
       mainHeadline.classList.add('hidden');
       ghostText.classList.add('hidden');
       introText.classList.add('hidden');
+      introClose.classList.add('hidden');
       promptText.classList.add('hidden');
       emailGate.classList.remove('hidden');
       emailGate.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1317,6 +1424,7 @@
     mainHeadline.classList.remove('hidden');
     ghostText.classList.remove('hidden');
     introText.classList.remove('hidden');
+    introClose.classList.remove('hidden');
     promptText.classList.remove('hidden');
     quizSteps.classList.remove('hidden');
     currentStep = totalSteps;
@@ -1370,6 +1478,7 @@
     mainHeadline.classList.remove('hidden');
     ghostText.classList.remove('hidden');
     introText.classList.remove('hidden');
+    introClose.classList.remove('hidden');
     promptText.classList.remove('hidden');
     quizSteps.classList.remove('hidden');
     currentStep = 1;
