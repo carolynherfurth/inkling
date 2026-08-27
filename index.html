@@ -703,9 +703,13 @@
     fill: var(--white);
   }
 
-  /* ---- unified result detail box (hidden — replaced by the full card below) ---- */
+  /* ---- nuanced-result detail box (only shown for mixed/leaning results) ---- */
   .result-box {
-    display: none;
+    background: var(--pink);
+    border-radius: 18px;
+    padding: 1.8rem 1.7rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 14px 32px rgba(0,0,0,0.18);
   }
 
   .closer.bow-highlight .result-box { background: var(--yellow); }
@@ -964,7 +968,7 @@
         </svg>
       </div>
 
-      <div class="result-box">
+      <div class="result-box hidden" id="resultBox">
         <p class="result-desc" id="resultDesc"></p>
       </div>
     </div>
@@ -993,7 +997,7 @@
             <ul class="behavior-list">
               <li>You join another mastermind — anything that feels like progress without requiring you to actually decide.</li>
               <li>Your best employee gives notice, and your first feeling is relief — because you still can't explain why the energy feels like it's being sucked out of the business.</li>
-              <li>You fork over $100,000 to a guru coach to help you snap out of it, hoping they'll help you figure out what's next.</li>
+              <li>You eventually sell your business for a fraction of the price you could've commanded when the inklings set in.</li>
             </ul>
             <p class="col-connector">Behaviors to watch for:</p>
             <p class="desc">Allowing a low hum of boredom to settle in — quiet, but persistent. Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going. And sidestepping a decision that's sitting right in front of you, not because you can't see it, but because none of the options in front of you feel right.</p>
@@ -1146,6 +1150,7 @@
   const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
   const closerHeadline = document.getElementById('closerHeadline');
+  const resultBox = document.getElementById('resultBox');
   const dialNeedle = document.getElementById('dialNeedle');
   const resultDesc = document.getElementById('resultDesc');
   const retakeBtn = document.getElementById('retakeBtn');
@@ -1351,6 +1356,7 @@
 
     let targetAngle = 0;
     let targetLength = 'full';
+    let isNuanced = true;
 
     if (maxCount === 0) {
       targetAngle = 0; targetLength = 'none';
@@ -1400,6 +1406,7 @@
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       targetAngle = WEDGE_CENTER[winners[0]];
       targetLength = 'full';
+      isNuanced = false;
       closerHeadline.textContent = r.headline;
       resultDesc.innerHTML = r.desc;
     } else if (winners.length === 3) {
@@ -1413,6 +1420,8 @@
       closerHeadline.textContent = 'YOUR RESPONSE IS PULLING YOU IN MORE THAN ONE DIRECTION.';
       resultDesc.innerHTML = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
     }
+
+    resultBox.classList.toggle('hidden', !isNuanced);
 
     // Force the browser to paint the needle's current position before we
     // change it — otherwise the element goes from hidden to its final
