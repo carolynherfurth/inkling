@@ -311,9 +311,7 @@
 
   /* ---- post-reveal carousel ---- */
   .framework-reveal {
-    margin-top: 3.4rem;
-    border-top: 2px solid var(--grey-line);
-    padding-top: 1.8rem;
+    margin-top: 1.2rem;
   }
 
   .carousel-wrap { position: relative; }
@@ -413,11 +411,11 @@
     position: relative;
   }
 
-  .carousel-slide {
+  .col.carousel-slide {
     display: none;
   }
 
-  .carousel-slide.active {
+  .col.carousel-slide.active {
     display: flex;
     flex-direction: column;
     animation: slideIn 0.35s ease;
@@ -428,35 +426,29 @@
     to { opacity: 1; transform: translateX(0); }
   }
 
-  .carousel-next {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+  .carousel-next-prompt {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: none;
     border: none;
-    background: var(--charcoal);
-    color: var(--white);
-    font-size: 1.4rem;
-    font-weight: 800;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-    z-index: 2;
-    transition: transform 0.15s ease, background 0.15s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--pink);
+    margin-top: 1.4rem;
+    padding: 0.6rem;
+    transition: color 0.15s ease;
   }
 
-  .carousel-next:hover { background: var(--pink); transform: translateY(-50%) scale(1.06); }
+  .carousel-next-prompt:hover { color: var(--charcoal); }
 
   .carousel-dots {
     display: flex;
     justify-content: center;
     gap: 0.6rem;
-    margin-top: 1.4rem;
+    margin-top: 0.8rem;
   }
 
   .carousel-dot {
@@ -711,12 +703,9 @@
     fill: var(--white);
   }
 
-  /* ---- unified result detail box ---- */
+  /* ---- unified result detail box (hidden — replaced by the full card below) ---- */
   .result-box {
-    background: var(--pink);
-    border-radius: 18px;
-    padding: 1.8rem 1.7rem;
-    box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+    display: none;
   }
 
   .closer.bow-highlight .result-box { background: var(--yellow); }
@@ -1024,7 +1013,7 @@
           </section>
 
         </div>
-        <button class="carousel-next" id="carouselNext" aria-label="Next">→</button>
+        <button class="carousel-next-prompt" id="carouselNext">Click to read about the other directions your inkling can take you. &gt;&gt;&gt;</button>
         <div class="carousel-dots" id="carouselDots">
           <span class="carousel-dot" data-out="flame" aria-label="Flame-out"></span>
           <span class="carousel-dot" data-out="fade" aria-label="Fade-out"></span>
