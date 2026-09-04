@@ -136,7 +136,7 @@
 
   .intro-close {
     font-size: 1.18rem;
-    color: var(--charcoal-txt);
+    color: var(--charcoal);
     max-width: 62rem;
     line-height: 1.5;
     margin-top: 0.9rem;
@@ -407,61 +407,87 @@
 
   .gate-back:hover { color: var(--white); }
 
-  .carousel-track {
-    position: relative;
-  }
-
-  .col.carousel-slide {
-    display: none;
-  }
-
-  .col.carousel-slide.active {
+  /* ---- result card: only the matching category is ever shown ---- */
+  .col.result-card { display: none; }
+  .col.result-card.active {
     display: flex;
     flex-direction: column;
-    animation: slideIn 0.35s ease;
+    animation: cardIn 0.4s ease;
   }
 
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateX(14px); }
-    to { opacity: 1; transform: translateX(0); }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  .carousel-next-prompt {
+  .card-face-2 { animation: cardIn 0.35s ease; }
+
+  .worth-noting {
+    font-size: 1.02rem;
+    line-height: 1.5;
+    margin-top: 0.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .worth-noting:empty { display: none; margin: 0; }
+
+  .flame .worth-noting { color: var(--pink-lt); }
+  .fade  .worth-noting { color: var(--cream); }
+  .bow   .worth-noting { color: var(--charcoal-txt); }
+
+  .continue-prompt {
     display: block;
     width: 100%;
     text-align: center;
     background: none;
     border: none;
     cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: var(--pink);
-    margin-top: 1.4rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    margin-top: 1.2rem;
     padding: 0.6rem;
-    transition: color 0.15s ease;
+    transition: opacity 0.15s ease;
   }
 
-  .carousel-next-prompt:hover { color: var(--charcoal); }
+  .flame .continue-prompt { color: var(--white); }
+  .fade  .continue-prompt { color: var(--yellow); }
+  .bow   .continue-prompt { color: var(--charcoal); }
+  .continue-prompt:hover { opacity: 0.7; }
 
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.6rem;
-    margin-top: 0.8rem;
+  .closer-line {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    margin: 1.4rem 0 1.2rem;
   }
 
-  .carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--grey-line);
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
+  .flame .closer-line { color: var(--white); }
+  .fade  .closer-line { color: var(--yellow); }
+  .bow   .closer-line { color: var(--charcoal); }
+
+  .tell-cta-inline {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.15s ease;
   }
 
-  .carousel-dot:hover { transform: scale(1.15); }
-  .carousel-dot.active { background: var(--pink); }
+  .tell-cta-inline:hover { transform: translateY(-2px); }
+
+  .flame .tell-cta-inline { background: var(--white); color: var(--pink); }
+  .fade  .tell-cta-inline { background: var(--yellow); color: var(--charcoal); }
+  .bow   .tell-cta-inline { background: var(--charcoal); color: var(--yellow); }
 
   .col {
     border-radius: 14px;
@@ -703,29 +729,6 @@
     fill: var(--white);
   }
 
-  /* ---- nuanced-result detail box (only shown for mixed/leaning results) ---- */
-  .result-box {
-    background: var(--pink);
-    border-radius: 18px;
-    padding: 1.8rem 1.7rem;
-    margin-bottom: 1.2rem;
-    box-shadow: 0 14px 32px rgba(0,0,0,0.18);
-  }
-
-  .closer.bow-highlight .result-box { background: var(--yellow); }
-  .closer.fade-highlight .result-box { background: var(--charcoal); }
-
-  .result-desc {
-    font-size: 1.05rem;
-    line-height: 1.55;
-    color: var(--white);
-    font-weight: 500;
-    margin-bottom: 1rem;
-  }
-
-  .closer.bow-highlight .result-desc { color: var(--charcoal); }
-  .closer.fade-highlight .result-desc { color: var(--cream); }
-
   /* ---- final CTA: neutral, separate section at the very bottom ---- */
   .final-cta { margin-bottom: 1rem; }
 
@@ -838,7 +841,7 @@
       OR <span class="pink">FLAME OUT</span>?
     </h1>
     <p class="intro" id="introText"><span class="intro-prefix">Inklings start as</span><span class="cycle-stage" id="cycleStage"></span></p>
-    <p class="intro-close" id="introClose">It's a general sense that something that still works, no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you drift, defer, or direct it.</p>
+    <p class="intro-close" id="introClose">It's a general sense that something that still works, no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you ditch, defer, or direct it.</p>
     <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer honestly the 9 questions below — and we'll show you where your response to that inkling is pointing for the business you built.</p>
   </header>
 
@@ -918,10 +921,10 @@
           </div>
         </div>
         <div class="qcard">
-          <div class="q-row"><span class="qnum">9</span><span>Are you driving a decision, or waiting for things to take their course?</span></div>
+          <div class="q-row"><span class="qnum">9</span><span>Are you driving a decision — or allowing things to take their course?</span></div>
           <div class="q-answers" data-role="router" data-q="9">
             <button class="ans-btn" data-val="drive">Driving</button>
-            <button class="ans-btn" data-val="wait">Waiting</button>
+            <button class="ans-btn" data-val="wait">Allowing</button>
           </div>
         </div>
       </div>
@@ -967,72 +970,108 @@
           <circle class="dial-hub" cx="140" cy="140" r="13"></circle>
         </svg>
       </div>
-
-      <div class="result-box hidden" id="resultBox">
-        <p class="result-desc" id="resultDesc"></p>
-      </div>
     </div>
 
     <div class="framework-reveal hidden" id="frameworkReveal">
-      <div class="carousel-wrap">
-        <div class="carousel-track" id="carouselTrack">
 
-          <section class="col flame carousel-slide" data-out="flame">
-            <h2>FLAME-OUT</h2>
-            <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: who even am I anymore? What is this new sense of misalignment about? Those questions don't stay quiet for long once impulse gets involved — attention drifts, the business becomes the bystander, and it doesn't take much before you're done.</p>
-            <p class="col-connector">The risks of continuing to drift:</p>
-            <ul class="behavior-list">
-              <li>You walk away from that valuable revenue stream that's carried your bank account and your identity for years.</li>
-              <li>You cut off a client relationship(s) you've had for a decade because staying one more minute feels unbearable. They still tell that story about you.</li>
-              <li>You hand things off to someone underqualified just to move on sooner — and watch what you built struggle for years under them.</li>
-            </ul>
-            <p class="col-connector">Behaviors to watch for:</p>
-            <p class="desc">You might look for a quick escape hatch if you find yourself to be slightly impulsive — especially once you've determined "enough is enough." Doing anything else feels better than this, even if you're unsure of your next move. And a sense of relief washes over you when you imagine earning the same (or more) income without operating your business as-is.</p>
-          </section>
-
-          <section class="col fade carousel-slide" data-out="fade">
-            <h2>FADE-OUT</h2>
-            <p class="desc">You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, because you haven't found a next move worth choosing yet. Staying might be intentional. Or it might be a default you've settled into without quite deciding. Either way, the business can't tell the difference — and neither can anyone watching from the outside. That's worth getting clear on. Exploring possibilities for your next move would move you through much faster.</p>
-            <p class="col-connector">The risks of continuing to defer:</p>
-            <ul class="behavior-list">
-              <li>You join another mastermind — anything that feels like progress without requiring you to actually decide.</li>
-              <li>Your best employee gives notice, and your first feeling is relief — because you still can't explain why the energy feels like it's being sucked out of the business.</li>
-              <li>You eventually sell your business for a fraction of the price you could've commanded when the inklings set in.</li>
-            </ul>
-            <p class="col-connector">Behaviors to watch for:</p>
-            <p class="desc">Allowing a low hum of boredom to settle in — quiet, but persistent. Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any real desire to keep going. And sidestepping a decision that's sitting right in front of you, not because you can't see it, but because none of the options in front of you feel right.</p>
-          </section>
-
-          <section class="col bow carousel-slide" data-out="bow">
-            <h2>BOW-OUT</h2>
-            <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
-            <p class="col-connector">Good, you seem to be <strong>directing</strong> your inklings, rather than drifting or deferring. But it still comes with risks:</p>
-            <ul class="behavior-list">
-              <li>You spend a year pushing back on a culture problem in your industry — the kind that's gotten worse, not better — and eventually accept that the climb isn't one you want to keep making.</li>
-              <li>Your best friend tells you not to do it because she still doesn't understand what you built. Your mastermind tells you to do it because your stress concerns them. Either way it's their filter, not yours.</li>
-              <li>You step back, restructure, reinvent. You don't realize it was about more than the business until months later.</li>
-            </ul>
-            <p class="col-connector">Behaviors to watch for:</p>
-            <p class="desc">You'll know you're directing your situation when you can look at your own next move — maybe even an exit — with real objectivity, without romanticizing it or dreading it more than it deserves. You're the one setting the pace on what happens next, not waiting for circumstances to force the decision on you. You welcome outside takes on your blindspots without getting defensive.</p>
-          </section>
-
+      <section class="col flame result-card" id="resultCard-flame">
+        <div class="card-face card-face-1" id="face1-flame">
+          <h2>FLAME-OUT</h2>
+          <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: who even am I anymore? What is this new sense of misalignment about? Those questions don't stay quiet for long once impulse gets involved. You start looking for what you can ditch: the client, the offer, the role, maybe the whole damn business. Anything that creates distance from what no longer feels tolerable. And because relief can feel a lot like clarity in the moment, you may make a move before you've figured out what the inkling is actually trying to tell you.</p>
+          <p class="col-connector">The risks of continuing to ditch:</p>
+          <ul class="behavior-list">
+            <li>You walk away from a valuable revenue stream that's carried your bank account and your identity for years.</li>
+            <li>You cut off client relationships you've had for a decade because staying one more minute feels unbearable.</li>
+            <li>You have a fire sale — handing off valuable business assets, or even the whole thing, to the first person who shows interest just to get out from underneath it.</li>
+          </ul>
+          <p class="worth-noting" id="worthNoting-flame"></p>
+          <button class="continue-prompt" data-out="flame">Continued &gt;&gt;</button>
         </div>
-        <button class="carousel-next-prompt" id="carouselNext">Click to read about the other directions your inkling can take you. &gt;&gt;&gt;</button>
-        <div class="carousel-dots" id="carouselDots">
-          <span class="carousel-dot" data-out="flame" aria-label="Flame-out"></span>
-          <span class="carousel-dot" data-out="fade" aria-label="Fade-out"></span>
-          <span class="carousel-dot" data-out="bow" aria-label="Bow-out"></span>
+        <div class="card-face card-face-2 hidden" id="face2-flame">
+          <p class="col-connector">Behaviors to watch for:</p>
+          <p class="desc">You may start searching for the fastest escape hatch once you've determined "enough is enough." Your instinct is to remove the thing creating the discomfort before you've had time to understand whether the problem is the client, the offer, the business model, your role in it — or something else entirely.</p>
+          <p class="desc">Or you've got five new ideas and starting the next one feels better than staying with the one you're already in — so none of them actually finish.</p>
+          <p class="desc">Doing almost anything else feels better than staying put. Once you've landed on what to cut, you move on it fast — often faster than you've actually tested whether it's the right call. But whatever you're cutting loose, you want to do it on your terms — without letting go of valuable assets in the process.</p>
+          <p class="col-connector">That's where THE TELL comes in.</p>
+          <p class="col-connector">In 90 minutes, we look specifically at:</p>
+          <ul class="behavior-list">
+            <li>Whether what's actually bothering you is your offer(s), your clients, your role — or something underneath all three that changing one thing won't fix.</li>
+            <li>What you'd really be walking away from, in concrete terms, if you moved on this today.</li>
+            <li>Whether there's a way to create distance from what's no longer working without torching what still is.</li>
+          </ul>
+          <p class="desc">We read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding. You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable.</p>
+          <p class="closer-line">Your business is trying to tell you something but… you're too close to see it.</p>
+          <a href="https://carolynherfurth.com/the-tell" class="tell-cta-inline">Do You Know Your Tell? &gt;&gt;</a>
         </div>
-      </div>
+      </section>
+
+      <section class="col fade result-card" id="resultCard-fade">
+        <div class="card-face card-face-1" id="face1-fade">
+          <h2>FADE-OUT</h2>
+          <p class="desc">You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, because you haven't found a next move worth choosing yet. Staying might be intentional. Or it might be a default you've settled into without quite deciding. Either way, the business can't tell the difference — and neither can anyone watching from the outside. The fix isn't speed. It's finally looking at the decisions you've been avoiding.</p>
+          <p class="col-connector">The risks of continuing to defer:</p>
+          <ul class="behavior-list">
+            <li>You join another mastermind — anything that feels like progress without requiring you to actually decide.</li>
+            <li>Your best employee gives notice, and your first feeling is relief. One less thing to manage. One less reason to keep pretending you're fully in it.</li>
+            <li>You eventually sell the business for a fraction of what it might have been worth when the inklings first started — not because the business suddenly collapsed, but because you waited until your energy, options, or leverage had already eroded.</li>
+          </ul>
+          <p class="worth-noting" id="worthNoting-fade"></p>
+          <button class="continue-prompt" data-out="fade">Continued &gt;&gt;</button>
+        </div>
+        <div class="card-face card-face-2 hidden" id="face2-fade">
+          <p class="col-connector">Behaviors to watch for:</p>
+          <p class="desc">Allowing a low hum of boredom to settle in — quiet, but persistent. Staying anyway, more out of obligation to your clients, your team, or the identity you've built than any desire to keep going.</p>
+          <p class="desc">Or you may have a list of ideas you've been "thinking about" for two years, no closer to picking one than the day you wrote them down.</p>
+          <p class="desc">You tell yourself you're being careful. Sometimes that's true. Sometimes you're just deferring. But you want to actually make a decision, not settle for something that makes you feel busy.</p>
+          <p class="col-connector">That's where THE TELL comes in.</p>
+          <p class="col-connector">In 90 minutes, we look specifically at:</p>
+          <ul class="behavior-list">
+            <li>What's actually keeping you here — real commitment, or just the habit of staying in the default mode.</li>
+            <li>Which decision you've been avoiding the longest, and what it's actually costing you to keep avoiding it.</li>
+            <li>Whether waiting a little longer is genuinely buying you clarity, or just delaying the same decision you'll eventually have to make anyway.</li>
+          </ul>
+          <p class="desc">We read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding. You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable.</p>
+          <p class="closer-line">Your business is trying to tell you something but… you're too close to see it.</p>
+          <a href="https://carolynherfurth.com/the-tell" class="tell-cta-inline">Do You Know Your Tell? &gt;&gt;</a>
+        </div>
+      </section>
+
+      <section class="col bow result-card" id="resultCard-bow">
+        <div class="card-face card-face-1" id="face1-bow">
+          <h2>BOW-OUT</h2>
+          <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
+          <p class="col-connector">Good, you seem to be <strong>directing</strong> your inklings, rather than ditching or deferring. This still comes with risks:</p>
+          <ul class="behavior-list">
+            <li>You spend a year pushing back on a culture problem in your industry — the kind that's gotten worse, not better — and eventually accept that the climb isn't one you want to keep making.</li>
+            <li>Your best friend tells you not to do it because she still doesn't understand what you built. Your mastermind tells you to do it because your ongoing stress concerns them. Either way, it's their filter, not yours.</li>
+            <li>You step back, restructure, reinvent. You don't realize it was about more than the business until months later.</li>
+          </ul>
+          <p class="worth-noting" id="worthNoting-bow"></p>
+          <button class="continue-prompt" data-out="bow">Continued &gt;&gt;</button>
+        </div>
+        <div class="card-face card-face-2 hidden" id="face2-bow">
+          <p class="col-connector">Behaviors to watch for:</p>
+          <p class="desc">You'll know you're directing your situation when you can look at your next move — maybe even an exit — without romanticizing it or dreading it more than it deserves.</p>
+          <p class="desc">You may have no shortage of ideas. The deliberate part is knowing which one actually deserves the work right now, and letting the rest wait.</p>
+          <p class="desc">You're setting the pace on what happens next, rather than waiting for circumstances to force the decision. And you welcome outside perspective on your blind spots without handing over the decision itself. But you want deep perspective, not a pile of quick hits from people on the periphery.</p>
+          <p class="col-connector">That's where THE TELL comes in.</p>
+          <p class="col-connector">In 90 minutes, we look specifically at:</p>
+          <ul class="behavior-list">
+            <li>Whether the direction you've already chosen is actually the highest-value one available to you right now — not just the one that seems most accessible.</li>
+            <li>What you might be missing precisely because you're close to it — the blind spots even a deliberate process can't fully see from inside.</li>
+            <li>Whether your timing is actually working in your favor, or just moving at the pace that feels comfortable.</li>
+          </ul>
+          <p class="desc">We read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding. You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable.</p>
+          <p class="closer-line">Your business is trying to tell you something but… you're too close to see it.</p>
+          <a href="https://carolynherfurth.com/the-tell" class="tell-cta-inline">Do You Know Your Tell? &gt;&gt;</a>
+        </div>
+      </section>
+
     </div>
 
     <hr class="divider hidden" id="postFrameworkDivider">
 
     <div class="final-cta hidden" id="finalCta">
-      <p class="outro-open">Your inkling is telling you something. So is your business — and it's not always the same thing.</p>
-      <p>That's what <a href="https://carolynherfurth.com/the-tell">THE TELL</a> is for. In 90 minutes, we read the business together — what's working, what's run its course, and where the next possibility (or future exit) might be hiding.</p>
-      <p>You leave knowing what your business is trying to tell you — followed by a written brief on what to do next. Before you walk away from something valuable, or spend another year making an offer that's already run its course.</p>
-      <a href="https://carolynherfurth.com/the-tell" class="tell-cta" id="tellCta">Book THE TELL >>></a>
       <button class="retake" id="retakeBtn">↺ Retake the scan</button>
     </div>
   </main>
@@ -1064,45 +1103,59 @@
   const nextBtn = document.getElementById('nextBtn');
   const dots = document.querySelectorAll('.dot');
 
-  // ---- post-reveal carousel ----
-  const carouselTrack = document.getElementById('carouselTrack');
-  const carouselNext = document.getElementById('carouselNext');
-  const carouselDots = document.querySelectorAll('.carousel-dot');
-  const carouselSlides = document.querySelectorAll('.carousel-slide');
-  let carouselOrder = ['flame', 'fade', 'bow'];
-  let carouselIndex = 0;
+  // ---- result card: show only the matching category ----
+  const resultCards = document.querySelectorAll('.result-card');
 
-  function renderCarousel() {
-    const currentOut = carouselOrder[carouselIndex];
-    carouselSlides.forEach(slide => {
-      slide.classList.toggle('active', slide.dataset.out === currentOut);
-    });
-    carouselDots.forEach(dot => {
-      dot.classList.toggle('active', dot.dataset.out === currentOut);
-    });
+  const CATEGORY_NAME = {
+    flame: 'the instinct to move fast',
+    fade: 'deferring',
+    bow: 'deliberately working through things'
+  };
+
+  const PAIR_TEMPLATE = {
+    'fade-flame': (name) => `Worth noting: there's also a tendency toward ${name} showing up in your answers — and that's not a similar instinct to what's leading — it's the opposite one. We'll go deeper on what that tension means for you in the series of briefs headed your way.`,
+    'bow-flame': (name) => `Worth noting: there's also a tendency toward ${name} in your answers. Same eventual outcome, different process. And worth knowing which one's actually driving. We'll go deeper on what that combination means for you in the series of briefs headed your way.`,
+    'bow-fade': (name) => `Worth noting: there's also a tendency toward ${name} in your answers. From the outside, that can look identical to what's leading. But it's not. We'll go deeper on what that difference means for you in the series of briefs headed your way.`
+  };
+
+  function buildWorthNoting(base, secondaries) {
+    if (secondaries.length === 0) return '';
+    if (secondaries.length === 1) {
+      const sec = secondaries[0];
+      const pairKey = [base, sec].sort().join('-');
+      return PAIR_TEMPLATE[pairKey](CATEGORY_NAME[sec]);
+    }
+    const names = secondaries.map(s => CATEGORY_NAME[s]);
+    return `Worth noting: there's also a bit of competing behavior showing up in your answers: a tendency toward ${names[0]} and a tendency toward ${names[1]}. We'll go deeper on what those competing behaviors mean for you in the series of briefs headed your way.`;
   }
 
-  function initCarousel(closestMatch) {
-    const rest = ['flame', 'fade', 'bow'].filter(c => c !== closestMatch);
-    carouselOrder = [closestMatch, ...rest];
-    carouselIndex = 0;
-    renderCarousel();
+  function showResultCard(base, counts) {
+    resultCards.forEach(card => card.classList.remove('active'));
+    const activeCard = document.getElementById('resultCard-' + base);
+    activeCard.classList.add('active');
+
+    const others = ['flame', 'fade', 'bow'].filter(c => c !== base);
+    const secondaries = others.filter(c => counts[c] > 0);
+    const worthNotingEl = document.getElementById('worthNoting-' + base);
+    worthNotingEl.textContent = buildWorthNoting(base, secondaries);
   }
 
-  carouselNext.addEventListener('click', () => {
-    carouselIndex = (carouselIndex + 1) % carouselOrder.length;
-    renderCarousel();
-  });
-
-  carouselDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = carouselOrder.indexOf(dot.dataset.out);
-      if (idx !== -1) {
-        carouselIndex = idx;
-        renderCarousel();
-      }
+  document.querySelectorAll('.continue-prompt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const out = btn.dataset.out;
+      document.getElementById('face1-' + out).classList.add('hidden');
+      document.getElementById('face2-' + out).classList.remove('hidden');
     });
   });
+
+  function resetResultCards() {
+    resultCards.forEach(card => card.classList.remove('active'));
+    ['flame', 'fade', 'bow'].forEach(out => {
+      document.getElementById('face1-' + out).classList.remove('hidden');
+      document.getElementById('face2-' + out).classList.add('hidden');
+      document.getElementById('worthNoting-' + out).textContent = '';
+    });
+  }
 
   // ---- cycling intro animation ----
   const CYCLE_PHRASES = [
@@ -1113,12 +1166,13 @@
     'heart palpitations.',
     'disappointment.',
     'FOMO.',
+    'curiosity.',
     'frequent DGAF days.',
     'a desire for something different.'
   ];
 
   function cycleDuration(text) {
-    return Math.min(2600, Math.max(1500, 900 + text.length * 32));
+    return Math.min(2100, Math.max(1150, 700 + text.length * 25));
   }
 
   function playCyclePhrase(index) {
@@ -1150,11 +1204,8 @@
   const finalCta = document.getElementById('finalCta');
   const closerSection = document.getElementById('closerSection');
   const closerHeadline = document.getElementById('closerHeadline');
-  const resultBox = document.getElementById('resultBox');
   const dialNeedle = document.getElementById('dialNeedle');
-  const resultDesc = document.getElementById('resultDesc');
   const retakeBtn = document.getElementById('retakeBtn');
-  const tellCta = document.getElementById('tellCta');
   const frameworkReveal = document.getElementById('frameworkReveal');
 
   const RESULTS = {
@@ -1338,7 +1389,7 @@
     const counts = tally();
     const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
     const winners = Object.keys(counts).filter(col => counts[col] === maxCount);
-    initCarousel(winners[0]);
+    showResultCard(winners[0], counts);
 
     closerSection.classList.remove('hidden');
     closerSection.classList.add('result');
@@ -1356,12 +1407,10 @@
 
     let targetAngle = 0;
     let targetLength = 'full';
-    let isNuanced = true;
 
     if (maxCount === 0) {
       targetAngle = 0; targetLength = 'none';
       closerHeadline.textContent = "YOUR RESPONSE ISN'T FULLY POINTING ANYWHERE YET.";
-      resultDesc.innerHTML = "That's worth paying attention to on its own — sometimes the inkling is real before it has a clear direction. An outside read can help you find out what it's actually about.";
     } else if (winners.length === 1 && winners[0] === 'bow' && (counts.flame > 0 || counts.fade > 0)) {
       const t = buildTendencyMessage(counts);
       closerSection.classList.add('bow-highlight');
@@ -1375,14 +1424,12 @@
         targetAngle = 35;
       }
       closerHeadline.textContent = t.headline;
-      resultDesc.innerHTML = t.desc;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       targetAngle = winners[0] === 'flame' ? 210 : 150;
       targetLength = 'full';
       closerHeadline.textContent = m.headline;
-      resultDesc.innerHTML = m.desc;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
@@ -1399,29 +1446,21 @@
         else targetAngle = 120;
       }
       closerHeadline.textContent = m.headline;
-      resultDesc.innerHTML = m.desc;
     } else if (winners.length === 1) {
       const r = RESULTS[winners[0]];
       if (winners[0] === 'bow') closerSection.classList.add('bow-highlight');
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       targetAngle = WEDGE_CENTER[winners[0]];
       targetLength = 'full';
-      isNuanced = false;
       closerHeadline.textContent = r.headline;
-      resultDesc.innerHTML = r.desc;
     } else if (winners.length === 3) {
       targetAngle = 0; targetLength = 'none';
       closerHeadline.textContent = 'YOUR RESPONSE IS PULLING YOU IN MORE THAN ONE DIRECTION.';
-      resultDesc.innerHTML = "You're showing real signal toward all three — Flame-out, Fade-out, and Bow-out. That's not confusion. That's a founder who knows something's shifting but hasn't sorted out which direction it's actually headed. Sifting through the \"feels\" and understanding its impact on your business calls for an objective read.";
     } else {
-      const labels = winners.map(w => RESULTS[w].label);
       targetAngle = WEDGE_BOUNDARY[winners.join(',')];
       targetLength = 'short';
       closerHeadline.textContent = 'YOUR RESPONSE IS PULLING YOU IN MORE THAN ONE DIRECTION.';
-      resultDesc.innerHTML = `You're showing real signal toward both ${labels[0]} and ${labels[1]} — and that's more common than it sounds. Founders rarely fall neatly into one lane. The question isn't which label fits best. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`;
     }
-
-    resultBox.classList.toggle('hidden', !isNuanced);
 
     // Force the browser to paint the needle's current position before we
     // change it — otherwise the element goes from hidden to its final
@@ -1435,8 +1474,6 @@
     });
 
     postFrameworkDivider.classList.remove('hidden');
-    retakeBtn.classList.remove('hidden');
-    tellCta.classList.remove('hidden');
     frameworkReveal.classList.remove('hidden');
     finalCta.classList.remove('hidden');
     quizSteps.classList.add('hidden');
@@ -1515,7 +1552,7 @@
     closerSection.classList.remove('bow-highlight');
     closerSection.classList.remove('fade-highlight');
     closerHeadline.textContent = '';
-    resultDesc.innerHTML = '';
+    resetResultCards();
     setDial(0, 'none', false);
     postFrameworkDivider.classList.add('hidden');
     frameworkReveal.classList.add('hidden');
