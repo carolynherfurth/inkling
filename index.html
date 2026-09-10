@@ -1525,6 +1525,12 @@
       renderStep();
       quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
+      const counts = tally();
+      const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
+      const winners = Object.keys(counts).filter(col => counts[col] === maxCount);
+      lastResultCategory = winners[0];
+      logQuizResponseToSheet();
+
       quizSteps.classList.add('hidden');
       mainHeadline.classList.add('hidden');
       pageKicker.classList.add('hidden');
@@ -1582,7 +1588,6 @@
     // the iframe — we just fire the submission and move on immediately.
     emailGate.classList.add('hidden');
     revealResult();
-    logQuizResponseToSheet();
   });
 
   function logQuizResponseToSheet() {
