@@ -1123,6 +1123,7 @@
   const answers = {}; // key: "col-q" -> "yes"|"no"
   const totalQuestions = 9;
   let currentStep = 1;
+  let lastResultCategory = '';
   const totalSteps = 3;
 
   const quizSteps = document.getElementById('quizSteps');
@@ -1426,6 +1427,7 @@
     const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
     const winners = Object.keys(counts).filter(col => counts[col] === maxCount);
     showResultCard(winners[0], counts);
+    lastResultCategory = winners[0];
 
     closerSection.classList.remove('hidden');
     closerSection.classList.add('result');
@@ -1580,7 +1582,32 @@
     // the iframe — we just fire the submission and move on immediately.
     emailGate.classList.add('hidden');
     revealResult();
+    logQuizResponseToSheet();
   });
+
+  function logQuizResponseToSheet() {
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycbw1X-FhIlsbSphQLtplzDZK0mwthViOHczh9FMF7WnzdmlATJNCIewj-x01K6FQ62p5/exec';
+
+    const payload = {
+      q1: answers.q1,
+      q2: answers.q2,
+      q3: answers.q3,
+      q4: answers.q4,
+      q5: answers.q5,
+      q6: answers.q6,
+      q7: answers.q7,
+      q8: answers.q8,
+      q9: answers.q9,
+      result_category: lastResultCategory
+    };
+
+    fetch(scriptUrl, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
+  }
 
   retakeBtn.addEventListener('click', () => {
     Object.keys(answers).forEach(k => delete answers[k]);
