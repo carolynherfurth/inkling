@@ -458,8 +458,10 @@
   }
 
   .worth-noting {
-    font-size: 1.08rem;
-    line-height: 1.55;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.45;
     margin-top: 0.2rem;
     margin-bottom: 1.3rem;
   }
@@ -1130,9 +1132,9 @@
   };
 
   const PAIR_TEMPLATE = {
-    'fade-flame': (name) => `Worth noting: there's also a tendency toward ${name} showing up in your answers — and that's not a similar instinct to what's leading — it's the opposite one. We'll go deeper on what that tension means for you in the series of briefs headed your way.`,
-    'bow-flame': (name) => `Worth noting: there's also a tendency toward ${name} in your answers. Same eventual outcome, different process. And worth knowing which one's actually driving. We'll go deeper on what that combination means for you in the series of briefs headed your way.`,
-    'bow-fade': (name) => `Worth noting: there's also a tendency toward ${name} in your answers. From the outside, that can look identical to what's leading. But it's not. We'll go deeper on what that difference means for you in the series of briefs headed your way.`
+    'fade-flame': (name) => `<strong>Worth noting:</strong> There's also a tendency toward ${name} showing up in your answers — and that's not a similar instinct to what's leading — it's the opposite one. We'll go deeper on what those competing behaviors mean for you in the series of email briefs headed your way.`,
+    'bow-flame': (name) => `<strong>Worth noting:</strong> There's also a tendency toward ${name} in your answers. Same eventual outcome, different process. And worth knowing which one's actually driving. We'll go deeper on what those competing behaviors mean for you in the series of email briefs headed your way.`,
+    'bow-fade': (name) => `<strong>Worth noting:</strong> There's also a tendency toward ${name} in your answers. From the outside, that can look identical to what's leading. But it's not. We'll go deeper on what those competing behaviors mean for you in the series of email briefs headed your way.`
   };
 
   function buildWorthNoting(base, secondaries) {
@@ -1143,7 +1145,7 @@
       return PAIR_TEMPLATE[pairKey](CATEGORY_NAME[sec]);
     }
     const names = secondaries.map(s => CATEGORY_NAME[s]);
-    return `Worth noting: there's also a bit of competing behavior showing up in your answers: a tendency toward ${names[0]} and a tendency toward ${names[1]}. We'll go deeper on what those competing behaviors mean for you in the series of briefs headed your way.`;
+    return `<strong>Worth noting:</strong> There's also a bit of competing behavior showing up in your answers: a tendency toward ${names[0]} and a pull toward ${names[1]}. We'll go deeper on what those competing behaviors mean for you in the series of email briefs headed your way.`;
   }
 
   const CARD_CONTENT = {
@@ -1259,7 +1261,7 @@
       wireCardNav(out);
       // re-populate worth-noting since face1 was just rebuilt
       const wn = document.getElementById('worthNoting-' + out);
-      if (wn && lastWorthNotingText[out] !== undefined) wn.textContent = lastWorthNotingText[out];
+      if (wn && lastWorthNotingText[out] !== undefined) wn.innerHTML = lastWorthNotingText[out];
     }, 300);
   }
 
@@ -1280,7 +1282,7 @@
     front.innerHTML = CARD_CONTENT[base].face1;
     behind.innerHTML = CARD_CONTENT[base].face2;
     behind.dataset.state = 'peek-of-2';
-    document.getElementById('worthNoting-' + base).textContent = worthNotingText;
+    document.getElementById('worthNoting-' + base).innerHTML = worthNotingText;
     document.querySelector('#pageIndicator-' + base + ' .num-one').classList.add('active');
     document.querySelector('#pageIndicator-' + base + ' .num-two').classList.remove('active');
     wireCardNav(base);
