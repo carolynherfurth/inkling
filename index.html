@@ -458,10 +458,10 @@
   }
 
   .worth-noting {
-    font-size: 1.02rem;
-    line-height: 1.5;
+    font-size: 1.08rem;
+    line-height: 1.55;
     margin-top: 0.2rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.3rem;
   }
 
   .worth-noting:empty { display: none; margin: 0; }
@@ -1472,12 +1472,8 @@
   }
 
   function buildLeaderMixMessage(winnerCol, counts) {
-    const winnerLabel = RESULTS[winnerCol].label;
-    const others = ['flame', 'fade', 'bow'].filter(c => c !== winnerCol);
-    const otherLabels = others.map(c => RESULTS[c].label);
     return {
-      headline: `YOU'RE HEADING TOWARD ${winnerLabel} — BUT ${otherLabels[0]} AND ${otherLabels[1]} BOTH SHOW UP TOO.`,
-      desc: `There's a real lean toward ${winnerLabel} here — but ${otherLabels[0]} and ${otherLabels[1]} both show up too, and that's not nothing. Sifting through the "feels" and understanding its impact on your business calls for an objective read.`
+      headline: `YOUR RESPONSE IS POINTING YOU TOWARD ${RESULTS[winnerCol].label}.`
     };
   }
 
