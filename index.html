@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Inkling Scanner — Will You Bow Out, Fade Out, or Flame Out?</title>
-<meta name="description" content="THE INKLING is Carolyn Herfurth's work on the early signals founders feel when something in their business is changing — and how their response can lead them toward a Flame-Out, Fade-Out, or Bow-Out.">
+<title>The Inkling Scanner — Are You Headed Toward a Flame Out, a Fade Out, or a Bow Out?</title>
+<meta name="description" content="THE INKLING is Carolyn Herfurth's work on the early signals founders feel when something in their business is changing — and how their response can lead them toward a Flame Out, Fade Out, or Bow Out.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -14,7 +14,7 @@
     "@type": "Person",
     "name": "Carolyn Herfurth"
   },
-  "description": "THE INKLING is Carolyn Herfurth's framework for the early signals founders feel when something in their business is changing, and how their response — Flame-Out, Fade-Out, or Bow-Out — shapes what happens next.",
+  "description": "THE INKLING is Carolyn Herfurth's framework for the early signals founders feel when something in their business is changing, and how their response — Flame Out, Fade Out, or Bow Out — shapes what happens next.",
   "about": "Business strategy for founders"
 }
 </script>
@@ -87,18 +87,21 @@
     position: relative;
     z-index: 1;
     margin-bottom: 1rem;
-    font-size: 1.15rem;
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    line-height: 1.2;
   }
 
   .page-kicker .kicker-name {
+    display: block;
     font-weight: 800;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.01em;
     color: var(--charcoal);
   }
 
   .page-kicker .kicker-tagline {
+    display: block;
     font-weight: 500;
-    color: var(--charcoal-txt);
+    color: var(--charcoal);
   }
 
   h1 {
@@ -459,7 +462,7 @@
 
   .worth-noting {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.08rem;
     line-height: 1.55;
     margin-top: 0.2rem;
@@ -479,8 +482,8 @@
   .tell-subheader {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 1.08rem;
-    line-height: 1.55;
+    font-size: 1.35rem;
+    line-height: 1.3;
     margin-bottom: 0.7rem;
   }
 
@@ -614,6 +617,11 @@
     margin-bottom: 0.9rem;
     font-size: 1.35rem;
     line-height: 1.3;
+  }
+
+  .col-connector.reveal-line {
+    font-size: 1.08rem;
+    line-height: 1.55;
   }
 
   .flame .col-connector { color: var(--white); }
@@ -930,15 +938,15 @@
   <div class="ghost" id="ghostText" aria-hidden="true">INKLINGS</div>
 
   <header>
-    <p class="page-kicker" id="pageKicker"><span class="kicker-name">INKLINGS:</span> <span class="kicker-tagline">Early-stage business intelligence for established founders.</span></p>
+    <p class="page-kicker" id="pageKicker"><span class="kicker-name">Your business is trying to tell you something.</span><span class="kicker-tagline">It starts with an inkling.</span></p>
     <h1 id="mainHeadline">
-      WILL YOU <span class="yellow">BOW OUT</span>,
-      <span class="charcoal">FADE OUT</span>,
-      OR <span class="pink">FLAME OUT</span>?
+      ARE YOU HEADED TOWARD A <span class="pink">FLAME&nbsp;OUT</span>,
+      A <span class="charcoal">FADE&nbsp;OUT</span>,
+      OR A <span class="yellow">BOW&nbsp;OUT</span>?
     </h1>
-    <p class="intro" id="introText"><span class="intro-prefix">Inklings start as</span><span class="cycle-stage" id="cycleStage"></span></p>
-    <p class="intro-close" id="introClose">It's a general sense that something that still works, no longer works quite as well for you. You feel it before you can explain it. What happens next depends on whether you ditch, defer, or direct it.</p>
-    <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer honestly the 9 questions below — and we'll show you where your response to that inkling is pointing for the business you built.</p>
+    <p class="intro" id="introText"><span class="intro-prefix">Inklings show up as</span><span class="cycle-stage" id="cycleStage"></span></p>
+    <p class="intro-close" id="introClose">It's a general sense that something that still works, no longer works quite as well for you. You feel it before you can explain it. That feeling is early-stage business intelligence. What happens next depends on whether you ditch, defer, or direct it.</p>
+    <p class="prompt" id="promptText"><span class="prompt-arrow"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 3H16V13H21L12 22L3 13H8V3Z" fill="var(--white)"></path></svg></span>Answer nine questions and see which way you're leaning: cutting loose from something that's still valuable, staying put in something you've outgrown, or steering the change while you still have choices.</p>
   </header>
 
   <main>
@@ -1032,8 +1040,8 @@
     </div>
 
     <div class="email-gate hidden" id="emailGate">
-      <h3 class="gate-heading">SO — WHERE'S IT POINTING?</h3>
-      <p class="gate-copy">Nine honest answers deserve an honest read. Drop your email and we'll show you where it's pointing.</p>
+      <h3 class="gate-heading">SO — WHICH ONE ARE YOU?</h3>
+      <p class="gate-copy">Nine honest answers deserve an honest read. Drop your email to see your founder type, what that path tends to cost, and what to watch for.</p>
       <form id="gateForm" class="gate-form" novalidate
             action="https://assets.mailerlite.com/jsonp/1407728/forms/195431736387044353/subscribe"
             method="post" target="mlHiddenFrame">
@@ -1153,7 +1161,7 @@
 
   const CARD_CONTENT = {
     flame: {
-      face1: `<h2>FLAME-OUT</h2>
+      face1: `<h2>FLAME OUT</h2>
         <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: who even am I anymore? What is this new sense of misalignment about? Those questions don't stay quiet for long once impulse gets involved. You start looking for what you can ditch: the client, the offer, the role, maybe the whole damn business. Anything that creates distance from what no longer feels tolerable. And because relief can feel a lot like clarity in the moment, you may make a move before you've figured out what the inkling is actually trying to tell you.</p>
         <p class="col-connector">The risks of continuing to ditch:</p>
         <ul class="behavior-list">
@@ -1165,8 +1173,9 @@
         <button class="continue-btn" data-out="flame">CONTINUE &gt;&gt;</button>`,
       face2: `<p class="col-connector">Behaviors to watch for:</p>
         <p class="desc">You tend to look for the fastest way out — cut the client, the offer, maybe the whole model — before you've confirmed what the problem is. Or you half-implement new ideas because anything feels better than what you've been doing. Either way, you move fast. Don't let speed sacrifice the value you've built up on your way out.</p>
-        <p class="col-connector">You've got inklings, hunches, maybe even gut punches. Your business is trying to tell you something too — but you're too close to see it.</p>
-        <p class="tell-subheader">THE TELL is designed to catch these things — in just 90 minutes you'll know:</p>
+        <p class="col-connector reveal-line">Now you know how you respond to an inkling.</p>
+        <p class="col-connector reveal-line">What your business is trying to tell you is the other half — but you're too close to see it.</p>
+        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session designed to catch it — so you'll know:</p>
         <ul class="behavior-list">
           <li>Whether it's the offer, the client, the role, the model — or something deeper.</li>
           <li>What you're actually walking away from, in real terms, if you cut loose today.</li>
@@ -1176,7 +1185,7 @@
         <div class="back-hint" data-out="flame">&larr; Back</div>`
     },
     fade: {
-      face1: `<h2>FADE-OUT</h2>
+      face1: `<h2>FADE OUT</h2>
         <p class="desc">You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, because you haven't found a next move worth choosing yet. Staying might be intentional. Or it might be a default you've settled into without quite deciding. Either way, the business can't tell the difference — and neither can anyone watching from the outside. The fix isn't speed. It's finally looking at the decisions you've been avoiding.</p>
         <p class="col-connector">The risks of continuing to defer:</p>
         <ul class="behavior-list">
@@ -1188,8 +1197,9 @@
         <button class="continue-btn" data-out="fade">CONTINUE &gt;&gt;</button>`,
       face2: `<p class="col-connector">Behaviors to watch for:</p>
         <p class="desc">Once the low hum of boredom settles in, you default to your usual routine — more out of obligation than desire. You'll keep the same list of ideas you've been "thinking about" for two years, no closer to choosing one. Or convince yourself you're being careful. Sometimes you are. But sometimes you're just deferring — and every month that passes costs you opportunities you'd still have if you moved sooner.</p>
-        <p class="col-connector">You've got inklings, hunches, maybe even gut punches. Your business is trying to tell you something too — but you're too close to see it.</p>
-        <p class="tell-subheader">THE TELL is designed to catch these things — in just 90 minutes you'll know:</p>
+        <p class="col-connector reveal-line">Now you know how you respond to an inkling.</p>
+        <p class="col-connector reveal-line">What your business is trying to tell you is the other half — but you're too close to see it.</p>
+        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session designed to catch it — so you'll know:</p>
         <ul class="behavior-list">
           <li>Whether you're actually committed, or just used to staying.</li>
           <li>Which decision you've been avoiding the longest — and what it's costing you to keep avoiding it.</li>
@@ -1199,7 +1209,7 @@
         <div class="back-hint" data-out="fade">&larr; Back</div>`
     },
     bow: {
-      face1: `<h2>BOW-OUT</h2>
+      face1: `<h2>BOW OUT</h2>
         <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
         <p class="col-connector">Good, you seem to be <strong>directing</strong> your inklings, rather than ditching or deferring. This still comes with risks:</p>
         <ul class="behavior-list">
@@ -1211,8 +1221,9 @@
         <button class="continue-btn" data-out="bow">CONTINUE &gt;&gt;</button>`,
       face2: `<p class="col-connector">Behaviors to watch for:</p>
         <p class="desc">You'll have plenty of advice piling up, most of it fly-by rather than fully considered — and telling the two apart is on you. Ideas pile up just as fast; picking the one worth the work is the harder part. And the more confident you are in your own read, the easier it is to miss the one blind spot only someone outside can catch.</p>
-        <p class="col-connector">You've got inklings, hunches, maybe even gut punches. Your business is trying to tell you something too — but you're too close to see it.</p>
-        <p class="tell-subheader">THE TELL is designed to catch these things — in just 90 minutes you'll know:</p>
+        <p class="col-connector reveal-line">Now you know how you respond to an inkling.</p>
+        <p class="col-connector reveal-line">What your business is trying to tell you is the other half — but you're too close to see it.</p>
+        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session designed to catch it — so you'll know:</p>
         <ul class="behavior-list">
           <li>Whether the direction you're heading is actually a pursuit — or an escape.</li>
           <li>What you might be missing precisely because you're so close to it.</li>
@@ -1311,7 +1322,8 @@
     'disappointment.',
     'FOMO.',
     'curiosity.',
-    'frequent DGAF days.',
+    'a flood of new ideas.',
+    'a string of DGAF days.',
     'a desire for something different.'
   ];
 
@@ -1354,24 +1366,24 @@
 
   const RESULTS = {
     flame: {
-      label: 'FLAME-OUT',
+      label: 'FLAME OUT',
       color: '#f2295b',
       textColor: '#ffffff',
-      headline: 'YOUR RESPONSE IS POINTING YOU TOWARD FLAME-OUT.',
+      headline: 'YOUR FOUNDER TYPE: FLAME OUT.',
       desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: <em>who even am I anymore?</em> What is this new sense of misalignment about? Those questions don't stay quiet for long once impulse gets involved — attention drifts, the business becomes the bystander. This is exactly when an outside read matters most — before one day, you're just done."
     },
     fade: {
-      label: 'FADE-OUT',
+      label: 'FADE OUT',
       color: '#242424',
       textColor: '#fbed00',
-      headline: 'YOUR RESPONSE IS POINTING YOU TOWARD FADE-OUT.',
+      headline: 'YOUR FOUNDER TYPE: FADE OUT.',
       desc: "You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on. Staying might be intentional, or it might be default — <em>either way</em>, it's worth getting clear on which. Exploring possibilities for your next move would move you through much faster."
     },
     bow: {
-      label: 'BOW-OUT',
+      label: 'BOW OUT',
       color: '#fbed00',
       textColor: '#242424',
-      headline: 'YOUR RESPONSE IS POINTING YOU TOWARD BOW-OUT.',
+      headline: 'YOUR FOUNDER TYPE: BOW OUT.',
       desc: "You look at your inklings while you still have choices — before anything's forced on you. That doesn't mean you already have the answer. It means you're ready to look closely at what's changed and what happens next, on your own terms."
     }
   };
@@ -1414,7 +1426,7 @@
     });
     stepLabel.textContent = `Set ${currentStep} of ${totalSteps}`;
     backBtn.classList.toggle('hidden', currentStep === 1);
-    nextBtn.textContent = currentStep === totalSteps ? "See What It's Pointing To >>>" : 'Next';
+    nextBtn.textContent = currentStep === totalSteps ? "See My Founder Type >>>" : 'Next';
     updateNextButton();
   }
 
@@ -1467,18 +1479,18 @@
 
   function buildTendencyMessage(counts) {
     const flags = [];
-    if (counts.flame > 0) flags.push('FLAME-OUT');
-    if (counts.fade > 0) flags.push('FADE-OUT');
+    if (counts.flame > 0) flags.push('FLAME OUT');
+    if (counts.fade > 0) flags.push('FADE OUT');
     const named = flags.join(' and ');
     return {
-      headline: `YOU'RE LEANING BOW-OUT — BUT NOT WITHOUT SOME ${named} IN THE MIX.`,
+      headline: `YOU'RE LEANING BOW OUT — BUT NOT WITHOUT SOME ${named} IN THE MIX.`,
       desc: `The lean is toward choosing on purpose, and that's real. But so is the ${flags.length > 1 ? 'pull toward ' + named.toLowerCase() : named.toLowerCase() + ' pull'} underneath it — and that doesn't cancel itself out just because the majority answer points elsewhere. That's exactly the kind of friction worth hashing out, before the more damaging signal becomes the one that ends up overtaking your direction.`
     };
   }
 
   function buildLeaderMixMessage(winnerCol, counts) {
     return {
-      headline: `YOUR RESPONSE IS POINTING YOU TOWARD ${RESULTS[winnerCol].label}.`
+      headline: `YOUR FOUNDER TYPE: ${RESULTS[winnerCol].label}.`
     };
   }
 
@@ -1564,13 +1576,13 @@
       } else if (counts.fade > 0) {
         targetAngle = 35;
       }
-      closerHeadline.textContent = t.headline;
+      closerHeadline.textContent = RESULTS.bow.headline;
     } else if (isLeaningWithSecondary) {
       const m = buildLeaningMessage(winners[0], flameFadeSecondary);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
       targetAngle = winners[0] === 'flame' ? 210 : 150;
       targetLength = 'full';
-      closerHeadline.textContent = m.headline;
+      closerHeadline.textContent = RESULTS[winners[0]].headline;
     } else if (isSpreadLeader) {
       const m = buildLeaderMixMessage(winners[0], counts);
       if (winners[0] === 'fade') closerSection.classList.add('fade-highlight');
@@ -1596,11 +1608,11 @@
       closerHeadline.textContent = r.headline;
     } else if (winners.length === 3) {
       targetAngle = 0; targetLength = 'none';
-      closerHeadline.textContent = 'YOUR RESPONSE IS PULLING YOU IN MORE THAN ONE DIRECTION.';
+      closerHeadline.textContent = "YOU'RE SHOWING MORE THAN ONE FOUNDER TYPE.";
     } else {
       targetAngle = WEDGE_BOUNDARY[winners.join(',')];
       targetLength = 'short';
-      closerHeadline.textContent = 'YOUR RESPONSE IS PULLING YOU IN MORE THAN ONE DIRECTION.';
+      closerHeadline.textContent = "YOU'RE SHOWING MORE THAN ONE FOUNDER TYPE.";
     }
 
     // Force the browser to paint the needle's current position before we
