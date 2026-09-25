@@ -624,6 +624,8 @@
     line-height: 1.55;
   }
 
+  .col-connector.reveal-plain { font-weight: 400; }
+
   .flame .col-connector { color: var(--white); }
   .fade  .col-connector { color: var(--cream); }
   .bow   .col-connector { color: var(--charcoal-txt); }
@@ -1163,7 +1165,7 @@
     flame: {
       face1: `<h2>FLAME OUT</h2>
         <p class="desc">The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: who even am I anymore? What is this new sense of misalignment about? Those questions don't stay quiet for long once impulse gets involved. You start looking for what you can ditch: the client, the offer, the role, maybe the whole damn business. Anything that creates distance from what no longer feels tolerable. And because relief can feel a lot like clarity in the moment, you may make a move before you've figured out what the inkling is actually trying to tell you.</p>
-        <p class="col-connector">The risks of continuing to ditch:</p>
+        <p class="col-connector">What continuing to ditch can look like:</p>
         <ul class="behavior-list">
           <li>You walk away from a valuable revenue stream that's carried your bank account and your identity for years.</li>
           <li>You cut off client relationships you've had for a decade because staying one more minute feels unbearable.</li>
@@ -1173,13 +1175,13 @@
         <button class="continue-btn" data-out="flame">CONTINUE &gt;&gt;</button>`,
       face2: `<p class="col-connector">Behaviors to watch for:</p>
         <p class="desc">You tend to look for the fastest way out — cut the client, the offer, maybe the whole model — before you've confirmed what the problem is. Or you half-implement new ideas because anything feels better than what you've been doing. Either way, you move fast. Don't let speed sacrifice the value you've built up on your way out.</p>
-        <p class="col-connector reveal-line">Now you know how you respond to an inkling.</p>
+        <p class="col-connector reveal-line reveal-plain">Now you know how you respond to an inkling.</p>
         <p class="col-connector reveal-line">What your business is trying to tell you is the other half — but you're too close to see it.</p>
-        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session designed to catch it — so you'll know:</p>
+        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session, plus a written brief within 48 hours, designed to catch it — so you'll know:</p>
         <ul class="behavior-list">
-          <li>Whether it's the offer, the client, the role, the model — or something deeper.</li>
-          <li>What you're actually walking away from, in real terms, if you cut loose today.</li>
-          <li>Ways to create distance from what's no longer working without torching what still is.</li>
+          <li>What's worth protecting <em>(the offer, the client, the role)</em> before you cut anything.</li>
+          <li>What you'd be walking away from, in real terms, if you left today.</li>
+          <li>How to put distance between you and what's no longer working without torching what still is.</li>
         </ul>
         <a href="https://carolynherfurth.com/the-tell" class="tell-cta-inline">Do You Know Your Tell? &gt;&gt;</a>
         <div class="back-hint" data-out="flame">&larr; Back</div>`
@@ -1187,23 +1189,23 @@
     fade: {
       face1: `<h2>FADE OUT</h2>
         <p class="desc">You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on — and you stay, because you haven't found a next move worth choosing yet. Staying might be intentional. Or it might be a default you've settled into without quite deciding. Either way, the business can't tell the difference — and neither can anyone watching from the outside. The fix isn't speed. It's finally looking at the decisions you've been avoiding.</p>
-        <p class="col-connector">The risks of continuing to defer:</p>
+        <p class="col-connector">What continuing to defer can look like:</p>
         <ul class="behavior-list">
           <li>You join another mastermind — anything that feels like progress without requiring you to actually decide.</li>
-          <li>Your best employee gives notice, and your first feeling is relief. One less thing to manage. One less reason to keep pretending you're fully in it.</li>
+          <li>Your best employee gives notice, and your first feeling is relief. One less reason to keep pretending you're fully in it. Then the panic: <em>who's going to do the work you have zero interest in doing?</em></li>
           <li>You eventually sell the business for a fraction of what it might have been worth when the inklings first started — not because the business suddenly collapsed, but because you waited until your energy, options, or leverage had already eroded.</li>
         </ul>
         <p class="worth-noting" id="worthNoting-fade"></p>
         <button class="continue-btn" data-out="fade">CONTINUE &gt;&gt;</button>`,
       face2: `<p class="col-connector">Behaviors to watch for:</p>
         <p class="desc">Once the low hum of boredom settles in, you default to your usual routine — more out of obligation than desire. You'll keep the same list of ideas you've been "thinking about" for two years, no closer to choosing one. Or convince yourself you're being careful. Sometimes you are. But sometimes you're just deferring — and every month that passes costs you opportunities you'd still have if you moved sooner.</p>
-        <p class="col-connector reveal-line">Now you know how you respond to an inkling.</p>
+        <p class="col-connector reveal-line reveal-plain">Now you know how you respond to an inkling.</p>
         <p class="col-connector reveal-line">What your business is trying to tell you is the other half — but you're too close to see it.</p>
-        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session designed to catch it — so you'll know:</p>
+        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session, plus a written brief within 48 hours, designed to catch it — so you'll know:</p>
         <ul class="behavior-list">
-          <li>Whether you're actually committed, or just used to staying.</li>
-          <li>Which decision you've been avoiding the longest — and what it's costing you to keep avoiding it.</li>
-          <li>Whether waiting is buying you clarity, or just delaying what you'll eventually have to face anyway.</li>
+          <li>Which decision you've been avoiding the longest, and what it's costing you to keep avoiding it.</li>
+          <li>What's run its course <em>(aka what you've outgrown)</em>, even if it still pays.</li>
+          <li>Whether you're staying because you're committed, or because you're used to it.</li>
         </ul>
         <a href="https://carolynherfurth.com/the-tell" class="tell-cta-inline">Do You Know Your Tell? &gt;&gt;</a>
         <div class="back-hint" data-out="fade">&larr; Back</div>`
@@ -1211,7 +1213,7 @@
     bow: {
       face1: `<h2>BOW OUT</h2>
         <p class="desc">You get inklings like every other founder. The difference is you look at yours while you still have choices — before it's forced on you. That doesn't mean assuming the whole business has to end, or having to already know the answer. It means looking closely enough to see what's changed, what's run its course, and what happens next. You're the one driving it. Nothing gets decided by default.</p>
-        <p class="col-connector">Good, you seem to be <strong>directing</strong> your inklings, rather than ditching or deferring. This still comes with risks:</p>
+        <p class="col-connector">Good, you seem to be <strong>directing</strong> your inklings, rather than ditching or deferring. Directing still comes with risks, and they don't look the same for every Bow Out. A few examples:</p>
         <ul class="behavior-list">
           <li>You spend a year pushing back on a culture problem in your industry — the kind that's gotten worse, not better — and eventually accept that the climb isn't one you want to keep making.</li>
           <li>Your best friend tells you not to do it because she still doesn't understand what you built. Your mastermind tells you to do it because your ongoing stress concerns them. Either way, it's their filter, not yours.</li>
@@ -1221,13 +1223,13 @@
         <button class="continue-btn" data-out="bow">CONTINUE &gt;&gt;</button>`,
       face2: `<p class="col-connector">Behaviors to watch for:</p>
         <p class="desc">You'll have plenty of advice piling up, most of it fly-by rather than fully considered — and telling the two apart is on you. Ideas pile up just as fast; picking the one worth the work is the harder part. And the more confident you are in your own read, the easier it is to miss the one blind spot only someone outside can catch.</p>
-        <p class="col-connector reveal-line">Now you know how you respond to an inkling.</p>
+        <p class="col-connector reveal-line reveal-plain">Now you know how you respond to an inkling.</p>
         <p class="col-connector reveal-line">What your business is trying to tell you is the other half — but you're too close to see it.</p>
-        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session designed to catch it — so you'll know:</p>
+        <p class="tell-subheader">THE TELL is a 90 minute 1:1 session, plus a written brief within 48 hours, designed to catch it — so you'll know:</p>
         <ul class="behavior-list">
-          <li>Whether the direction you're heading is actually a pursuit — or an escape.</li>
-          <li>What you might be missing precisely because you're so close to it.</li>
-          <li>Not just whether the direction is right — but the actual next move to make it real.</li>
+          <li>Whether the direction you're heading is a pursuit, or an escape.</li>
+          <li>Where the next opportunity is hiding, including the one you've already talked yourself out of.</li>
+          <li>The next move, specific enough to act on.</li>
         </ul>
         <a href="https://carolynherfurth.com/the-tell" class="tell-cta-inline">Do You Know Your Tell? &gt;&gt;</a>
         <div class="back-hint" data-out="bow">&larr; Back</div>`
