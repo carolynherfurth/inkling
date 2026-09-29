@@ -358,6 +358,17 @@
 
   .carousel-wrap { position: relative; }
 
+  /* ---- type intro: good news shown before the opt-in ---- */
+  .type-intro { margin: -1rem 0 0.4rem; }
+
+  .good-news {
+    font-size: 1.18rem;
+    line-height: 1.6;
+    color: var(--charcoal-txt);
+  }
+
+  .gate-open { display: block; width: 100%; }
+
   /* ---- email gate ---- */
   .email-gate {
     background: var(--pink);
@@ -1041,22 +1052,6 @@
       </div>
     </div>
 
-    <div class="email-gate hidden" id="emailGate">
-      <h3 class="gate-heading">SO — WHICH ONE ARE YOU?</h3>
-      <p class="gate-copy">Nine honest answers deserve an honest read. Drop your email to see your founder type, what that path tends to cost, and what to watch for.</p>
-      <form id="gateForm" class="gate-form" novalidate
-            action="https://assets.mailerlite.com/jsonp/1407728/forms/195431736387044353/subscribe"
-            method="post" target="mlHiddenFrame">
-        <input type="text" id="gateName" name="fields[name]" class="gate-input" placeholder="First name" autocomplete="given-name">
-        <input type="email" id="gateEmail" name="fields[email]" class="gate-input" placeholder="Email" autocomplete="email" required>
-        <input type="hidden" name="ml-submit" value="1">
-        <input type="hidden" name="anticsrf" value="true">
-        <button type="submit" class="gate-submit" id="gateSubmit">See My Result >>></button>
-        <p class="gate-error hidden" id="gateError">Please enter a valid email.</p>
-      </form>
-      <button type="button" class="gate-back" id="gateBackBtn">← Back to questions</button>
-    </div>
-
     <iframe name="mlHiddenFrame" id="mlHiddenFrame" style="display:none" aria-hidden="true" tabindex="-1"></iframe>
 
     <div class="closer hidden" id="closerSection">
@@ -1075,6 +1070,25 @@
           <circle class="dial-hub" cx="140" cy="140" r="13"></circle>
         </svg>
       </div>
+    </div>
+
+    <div class="type-intro hidden" id="typeIntro">
+      <p class="good-news" id="goodNews"></p>
+    </div>
+
+    <div class="email-gate hidden" id="emailGate">
+      <p class="gate-copy" id="gateCopy"></p>
+      <button type="button" class="gate-submit gate-open" id="gateOpenBtn">Tell Me More &gt;&gt;</button>
+      <form id="gateForm" class="gate-form hidden" novalidate
+            action="https://assets.mailerlite.com/jsonp/1407728/forms/195431736387044353/subscribe"
+            method="post" target="mlHiddenFrame">
+        <input type="text" id="gateName" name="fields[name]" class="gate-input" placeholder="First name" autocomplete="given-name">
+        <input type="email" id="gateEmail" name="fields[email]" class="gate-input" placeholder="Email" autocomplete="email" required>
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
+        <button type="submit" class="gate-submit" id="gateSubmit">Show Me &gt;&gt;&gt;</button>
+        <p class="gate-error hidden" id="gateError">Please enter a valid email.</p>
+      </form>
     </div>
 
     <div class="framework-reveal hidden" id="frameworkReveal">
@@ -1368,24 +1382,24 @@
 
   const RESULTS = {
     flame: {
-      label: 'FLAME OUT',
+      label: 'FLAME\u00a0OUT',
       color: '#f2295b',
       textColor: '#ffffff',
-      headline: 'YOUR FOUNDER TYPE: FLAME OUT.',
+      headline: 'YOUR FOUNDER TYPE: FLAME\u00a0OUT.',
       desc: "The business is doing well. That's part of the problem — there's no obvious crack to point to. But you find yourself asking bigger questions: <em>who even am I anymore?</em> What is this new sense of misalignment about? Those questions don't stay quiet for long once impulse gets involved — attention drifts, the business becomes the bystander. This is exactly when an outside read matters most — before one day, you're just done."
     },
     fade: {
-      label: 'FADE OUT',
+      label: 'FADE\u00a0OUT',
       color: '#242424',
       textColor: '#fbed00',
-      headline: 'YOUR FOUNDER TYPE: FADE OUT.',
+      headline: 'YOUR FOUNDER TYPE: FADE\u00a0OUT.',
       desc: "You sense something is changing, but you don't know what to change. The business still works, so no alternative feels compelling enough to act on. Staying might be intentional, or it might be default — <em>either way</em>, it's worth getting clear on which. Exploring possibilities for your next move would move you through much faster."
     },
     bow: {
-      label: 'BOW OUT',
+      label: 'BOW\u00a0OUT',
       color: '#fbed00',
       textColor: '#242424',
-      headline: 'YOUR FOUNDER TYPE: BOW OUT.',
+      headline: 'YOUR FOUNDER TYPE: BOW\u00a0OUT.',
       desc: "You look at your inklings while you still have choices — before anything's forced on you. That doesn't mean you already have the answer. It means you're ready to look closely at what's changed and what happens next, on your own terms."
     }
   };
@@ -1539,6 +1553,19 @@
     'fade,bow': 60
   };
 
+  const GOOD_NEWS = {
+    flame: `You're not the type to sit on things. When something stops working, you take notice and set off in hot pursuit to find a solution, while other founders spend two years <em>thinking</em> about what they should do. That instinct helped build your business. You make the call, you absorb the hit, and you keep moving. Plenty of founders wish they had your nerve.`,
+    fade: `You're the steady one. Clients stay with you for years, your team knows what to expect from you, and you don't blow up something that works just because you're bored. That loyalty is a big reason your business is still standing. You want to be sure before you move, and more often than not, that's served you well.`,
+    bow: `You read the signals and decide on purpose, before outside influences force your hand. That's what high-performing founders do. You don't wait for a crisis to tell you something's changed. You notice it early, you look closely, and you decide. When you make a move, it's yours.`
+  };
+
+  const TYPE_NAME = { flame: 'a Flame Out', fade: 'a Fade Out', bow: 'a Bow Out' };
+
+  const typeIntro = document.getElementById('typeIntro');
+  const goodNews = document.getElementById('goodNews');
+  const gateCopy = document.getElementById('gateCopy');
+  const gateOpenBtn = document.getElementById('gateOpenBtn');
+
   function revealResult() {
     const counts = tally();
     const maxCount = Math.max(counts.flame, counts.fade, counts.bow);
@@ -1610,11 +1637,11 @@
       closerHeadline.textContent = r.headline;
     } else if (winners.length === 3) {
       targetAngle = 0; targetLength = 'none';
-      closerHeadline.textContent = "YOU'RE SHOWING MORE THAN ONE FOUNDER TYPE.";
+      closerHeadline.textContent = RESULTS[winners[0]].headline;
     } else {
       targetAngle = WEDGE_BOUNDARY[winners.join(',')];
       targetLength = 'short';
-      closerHeadline.textContent = "YOU'RE SHOWING MORE THAN ONE FOUNDER TYPE.";
+      closerHeadline.textContent = RESULTS[winners[0]].headline;
     }
 
     // Force the browser to paint the needle's current position before we
@@ -1628,8 +1655,14 @@
       });
     });
 
-    postFrameworkDivider.classList.remove('hidden');
-    frameworkReveal.classList.remove('hidden');
+    // Type + good news are free. Behaviors, risks, and THE TELL pitch
+    // (frameworkReveal) stay hidden until the opt-in form is submitted.
+    goodNews.innerHTML = GOOD_NEWS[winners[0]];
+    gateCopy.textContent = `Every founder type has its upsides and downsides. You've seen the upside of yours. Drop your email and we'll show you how being ${TYPE_NAME[winners[0]]} tends to play out, the behaviors to watch for, what it can cost if it goes unchecked, and how to keep it working for you.`;
+    typeIntro.classList.remove('hidden');
+    emailGate.classList.remove('hidden');
+    gateOpenBtn.classList.remove('hidden');
+    gateForm.classList.add('hidden');
     finalCta.classList.remove('hidden');
     quizSteps.classList.add('hidden');
     closerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1655,8 +1688,7 @@
       introText.classList.add('hidden');
       introClose.classList.add('hidden');
       promptText.classList.add('hidden');
-      emailGate.classList.remove('hidden');
-      emailGate.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      revealResult();
     }
   });
 
@@ -1665,21 +1697,10 @@
   const gateEmail = document.getElementById('gateEmail');
   const gateSubmit = document.getElementById('gateSubmit');
   const gateError = document.getElementById('gateError');
-  const gateBackBtn = document.getElementById('gateBackBtn');
-
-  gateBackBtn.addEventListener('click', () => {
-    emailGate.classList.add('hidden');
-    gateError.classList.add('hidden');
-    mainHeadline.classList.remove('hidden');
-    pageKicker.classList.remove('hidden');
-    ghostText.classList.remove('hidden');
-    introText.classList.remove('hidden');
-    introClose.classList.remove('hidden');
-    promptText.classList.remove('hidden');
-    quizSteps.classList.remove('hidden');
-    currentStep = totalSteps;
-    renderStep();
-    quizSteps.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  gateOpenBtn.addEventListener('click', () => {
+    gateOpenBtn.classList.add('hidden');
+    gateForm.classList.remove('hidden');
+    gateName.focus();
   });
 
   function isValidEmail(val) {
@@ -1704,7 +1725,9 @@
     // blocked, or silently fail to settle. We never read anything back from
     // the iframe — we just fire the submission and move on immediately.
     emailGate.classList.add('hidden');
-    revealResult();
+    postFrameworkDivider.classList.remove('hidden');
+    frameworkReveal.classList.remove('hidden');
+    frameworkReveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   function logQuizResponseToSheet() {
@@ -1745,10 +1768,14 @@
     frameworkReveal.classList.add('hidden');
     finalCta.classList.add('hidden');
     emailGate.classList.add('hidden');
+    typeIntro.classList.add('hidden');
+    goodNews.innerHTML = '';
     gateForm.reset();
+    gateForm.classList.add('hidden');
+    gateOpenBtn.classList.remove('hidden');
     gateError.classList.add('hidden');
     gateSubmit.disabled = false;
-    gateSubmit.textContent = 'See My Result >>>';
+    gateSubmit.textContent = 'Show Me >>>';
     mainHeadline.classList.remove('hidden');
     pageKicker.classList.remove('hidden');
     ghostText.classList.remove('hidden');
