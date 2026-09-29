@@ -47,7 +47,7 @@
 
   body {
     font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
-    color: var(--charcoal-txt);
+    color: #000;
     background: var(--white);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -95,13 +95,13 @@
     display: block;
     font-weight: 800;
     letter-spacing: 0.01em;
-    color: var(--charcoal);
+    color: #000;
   }
 
   .page-kicker .kicker-tagline {
     display: block;
     font-weight: 500;
-    color: var(--charcoal);
+    color: #000;
   }
 
   h1 {
@@ -119,12 +119,12 @@
     paint-order: stroke fill;
   }
 
-  h1 .charcoal { color: var(--charcoal); }
+  h1 .charcoal { color: #000; }
   h1 .pink { color: var(--pink); }
 
   .subtitle {
     font-size: clamp(1.55rem, 3vw, 2rem);
-    color: var(--grey-txt);
+    color: #000;
     font-weight: 500;
     margin-bottom: 1.2rem;
   }
@@ -136,7 +136,7 @@
 
   .intro {
     font-size: 1.18rem;
-    color: var(--charcoal-txt);
+    color: #000;
     max-width: 62rem;
     position: relative;
     z-index: 1;
@@ -178,7 +178,7 @@
 
   .intro-close {
     font-size: 1.18rem;
-    color: var(--charcoal);
+    color: #000;
     max-width: 62rem;
     line-height: 1.5;
     margin-top: 0.9rem;
@@ -238,13 +238,13 @@
     margin-left: 0.4rem;
     font-size: 0.95rem;
     font-weight: 700;
-    color: var(--grey-txt);
+    color: #000;
   }
 
   .reflect-prompt {
     font-style: italic;
     font-size: 1.08rem;
-    color: var(--grey-txt);
+    color: #000;
     margin-bottom: 1.2rem;
   }
 
@@ -280,7 +280,7 @@
 
   .qcard .q-row span:last-child {
     font-size: 1.14rem;
-    color: var(--charcoal-txt);
+    color: #000;
     line-height: 1.4;
     font-weight: 500;
   }
@@ -297,7 +297,7 @@
     cursor: pointer;
     background: transparent;
     border: 1.5px solid rgba(36,36,36,0.25);
-    color: var(--charcoal-txt);
+    color: #000;
     transition: all 0.15s ease;
   }
 
@@ -331,11 +331,11 @@
 
   .back-btn {
     background: transparent;
-    color: var(--grey-txt);
+    color: #000;
     padding-left: 0.2rem;
   }
 
-  .back-btn:hover { color: var(--charcoal); }
+  .back-btn:hover { color: #000; }
 
   .next-btn {
     background: var(--charcoal);
@@ -347,7 +347,7 @@
 
   .next-btn:disabled {
     background: #d8d5cc;
-    color: #8a8578;
+    color: #000;
     cursor: not-allowed;
   }
 
@@ -361,10 +361,18 @@
   /* ---- type intro: good news shown before the opt-in ---- */
   .type-intro { margin: -1rem 0 0.4rem; }
 
+  .good-news-lead {
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: #000;
+    margin-bottom: 0.6rem;
+  }
+
   .good-news {
     font-size: 1.18rem;
     line-height: 1.6;
-    color: var(--charcoal-txt);
+    color: #000;
   }
 
   .gate-open { display: block; width: 100%; }
@@ -403,7 +411,7 @@
     border-radius: 8px;
     border: 1.5px solid transparent;
     background: var(--white);
-    color: var(--charcoal);
+    color: #000;
   }
 
   .gate-input:focus {
@@ -417,7 +425,7 @@
     font-size: 1.3rem;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-    color: var(--charcoal);
+    color: #000;
     background: var(--yellow);
     border: none;
     padding: 1rem 1.6rem;
@@ -488,7 +496,7 @@
 
   .flame .worth-noting { color: var(--pink-lt); }
   .fade  .worth-noting { color: var(--cream); }
-  .bow   .worth-noting { color: var(--charcoal-txt); }
+  .bow   .worth-noting { color: #000; }
 
   .tell-subheader {
     font-family: 'Montserrat', sans-serif;
@@ -500,14 +508,14 @@
 
   .flame .tell-subheader { color: var(--white); }
   .fade  .tell-subheader { color: var(--cream); }
-  .bow   .tell-subheader { color: var(--charcoal-txt); }
+  .bow   .tell-subheader { color: #000; }
 
   .continue-btn {
     display: block;
     width: 100%;
     text-align: center;
     background: #15E4E6;
-    color: var(--charcoal);
+    color: #000;
     -webkit-text-stroke: 2px var(--white);
     paint-order: stroke fill;
     border: none;
@@ -529,7 +537,7 @@
     width: 100%;
     text-align: center;
     background: #15E4E6;
-    color: var(--charcoal);
+    color: #000;
     -webkit-text-stroke: 2px var(--white);
     paint-order: stroke fill;
     font-family: 'Barlow Condensed', sans-serif;
@@ -557,7 +565,7 @@
   .back-hint:hover { opacity: 1; }
   .flame .back-hint { color: var(--white); }
   .fade  .back-hint { color: var(--cream); }
-  .bow   .back-hint { color: var(--charcoal-txt); }
+  .bow   .back-hint { color: #000; }
 
   /* ---- card stack: peek + shuffle + reversible navigation ---- */
   .col {
@@ -639,7 +647,7 @@
 
   .flame .col-connector { color: var(--white); }
   .fade  .col-connector { color: var(--cream); }
-  .bow   .col-connector { color: var(--charcoal-txt); }
+  .bow   .col-connector { color: #000; }
 
   .col h2 {
     display: inline-block;
@@ -654,7 +662,7 @@
   }
 
   .flame h2 { background: var(--white); color: var(--pink); }
-  .fade  h2 { background: var(--yellow); color: var(--charcoal); }
+  .fade  h2 { background: var(--yellow); color: #000; }
   .bow   h2 { background: var(--charcoal); color: var(--yellow); }
 
   .col p.desc {
@@ -665,7 +673,7 @@
 
   .flame p.desc { color: var(--white); }
   .fade  p.desc { color: var(--cream); }
-  .bow   p.desc { color: var(--charcoal-txt); }
+  .bow   p.desc { color: #000; }
 
   .col ul.behavior-list {
     font-size: 1.08rem;
@@ -679,7 +687,7 @@
 
   .flame ul.behavior-list { color: var(--white); }
   .fade  ul.behavior-list { color: var(--cream); }
-  .bow   ul.behavior-list { color: var(--charcoal-txt); }
+  .bow   ul.behavior-list { color: #000; }
 
   .ask-label {
     font-family: 'Barlow Condensed', sans-serif;
@@ -691,7 +699,7 @@
 
   .flame .ask-label { color: var(--white); }
   .fade  .ask-label { color: var(--cream); }
-  .bow   .ask-label { color: var(--charcoal-txt); }
+  .bow   .ask-label { color: #000; }
 
   .questions { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
 
@@ -720,12 +728,12 @@
   }
 
   .flame .qnum { background: var(--white); color: var(--pink); }
-  .fade  .qnum { background: var(--yellow); color: var(--charcoal); }
+  .fade  .qnum { background: var(--yellow); color: #000; }
   .bow   .qnum { background: var(--charcoal); color: var(--yellow); }
 
   .flame .questions li { color: var(--white); }
   .fade  .questions li { color: var(--cream); }
-  .bow   .questions li { color: var(--charcoal-txt); }
+  .bow   .questions li { color: #000; }
 
   .q-answers { display: flex; gap: 0.5rem; padding-left: 2.3rem; }
 
@@ -743,14 +751,14 @@
 
   .flame .ans-btn { border: 1.5px solid rgba(255,255,255,0.55); color: var(--white); }
   .fade  .ans-btn { border: 1.5px solid rgba(244,241,234,0.4); color: var(--cream); }
-  .bow   .ans-btn { border: 1.5px solid rgba(36,36,36,0.4); color: var(--charcoal-txt); }
+  .bow   .ans-btn { border: 1.5px solid rgba(36,36,36,0.4); color: #000; }
 
   .flame .ans-btn:hover { border-color: var(--white); }
   .fade  .ans-btn:hover { border-color: var(--yellow); }
   .bow   .ans-btn:hover { border-color: var(--charcoal); }
 
   .flame .ans-btn.selected { background: var(--white); color: var(--pink); border-color: var(--white); }
-  .fade  .ans-btn.selected { background: var(--yellow); color: var(--charcoal); border-color: var(--yellow); }
+  .fade  .ans-btn.selected { background: var(--yellow); color: #000; border-color: var(--yellow); }
   .bow   .ans-btn.selected { background: var(--charcoal); color: var(--yellow); border-color: var(--charcoal); }
 
   .reveal-zone {
@@ -760,7 +768,7 @@
 
   .progress-text {
     font-size: 0.88rem;
-    color: var(--grey-txt);
+    color: #000;
     margin-bottom: 0.9rem;
     font-weight: 500;
   }
@@ -783,7 +791,7 @@
 
   .reveal-btn:disabled {
     background: #d8d5cc;
-    color: #8a8578;
+    color: #000;
     cursor: not-allowed;
   }
 
@@ -803,7 +811,7 @@
     font-weight: 800;
     font-size: 2.3rem;
     line-height: 1.15;
-    color: var(--charcoal);
+    color: #000;
     margin-bottom: 2rem;
     text-align: center;
     letter-spacing: 0.01em;
@@ -811,7 +819,7 @@
 
   .closer-heading .headline {
     background: #15E4E6;
-    color: var(--charcoal);
+    color: #000;
     padding: 0.06em 0.28em;
     border-radius: 4px;
     box-decoration-break: clone;
@@ -852,7 +860,7 @@
     font-size: 1.12rem;
     line-height: 1.6;
     margin-bottom: 0.9rem;
-    color: var(--charcoal-txt);
+    color: #000;
   }
 
   .final-cta p.outro-open {
@@ -860,7 +868,7 @@
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.7rem;
     letter-spacing: 0.01em;
-    color: var(--charcoal);
+    color: #000;
     margin-bottom: 1rem;
   }
 
@@ -871,7 +879,7 @@
     text-underline-offset: 2px;
   }
 
-  .final-cta a:not(.tell-cta):hover { color: var(--charcoal); }
+  .final-cta a:not(.tell-cta):hover { color: #000; }
 
   .tell-cta {
     display: inline-flex;
@@ -900,7 +908,7 @@
     margin-top: 1rem;
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--grey-txt);
+    color: #000;
     text-decoration: underline;
     text-underline-offset: 2px;
     cursor: pointer;
@@ -922,7 +930,7 @@
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: var(--grey-txt);
+    color: #000;
     position: relative;
     z-index: 1;
     text-align: center;
@@ -1063,7 +1071,7 @@
           <path d="M140,140 L252.6,75 A130,130 0 0,1 140,270 Z" fill="var(--charcoal)"></path>
           <path d="M140,140 L140,270 A130,130 0 0,1 27.4,75 Z" fill="var(--pink)"></path>
           <circle cx="140" cy="140" r="130" fill="none" stroke="#b5b2a8" stroke-width="4"></circle>
-          <text x="140" y="46" text-anchor="middle" class="dial-wedge-label" style="fill: var(--charcoal);"><tspan x="140" dy="-8">BOW</tspan><tspan x="140" dy="16">OUT</tspan></text>
+          <text x="140" y="46" text-anchor="middle" class="dial-wedge-label" style="fill: #000;"><tspan x="140" dy="-8">BOW</tspan><tspan x="140" dy="16">OUT</tspan></text>
           <text x="220" y="186" text-anchor="middle" class="dial-wedge-label" style="fill: var(--yellow);"><tspan x="220" dy="-8">FADE</tspan><tspan x="220" dy="16">OUT</tspan></text>
           <text x="60" y="186" text-anchor="middle" class="dial-wedge-label" style="fill: var(--white);"><tspan x="60" dy="-8">FLAME</tspan><tspan x="60" dy="16">OUT</tspan></text>
           <polygon id="dialNeedle" class="dial-needle" points="140,65 147,140 133,140" fill="#15E4E6" stroke="var(--white)" stroke-width="2"></polygon>
@@ -1073,20 +1081,20 @@
     </div>
 
     <div class="type-intro hidden" id="typeIntro">
+      <p class="good-news-lead" id="goodNewsLead"></p>
       <p class="good-news" id="goodNews"></p>
     </div>
 
     <div class="email-gate hidden" id="emailGate">
       <p class="gate-copy" id="gateCopy"></p>
-      <button type="button" class="gate-submit gate-open" id="gateOpenBtn">Tell Me More &gt;&gt;</button>
-      <form id="gateForm" class="gate-form hidden" novalidate
+      <form id="gateForm" class="gate-form" novalidate
             action="https://assets.mailerlite.com/jsonp/1407728/forms/195431736387044353/subscribe"
             method="post" target="mlHiddenFrame">
         <input type="text" id="gateName" name="fields[name]" class="gate-input" placeholder="First name" autocomplete="given-name">
         <input type="email" id="gateEmail" name="fields[email]" class="gate-input" placeholder="Email" autocomplete="email" required>
         <input type="hidden" name="ml-submit" value="1">
         <input type="hidden" name="anticsrf" value="true">
-        <button type="submit" class="gate-submit" id="gateSubmit">Show Me &gt;&gt;&gt;</button>
+        <button type="submit" class="gate-submit" id="gateSubmit">Tell Me More &gt;&gt;</button>
         <p class="gate-error hidden" id="gateError">Please enter a valid email.</p>
       </form>
     </div>
@@ -1563,8 +1571,8 @@
 
   const typeIntro = document.getElementById('typeIntro');
   const goodNews = document.getElementById('goodNews');
+  const goodNewsLead = document.getElementById('goodNewsLead');
   const gateCopy = document.getElementById('gateCopy');
-  const gateOpenBtn = document.getElementById('gateOpenBtn');
 
   function revealResult() {
     const counts = tally();
@@ -1657,12 +1665,13 @@
 
     // Type + good news are free. Behaviors, risks, and THE TELL pitch
     // (frameworkReveal) stay hidden until the opt-in form is submitted.
+    goodNewsLead.textContent = winners[0] === 'bow'
+      ? `Here's the good news: being a Bow Out puts you in a strong position.`
+      : `Here's the good news: being ${TYPE_NAME[winners[0]]} isn't a bad thing.`;
     goodNews.innerHTML = GOOD_NEWS[winners[0]];
-    gateCopy.textContent = `Every founder type has its upsides and downsides. You've seen the upside of yours. Drop your email and we'll show you how being ${TYPE_NAME[winners[0]]} tends to play out, the behaviors to watch for, what it can cost if it goes unchecked, and how to keep it working for you.`;
+    gateCopy.textContent = `Every founder type has its upsides and downsides. You've just seen the upside of yours. Drop your details below and we'll show you how being ${TYPE_NAME[winners[0]]} tends to play out, the behaviors to watch for, what it can cost if it goes unchecked, and how to keep it working for you.`;
     typeIntro.classList.remove('hidden');
     emailGate.classList.remove('hidden');
-    gateOpenBtn.classList.remove('hidden');
-    gateForm.classList.add('hidden');
     finalCta.classList.remove('hidden');
     quizSteps.classList.add('hidden');
     closerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1697,12 +1706,6 @@
   const gateEmail = document.getElementById('gateEmail');
   const gateSubmit = document.getElementById('gateSubmit');
   const gateError = document.getElementById('gateError');
-  gateOpenBtn.addEventListener('click', () => {
-    gateOpenBtn.classList.add('hidden');
-    gateForm.classList.remove('hidden');
-    gateName.focus();
-  });
-
   function isValidEmail(val) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
   }
@@ -1770,12 +1773,11 @@
     emailGate.classList.add('hidden');
     typeIntro.classList.add('hidden');
     goodNews.innerHTML = '';
+    goodNewsLead.textContent = '';
     gateForm.reset();
-    gateForm.classList.add('hidden');
-    gateOpenBtn.classList.remove('hidden');
     gateError.classList.add('hidden');
     gateSubmit.disabled = false;
-    gateSubmit.textContent = 'Show Me >>>';
+    gateSubmit.textContent = 'Tell Me More >>';
     mainHeadline.classList.remove('hidden');
     pageKicker.classList.remove('hidden');
     ghostText.classList.remove('hidden');
