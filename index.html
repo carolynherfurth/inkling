@@ -594,6 +594,15 @@
   .page-indicator .num-one { opacity: 0.4; }
   .page-indicator .active { opacity: 1; }
 
+  .page-indicator .num-one,
+  .page-indicator .num-two {
+    cursor: pointer;
+    padding: 0 0.2rem;
+  }
+
+  .page-indicator .num-one:hover,
+  .page-indicator .num-two:hover { opacity: 1; }
+
   .card-face {
     border-radius: 14px;
     padding: 1.6rem 1.5rem 1.8rem;
@@ -1102,19 +1111,19 @@
     <div class="framework-reveal hidden" id="frameworkReveal">
 
       <section class="col flame result-card" id="resultCard-flame">
-        <div class="page-indicator" id="pageIndicator-flame"><span class="num-one active">1</span> / <span class="num-two">2</span></div>
+        <div class="page-indicator" id="pageIndicator-flame"><span class="num-one active" role="button" tabindex="0" aria-label="Show page 1">1</span> / <span class="num-two" role="button" tabindex="0" aria-label="Show page 2">2</span></div>
         <div class="card-face is-behind" id="cardBehind-flame" aria-hidden="true"></div>
         <div class="card-face is-front" id="cardFront-flame"></div>
       </section>
 
       <section class="col fade result-card" id="resultCard-fade">
-        <div class="page-indicator" id="pageIndicator-fade"><span class="num-one active">1</span> / <span class="num-two">2</span></div>
+        <div class="page-indicator" id="pageIndicator-fade"><span class="num-one active" role="button" tabindex="0" aria-label="Show page 1">1</span> / <span class="num-two" role="button" tabindex="0" aria-label="Show page 2">2</span></div>
         <div class="card-face is-behind" id="cardBehind-fade" aria-hidden="true"></div>
         <div class="card-face is-front" id="cardFront-fade"></div>
       </section>
 
       <section class="col bow result-card" id="resultCard-bow">
-        <div class="page-indicator" id="pageIndicator-bow"><span class="num-one active">1</span> / <span class="num-two">2</span></div>
+        <div class="page-indicator" id="pageIndicator-bow"><span class="num-one active" role="button" tabindex="0" aria-label="Show page 1">1</span> / <span class="num-two" role="button" tabindex="0" aria-label="Show page 2">2</span></div>
         <div class="card-face is-behind" id="cardBehind-bow" aria-hidden="true"></div>
         <div class="card-face is-front" id="cardFront-bow"></div>
       </section>
@@ -1305,6 +1314,20 @@
 
   const lastWorthNotingText = {};
 
+  // Page numbers (1 / 2) toggle between the two cards
+  ['flame', 'fade', 'bow'].forEach(out => {
+    const ind = document.getElementById('pageIndicator-' + out);
+    const one = ind.querySelector('.num-one');
+    const two = ind.querySelector('.num-two');
+    const onCardOne = () => document.getElementById('cardBehind-' + out).dataset.state !== 'peek-of-1';
+    const goOne = () => { if (!onCardOne()) goToCard1(out); };
+    const goTwo = () => { if (onCardOne()) goToCard2(out); };
+    one.addEventListener('click', goOne);
+    two.addEventListener('click', goTwo);
+    one.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goOne(); } });
+    two.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTwo(); } });
+  });
+
   function showResultCard(base, counts) {
     resultCards.forEach(card => card.classList.remove('active'));
     const activeCard = document.getElementById('resultCard-' + base);
@@ -1338,17 +1361,20 @@
 
   // ---- cycling intro animation ----
   const CYCLE_PHRASES = [
+    'curiosity.',
     'restlessness.',
+    'a flood of new ideas.',
     'a loss of interest.',
+    "a hunch there's something else.",
     'agitation.',
     'avoidance.',
+    'excitement.',
     'heart palpitations.',
+    'a sense of possibility.',
     'disappointment.',
+    'a desire for change.',
     'FOMO.',
-    'curiosity.',
-    'a flood of new ideas.',
-    'a string of DGAF days.',
-    'a desire for something different.'
+    'a string of DGAF days.'
   ];
 
   function cycleDuration(text) {
